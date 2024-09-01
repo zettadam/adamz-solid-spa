@@ -1,0 +1,70 @@
+:root {
+  --font-serif: "Lusitana", "Georgia", serif;
+  --font-sans-serif: "Inter", "Helvetica Neue", "Roboto", sans-serif;
+
+  --text-size-02: 0.75rem;
+  --text-size-01: 0.875rem;
+  --text-size-1: 1rem;
+  --text-size-2: 1.125rem;
+  --text-size-3: 1.25rem;
+  --text-size-4: 1.5rem;
+  --text-size-5: 1.75rem;
+  --text-size-6: 2rem;
+  --text-size-7: 2.25rem;
+  --text-size-8: 2.625rem;
+  --text-size-9: 3rem;
+  --text-size-10: 3.375rem;
+  --text-size-11: 3.75rem;
+  --text-size-12: 4.25rem;
+  --text-size-13: 4.75rem;
+  --text-size-14: 5.25rem;
+  --text-size-15: 5.75rem;
+
+  --radius-1: 0.125rem;
+  --radius-2: 0.25rem;
+  --radius-3: 0.375rem;
+  --radius-4: 0.5rem;
+  --radius-5: 0.75rem;
+  --radius-6: 1rem;
+
+  --color-primary: oklch(23.08% 0.07 252.89);
+  --color-secondary: oklch(86.53% 0.034 242.73);
+  --color-tertiary: transparent;
+  --color-danger: oklch(59.91% 0.22 27.28);
+
+  --color-home: oklch(23.08% 0.07 252.89);
+  --color-home-a125: oklch(23.08% 0.07 252.89 / 12.5%);
+  --color-home-a25: oklch(23.08% 0.07 252.89 / 25%);
+  --color-home-a50: oklch(23.08% 0.07 252.89 / 50%);
+  --color-home-a75: oklch(23.08% 0.07 252.89 / 75%);
+
+  --color-posts: oklch(46.82% 0.152 24.87);
+  --color-posts-a125: oklch(46.82% 0.152 24.87 / 12.5%);
+  --color-posts-a25: oklch(46.82% 0.152 24.87 / 25%);
+  --color-posts-a50: oklch(46.82% 0.152 24.87 / 50%);
+
+  --color-notes: oklch(44.93% 0.049 217.02);
+  --color-notes-a125: oklch(44.93% 0.049 217.02 / 12.5%);
+  --color-notes-a25: oklch(44.93% 0.049 217.02 / 25%);
+  --color-notes-a50: oklch(44.93% 0.049 217.02 / 50%);
+
+  --color-code: oklch(55.47% 0.25 297.02);
+  --color-code-a125: oklch(55.47% 0.25 297.02 / 12.5%);
+  --color-code-a25: oklch(55.47% 0.25 297.02 / 25%);
+  --color-code-a50: oklch(55.47% 0.25 297.02 / 50%);
+
+  --color-links: oklch(40.43% 0.084 293.07);
+  --color-links-a125: oklch(40.43% 0.084 293.07 / 12.5%);
+  --color-links-a25: oklch(40.43% 0.084 293.07 / 25%);
+  --color-links-a50: oklch(40.43% 0.084 293.07 / 50%);
+
+  --color-labs: oklch(47.12% 0.081 226.3);
+  --color-labs-a125: oklch(47.12% 0.081 226.3 / 12.5%);
+  --color-labs-a25: oklch(47.12% 0.081 226.3 / 25%);
+  --color-labs-a50: oklch(47.12% 0.081 226.3 / 50%);
+
+  --color-events: oklch(50.52% 0.081 52.57);
+  --color-events-a125: oklch(50.52% 0.081 52.57 / 12.5%);
+  --color-events-a25: oklch(50.52% 0.081 52.57 / 25%);
+  --color-events-a50: oklch(50.52% 0.081 52.57 / 50%);
+}

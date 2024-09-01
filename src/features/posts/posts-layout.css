@@ -1,0 +1,43 @@
+@layer app {
+  .posts-layout {
+    width: 100%;
+
+    & nav.page {
+      background-color: var(--color-posts-a50);
+    }
+
+    & :focus-visible {
+      background-color: var(--color-posts-a125);
+      outline: 1px solid var(--color-posts);
+    }
+
+    & a.create {
+      background-color: var(--color-posts-a50);
+      color: white;
+    }
+
+    & div.page {
+      border-color: var(--color-posts);
+
+      & > h2 {
+        color: var(--color-posts);
+      }
+    }
+
+    & form {
+      & .label {
+        color: var(--color-posts);
+      }
+
+      & input[type='text'],
+      & input[type='number'],
+      & input[type='date'],
+      & input[type='datetime-local'],
+      & select,
+      & .text-editor .tiptap,
+      & .code-editor {
+        border-color: var(--color-posts);
+      }
+    }
+  }
+}

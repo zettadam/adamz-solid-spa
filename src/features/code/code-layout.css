@@ -1,0 +1,40 @@
+@layer app {
+  .code-layout {
+    & nav.page {
+      background-color: var(--color-code-a50);
+    }
+    & :focus-visible {
+      background-color: var(--color-code-a125);
+      outline: 1px solid var(--color-code);
+    }
+
+    & a.create {
+      background-color: var(--color-code-a50);
+      color: white;
+    }
+
+    & div.page {
+      border-top: 0.25rem solid var(--color-code);
+
+      & > h2 {
+        color: var(--color-code);
+      }
+    }
+
+    & form {
+      & .label {
+        color: var(--color-code);
+      }
+
+      & input[type='text'],
+      & input[type='number'],
+      & input[type='date'],
+      & input[type='datetime-local'],
+      & select,
+      & .text-editor .tiptap,
+      & .code-editor {
+        border-color: var(--color-code);
+      }
+    }
+  }
+}

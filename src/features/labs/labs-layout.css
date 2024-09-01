@@ -1,0 +1,43 @@
+@layer app {
+  .labs-layout {
+    width: 100%;
+
+    & nav.page {
+      background-color: var(--color-labs-a50);
+    }
+
+    & :focus-visible {
+      background-color: var(--color-labs-a125);
+      outline: 1px solid var(--color-labs);
+    }
+
+    & a.create {
+      background-color: var(--color-labs-a50);
+      color: white;
+    }
+
+    & div.page {
+      border-color: var(--color-labs);
+
+      & > h2 {
+        color: var(--color-labs);
+      }
+    }
+
+    & form {
+      & .label {
+        color: var(--color-labs);
+      }
+
+      & input[type='text'],
+      & input[type='number'],
+      & input[type='date'],
+      & input[type='datetime-local'],
+      & select,
+      & .text-editor .tiptap,
+      & .code-editor {
+        border-color: var(--color-labs);
+      }
+    }
+  }
+}
