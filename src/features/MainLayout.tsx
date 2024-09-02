@@ -53,16 +53,16 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
             <A href="/notes" class="notes">
               Notes
             </A>
-            <A href="/code" class="code">
-              Code
+            <A href="/links" class="links">
+              Links
             </A>
           </span>
           <A href="/" class="home">
             Home
           </A>
           <span>
-            <A href="/links" class="links">
-              Links
+            <A href="/code" class="code">
+              Code
             </A>
             <A href="/labs" class="labs">
               Labs

@@ -1,21 +1,39 @@
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  type Component,
+  type JSX,
+} from 'solid-js'
+import { Title } from '@solidjs/meta'
 import { A, useLocation, useParams } from '@solidjs/router'
-import type { JSX, Component } from 'solid-js'
+
+import { monthNamesLong } from '../constants'
 
 const MonthRoute: Component = (): JSX.Element => {
+  const [section, setSection] = createSignal('')
+  const { month, year } = useParams()
   const l = useLocation()
-  const { year, month } = useParams()
+  const p = createMemo(() => l.pathname)
 
-  const s = l.pathname.split('/')[1]
+  createEffect(() => {
+    const s = p().split('/')[1]
+    setSection(s ?? '')
+  })
 
   return (
-    <main>
-      <h3>
-        Archive Month:{' '}
-        {year ? <A href={`/${s}/archive/${year}`}>{year}</A> : null}
-        {month ? ` / ${month}` : null}
-      </h3>
-      <p>Month page will be rendered here.</p>
-    </main>
+    <>
+      <Title>
+        Archived {section()} in {monthNamesLong[month]} {year} – Adam Ziolkowski
+      </Title>
+      <main>
+        <h3>
+          {year ? <A href={`/${section()}/archive/${year}`}>{year}</A> : null}
+          {month ? ` / ${monthNamesLong[month]}` : null}
+        </h3>
+        <p>Month page will be rendered here.</p>
+      </main>
+    </>
   )
 }
 

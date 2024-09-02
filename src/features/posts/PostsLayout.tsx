@@ -13,11 +13,12 @@ const PostsLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/posts/archive">Archive</A>
         <span class="divider" />
-        <A href="/posts/new" class="create">
-          + New post
-        </A>
-        <span class="divider" />
-        <input type="search" name="keyword" placeholder="Search posts" />
+        <input
+          type="search"
+          name="keyword"
+          placeholder="Search posts"
+          disabled
+        />
       </nav>
 
       {props.children}

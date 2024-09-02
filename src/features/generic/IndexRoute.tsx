@@ -1,19 +1,40 @@
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  type JSX,
+  type Component,
+} from 'solid-js'
+import { Title } from '@solidjs/meta'
 import { useLocation } from '@solidjs/router'
-import type { JSX, Component } from 'solid-js'
 
 import type { CollectionName } from '~/lib/api'
-
 import PaginatedListBasic from '~/components/PaginatedListBasic'
 
 const IndexRoute: Component = (): JSX.Element => {
+  const [section, setSection] = createSignal('')
   const l = useLocation()
-  const s = l.pathname.split('/')[1]
+  const p = createMemo(() => l.pathname)
+
+  createEffect(() => {
+    const s = p().split('/')[1]
+    setSection(s ?? '')
+  })
 
   return (
-    <div classList={{ page: true, index: true }}>
-      <h2>Latest</h2>
-      <PaginatedListBasic name={s as CollectionName} page={1} size={10} />
-    </div>
+    <>
+      <Title>Latest {section()} – Adam Ziolkowski</Title>
+      <div classList={{ page: true, index: true }}>
+        <h2>Latest</h2>
+        {section() && (
+          <PaginatedListBasic
+            name={section() as CollectionName}
+            page={1}
+            size={10}
+          />
+        )}
+      </div>
+    </>
   )
 }
 

@@ -11,11 +11,14 @@ const LabsLayout: ParentComponent = (props): JSX.Element => {
           Index
         </A>
         <span class="divider" />
-        <A href="/labs/new" class="create">
-          + New task
-        </A>
+        <A href="/labs/archive">Archive</A>
         <span class="divider" />
-        <input type="search" name="keyword" placeholder="Search labs" />
+        <input
+          type="search"
+          name="keyword"
+          placeholder="Search labs"
+          disabled
+        />
       </nav>
 
       {props.children}

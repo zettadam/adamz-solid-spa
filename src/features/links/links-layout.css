@@ -1,7 +1,11 @@
 @layer app {
   .links-layout {
     & nav.page {
-      background-color: var(--color-links-a50);
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--color-links-a50) 25%
+      );
     }
     & :focus-visible {
       background-color: var(--color-links-a125);

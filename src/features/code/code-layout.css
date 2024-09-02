@@ -1,7 +1,11 @@
 @layer app {
   .code-layout {
     & nav.page {
-      background-color: var(--color-code-a50);
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--color-code-a50) 25%
+      );
     }
     & :focus-visible {
       background-color: var(--color-code-a125);

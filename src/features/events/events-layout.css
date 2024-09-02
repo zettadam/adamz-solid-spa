@@ -1,7 +1,11 @@
 @layer app {
   .events-layout {
     & nav.page {
-      background-color: var(--color-events-a50);
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--color-events-a50) 25%
+      );
     }
     & :focus-visible {
       background-color: var(--color-events-a125);

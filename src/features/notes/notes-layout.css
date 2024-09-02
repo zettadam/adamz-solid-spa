@@ -1,7 +1,11 @@
 @layer app {
   .notes-layout {
     & nav.page {
-      background-color: var(--color-notes-a50);
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--color-notes-a50) 25%
+      );
     }
 
     & :focus-visible {

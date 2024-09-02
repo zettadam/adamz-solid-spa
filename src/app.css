@@ -23,6 +23,11 @@
     }
   }
 
+  time {
+    font-family: var(--font-sans-serif);
+    font-size: var(--text-size-01);
+  }
+
   :focus {
     outline: 0;
   }
@@ -68,7 +73,39 @@
   button {
     cursor: pointer;
     font-family: var(--font-sans-serif);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    & a {
+      text-decoration: none;
+    }
+  }
+
+  p,
+  li,
+  dt,
+  dd,
+  button,
+  input,
+  select {
     font-size: var(--text-size-1);
+  }
+
+  p a {
+    font-weight: var(--font-weight-bold);
+  }
+
+  a[href^='http'] {
+    &:before {
+      content: '\1F517';
+      display: inline-block;
+      margin-inline: 0 0.25rem;
+    }
   }
 }
 
@@ -139,31 +176,61 @@
         align-items: center;
         display: flex;
         font-weight: 700;
+        padding-inline: 0.5rem 6rem;
       }
       &.posts h2 {
-        background-color: var(--color-posts-a50);
+        background: linear-gradient(
+          to right,
+          var(--color-posts-a50) 33.3%,
+          transparent
+        );
       }
       &.notes h2 {
-        background-color: var(--color-notes-a50);
+        background: linear-gradient(
+          to right,
+          var(--color-notes-a50) 33.3%,
+          transparent
+        );
       }
       &.code h2 {
-        background-color: var(--color-code-a50);
+        background: linear-gradient(
+          to right,
+          var(--color-code-a50) 33.3%,
+          transparent
+        );
       }
       &.links h2 {
-        background-color: var(--color-links-a50);
+        background: linear-gradient(
+          to right,
+          var(--color-links-a50) 33.3%,
+          transparent
+        );
       }
       &.labs h2 {
-        background-color: var(--color-labs-a50);
+        background: linear-gradient(
+          to right,
+          var(--color-labs-a50) 33.3%,
+          transparent
+        );
       }
       &.events h2 {
-        background-color: var(--color-events-a50);
+        background: linear-gradient(
+          to right,
+          var(--color-events-a50) 33.3%,
+          transparent
+        );
       }
 
       & nav.secondary {
-        background-color: hsla(0, 0%, 100%, 0.75);
+        background: linear-gradient(
+          to right,
+          transparent,
+          hsl(0, 0%, 100%) 25%
+        );
         display: flex;
         margin-inline: auto 5dvw;
-        padding: 0;
+        padding-block: 0;
+        padding-inline: 6rem 0;
         &:after {
           align-items: center;
           background-color: var(--color-primary);
@@ -184,28 +251,13 @@
             margin: 0;
             padding: 0;
             text-transform: lowercase;
-            &.news a:before {
-              content: '\2385';
-            }
-            &.feeds a:before {
-              content: '\23FF';
-            }
-            &.auth a:before {
-              content: '\2386';
-            }
-            &.about a:before {
-              content: '\2248';
-            }
             & a {
-              align-items: center;
               color: var(--color-primary);
-              display: flex;
-              gap: 0.5rem;
               margin: 0;
               padding: 0rem 1rem;
               &:active,
               &:hover {
-                font-weight: 600;
+                font-weight: 700;
               }
             }
           }
@@ -219,7 +271,8 @@
       gap: 1rem;
       justify-content: flex-end;
       margin: 0 5dvw 0 auto;
-      padding: 0.5rem;
+      padding-block: 0.5rem;
+      padding-inline: 6rem 0.5rem;
       position: sticky;
       top: 0;
       width: fit-content;
@@ -260,10 +313,25 @@
         font-family: var(--font-sans-serif);
         font-size: var(--text-size-15);
         font-weight: 900;
-        margin-block: -6.5rem 2rem;
-        opacity: 0.5;
+        line-height: 1;
+        margin-block: -5.125rem 0;
+        top: -5rem;
         text-transform: uppercase;
         pointer-events: none;
+      }
+
+      & article {
+        & header {
+          & h1 {
+            font-size: var(--text-size-12);
+            margin-block: 1rem;
+          }
+        }
+
+        & section.abstract {
+          border-bottom: 1px solid hsl(0, 0%, 25%);
+          margin-block: 1rem 3rem;
+        }
       }
     }
 

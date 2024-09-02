@@ -1,9 +1,15 @@
 import { CollectionName } from '~/lib/api'
 
-export default function Loading({ name = 'posts' }: { name: CollectionName }) {
+export default function Loading({
+  detail = false,
+  name = 'posts',
+}: {
+  detail?: boolean
+  name: CollectionName
+}) {
   return (
     <div class={`${name} loading`}>
-      <p>Loading {name}</p>
+      <p>Loading {detail ? 'detail' : name}</p>
     </div>
   )
 }

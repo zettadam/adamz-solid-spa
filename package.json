@@ -9,15 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@solidjs/meta": "0.29.4",
     "@solidjs/router": "0.14.3",
     "pocketbase": "0.21.5",
+    "sanitize-html": "2.13.0",
     "solid-js": "1.8.21"
   },
   "devDependencies": {
     "@types/node": "22.5.2",
+    "@types/sanitize-html": "2.13.0",
     "prettier": "3.3.3",
     "typescript": "5.5.3",
     "vite": "5.4.2",
+    "vite-plugin-bundle-prefetch": "0.0.4",
     "vite-plugin-solid": "2.10.2",
     "vite-plugin-webfont-dl": "3.9.5"
   }

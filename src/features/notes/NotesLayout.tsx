@@ -13,11 +13,12 @@ const NotesLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/notes/archive">Archive</A>
         <span class="divider" />
-        <A href="/notes/new" class="create">
-          + New note
-        </A>
-        <span class="divider" />
-        <input type="search" name="keyword" placeholder="Search notes" />
+        <input
+          type="search"
+          name="keyword"
+          placeholder="Search notes"
+          disabled
+        />
       </nav>
 
       {props.children}

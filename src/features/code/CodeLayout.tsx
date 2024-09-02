@@ -13,14 +13,11 @@ const CodeLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/code/archive">Archive</A>
         <span class="divider" />
-        <A href="/code/new" class="create">
-          + New code snippet
-        </A>
-        <span class="divider" />
         <input
           type="search"
           name="keyword"
           placeholder="Search code snippets"
+          disabled
         />
       </nav>
 

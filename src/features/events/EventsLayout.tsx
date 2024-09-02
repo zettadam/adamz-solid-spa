@@ -11,11 +11,14 @@ const EventsLayout: ParentComponent = (props): JSX.Element => {
           Index
         </A>
         <span class="divider" />
-        <A href="/events/new" class="create">
-          + New event
-        </A>
+        <A href="/events/archive">Archive</A>
         <span class="divider" />
-        <input type="search" name="keyword" placeholder="Search events" />
+        <input
+          type="search"
+          name="keyword"
+          placeholder="Search events"
+          disabled
+        />
       </nav>
 
       {props.children}

@@ -1,24 +1,40 @@
+import {
+  createEffect,
+  createMemo,
+  createSignal,
+  type Component,
+  type JSX,
+} from 'solid-js'
+import { Title } from '@solidjs/meta'
 import { A, useLocation, useParams } from '@solidjs/router'
-import type { JSX, Component } from 'solid-js'
 
 const DayRoute: Component = (): JSX.Element => {
+  const [section, setSection] = createSignal('')
+  const { day, month, year } = useParams()
   const l = useLocation()
-  const { year, month, day } = useParams()
+  const p = createMemo(() => l.pathname)
 
-  const s = l.pathname.split('/')[1]
+  createEffect(() => {
+    const s = p().split('/')[1]
+    setSection(s ?? '')
+  })
 
   return (
-    <main>
-      <h3>
-        Archive Month:{' '}
-        {year ? <A href={`/${s}/archive/${year}`}>{year}</A> : null}
-        {year && month ? (
-          <A href={`/${s}/archive/${year}/${month}`}>{month.toUpperCase()}</A>
-        ) : null}
-        {day ? ` / ${day}` : null}
-      </h3>
-      <p>Day page will be rendered here.</p>
-    </main>
+    <>
+      <Title>
+        Archived {section()} on {month} {day}, {year} – Adam Ziolkowski
+      </Title>
+      <main>
+        <h3>
+          {year ? <A href={`/${section()}/archive/${year}`}>{year}</A> : null}
+          {year && month ? (
+            <A href={`/${section()}/archive/${year}/${month}`}>{month}</A>
+          ) : null}
+          {day ? ` / ${day}` : null}
+        </h3>
+        <p>Day page will be rendered here.</p>
+      </main>
+    </>
   )
 }
 

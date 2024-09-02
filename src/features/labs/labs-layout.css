@@ -3,7 +3,11 @@
     width: 100%;
 
     & nav.page {
-      background-color: var(--color-labs-a50);
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--color-labs-a50) 25%
+      );
     }
 
     & :focus-visible {
