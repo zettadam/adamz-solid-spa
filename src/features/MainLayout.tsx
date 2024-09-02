@@ -1,16 +1,28 @@
+import {
+  type JSX,
+  type ParentComponent,
+  createEffect,
+  createMemo,
+  createSignal,
+} from 'solid-js'
 import { A, useLocation } from '@solidjs/router'
-import type { JSX, ParentComponent } from 'solid-js'
 
 const MainLayout: ParentComponent = (props): JSX.Element => {
-  const location = useLocation()
-  const section = location.pathname.split('/')[1]
+  const [section, setSection] = createSignal('')
+  const l = useLocation()
+  const p = createMemo(() => l.pathname)
+
+  createEffect(() => {
+    const s = p().split('/')[1]
+    setSection(s ?? '')
+  })
 
   return (
     <div class="main-layout">
-      <header class={section || 'home'}>
+      <header class={section() || 'home'}>
         <hgroup>
           <h1>Adam Ziolkowski</h1>
-          <h2 class={section}>{section}</h2>
+          {section() && <h2>{section()}</h2>}
         </hgroup>
         <nav class="secondary">
           <menu>

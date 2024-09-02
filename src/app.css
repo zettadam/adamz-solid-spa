@@ -140,22 +140,22 @@
         display: flex;
         font-weight: 700;
       }
-      & h2.posts {
+      &.posts h2 {
         background-color: var(--color-posts-a50);
       }
-      & h2.notes {
+      &.notes h2 {
         background-color: var(--color-notes-a50);
       }
-      & h2.code {
+      &.code h2 {
         background-color: var(--color-code-a50);
       }
-      & h2.links {
+      &.links h2 {
         background-color: var(--color-links-a50);
       }
-      & h2.labs {
+      &.labs h2 {
         background-color: var(--color-labs-a50);
       }
-      & h2.events {
+      &.events h2 {
         background-color: var(--color-events-a50);
       }
 

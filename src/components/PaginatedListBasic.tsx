@@ -1,4 +1,4 @@
-import { type Component, type JSX, createResource } from 'solid-js'
+import { type Component, type JSX, createResource, Show } from 'solid-js'
 import type { ListResult, RecordModel } from 'pocketbase'
 
 import { client } from '~/lib/pocketbase'
@@ -15,6 +15,7 @@ const PaginatedListBasic: Component<{
   const s = props.size ?? 10
   const f =
     props.name === 'events' || props.name === 'labs' ? 'created' : 'published'
+
   const [data] = createResource(() =>
     client.collection(props.name).getList(p, s, {
       filter: `${f} != null`,
@@ -24,9 +25,15 @@ const PaginatedListBasic: Component<{
 
   return (
     <>
-      {data.loading && <Loading name={props.name} />}
-      {data.error && <Error message={data.error.message} name={props.name} />}
-      {data() && <BasicList data={data()} name={props.name} />}
+      <Show when={data.loading}>
+        <Loading name={props.name} />
+      </Show>
+      <Show when={data.error}>
+        <Error message={data.error.message} name={props.name} />
+      </Show>
+      <Show when={data()}>
+        <BasicList data={data()} name={props.name} />
+      </Show>
     </>
   )
 }
