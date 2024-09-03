@@ -23,11 +23,6 @@
     }
   }
 
-  time {
-    font-family: var(--font-sans-serif);
-    font-size: var(--text-size-01);
-  }
-
   :focus {
     outline: 0;
   }
@@ -86,18 +81,16 @@
     }
   }
 
-  p,
-  li,
-  dt,
-  dd,
-  button,
-  input,
-  select {
-    font-size: var(--text-size-1);
-  }
-
   p a {
     font-weight: var(--font-weight-bold);
+  }
+
+  blockquote {
+    & p {
+      font-family: 'Mate', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
   }
 
   a[href^='http'] {

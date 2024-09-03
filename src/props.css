@@ -32,6 +32,9 @@
   --radius-5: 0.75rem;
   --radius-6: 1rem;
 
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 0%);
+
   --color-primary: oklch(23.08% 0.07 252.89);
   --color-secondary: oklch(86.53% 0.034 242.73);
   --color-tertiary: transparent;

@@ -12,7 +12,7 @@ import sanitizeHtml from 'sanitize-html'
 
 import { client } from '~/lib/pocketbase'
 import { type CollectionName } from '~/lib/api'
-import { formatDate } from '~/lib/helpers/datetime'
+import { formatDatetime } from '~/lib/helpers/datetime'
 
 import Error from './Error'
 import Loading from './Loading'
@@ -70,7 +70,7 @@ function BasicList({
           const abstract = sanitizeHtml(d.abstract)
           return (
             <li>
-              <time>{formatDate(d.published, 'long')}</time>
+              <time>{formatDatetime(d.published, 'long')}</time>
               <h4>
                 <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
               </h4>

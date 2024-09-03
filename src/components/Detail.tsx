@@ -8,7 +8,7 @@ import {
 } from 'solid-js'
 
 import { client } from '~/lib/pocketbase'
-import { formatDate } from '~/lib/helpers/datetime'
+import { formatDatetime } from '~/lib/helpers/datetime'
 import type { CollectionName } from '~/lib/api'
 
 import Error from './Error'
@@ -51,7 +51,9 @@ function PostDetail(props: { data?: RecordModel }): JSX.Element | null {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
-  const published = item.published ? formatDate(item.published, 'long') : null
+  const published = item.published
+    ? formatDatetime(item.published, 'long')
+    : null
   const abstract = item.abstract ? sanitize(item.abstract) : null
   const body = item.body ? sanitize(item.body) : null
 
@@ -76,7 +78,9 @@ function NoteDetail(props: { data?: RecordModel }): JSX.Element | null {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
-  const published = item.published ? formatDate(item.published, 'long') : null
+  const published = item.published
+    ? formatDatetime(item.published, 'long')
+    : null
   const abstract = item.abstract ? sanitize(item.abstract) : null
   const body = item.body ? sanitize(item.body) : null
 
@@ -101,7 +105,9 @@ function LabDetail(props: { data?: RecordModel }): JSX.Element | null {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
-  const published = item.published ? formatDate(item.published, 'long') : null
+  const published = item.published
+    ? formatDatetime(item.published, 'long')
+    : null
   const description = item.description ? sanitize(item.description) : null
   const body = item.body ? sanitize(item.body) : null
 
@@ -121,7 +127,9 @@ function LinkDetail(props: { data?: RecordModel }): JSX.Element | null {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
-  const published = item.published ? formatDate(item.published, 'long') : null
+  const published = item.published
+    ? formatDatetime(item.published, 'long')
+    : null
   const description = item.description ? sanitize(item.description) : null
   const body = item.body ? sanitize(item.body) : null
 
@@ -141,7 +149,9 @@ function CodeDetail(props: { data?: RecordModel }): JSX.Element | null {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
-  const published = item.published ? formatDate(item.published, 'long') : null
+  const published = item.published
+    ? formatDatetime(item.published, 'long')
+    : null
   const description = item.description ? sanitize(item.description) : null
   const body = item.body ? sanitize(item.body) : null
 
@@ -161,7 +171,9 @@ function EventDetail(props: { data?: RecordModel }): JSX.Element | null {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
-  const published = item.published ? formatDate(item.published, 'long') : null
+  const published = item.published
+    ? formatDatetime(item.published, 'long')
+    : null
   const description = item.description ? sanitize(item.description) : null
   const body = item.body ? sanitize(item.body) : null
 
