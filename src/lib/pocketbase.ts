@@ -1,3 +1,5 @@
 import PocketBase from 'pocketbase'
 
-export const client = new PocketBase('https://data.adamz.one')
+const URL = 'https://adamz.one/pbase'
+
+export const client = new PocketBase(URL)
