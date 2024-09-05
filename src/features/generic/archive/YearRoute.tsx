@@ -22,7 +22,7 @@ const YearRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>
-        Archived {section()} in {year} – Adam Ziolkowski
+        Archived {section()} in {year} — Adam Ziolkowski
       </Title>
       <main>
         <h3>{year}</h3>

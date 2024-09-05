@@ -24,7 +24,7 @@ const MonthRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>
-        Archived {section()} in {monthNamesLong[month]} {year} – Adam Ziolkowski
+        Archived {section()} in {monthNamesLong[month]} {year} — Adam Ziolkowski
       </Title>
       <main>
         <h3>

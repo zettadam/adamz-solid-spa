@@ -23,7 +23,7 @@ const IndexRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>Latest {section()} – Adam Ziolkowski</Title>
+      <Title>Latest {section()} — Adam Ziolkowski</Title>
       <div classList={{ page: true, index: true }}>
         <h2>Latest</h2>
         {section() && (

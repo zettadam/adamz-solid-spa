@@ -22,7 +22,7 @@ const DayRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>
-        Archived {section()} on {month} {day}, {year} – Adam Ziolkowski
+        Archived {section()} on {month} {day}, {year} — Adam Ziolkowski
       </Title>
       <main>
         <h3>

@@ -27,7 +27,7 @@ const DetailRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>
-        {id} – {sectionTitleMap[section()]} – Adam Ziolkowski
+        {id} – {sectionTitleMap[section()]} — Adam Ziolkowski
       </Title>
       {section() && (
         <div class="page detail">

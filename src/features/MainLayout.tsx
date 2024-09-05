@@ -19,7 +19,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
 
   return (
     <div class="main-layout">
-      <header class={section() || 'home'}>
+      <header role="banner" class={section() || 'home'}>
         <hgroup>
           <h1>Adam Ziolkowski</h1>
           {section() && <h2>{section()}</h2>}

@@ -9,11 +9,11 @@ import './home.css'
 const HomeRoute: Component = (): JSX.Element => {
   return (
     <>
-      <Title>Adam Ziolkowski | Home</Title>
-      <div class="home">
+      <Title>Home — Adam Ziolkowski</Title>
+      <main class="home">
         <AboutMe />
         <Quotation />
-      </div>
+      </main>
     </>
   )
 }

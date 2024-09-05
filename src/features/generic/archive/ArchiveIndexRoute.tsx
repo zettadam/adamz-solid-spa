@@ -20,7 +20,7 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>Archived {section()} – Adam Ziolkowski</Title>
+      <Title>Archived {section()} — Adam Ziolkowski</Title>
       <main>
         <p>Archive index page will be rendered here.</p>
       </main>
