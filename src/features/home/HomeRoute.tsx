@@ -10,10 +10,10 @@ const HomeRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>Home — Adam Ziolkowski</Title>
-      <main class="home">
+      <div class="home">
         <AboutMe />
         <Quotation />
-      </main>
+      </div>
     </>
   )
 }
