@@ -1,11 +1,9 @@
-import { CollectionName } from '~/lib/api'
-
 export default function Error({
   message = '',
   name = 'posts',
 }: {
   message?: string
-  name: CollectionName
+  name: string
 }) {
   return (
     <div class={`${name} error`}>

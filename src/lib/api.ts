@@ -1,5 +1,3 @@
-import { createResource } from 'solid-js'
-
 import { client } from './pocketbase'
 
 export type CollectionName =
@@ -23,37 +21,57 @@ export type Post = {
   updated: string
 }
 
-export function createPaginatedListResource({
-  name,
+export async function getAllRecords({
+  name = 'posts',
+  options,
+}: {
+  name: CollectionName
+  options?: { filter?: string; sort?: string }
+}) {
+  const data = await client.collection(name).getFullList(
+    options
+      ? options
+      : {
+          filter: 'created != null',
+          sort: '-created',
+        },
+  )
+  return data
+}
+
+export async function getManyRecords({
+  name = 'posts',
+  options,
   page = 1,
   size = 10,
 }: {
-  name: CollectionName
+  name: string
+  options?: { filter?: string; sort?: string }
   page?: number
   size?: number
 }) {
-  const f = name === 'events' || name === 'labs' ? 'created' : 'published'
-  const [data, { mutate, refetch }] = createResource(() =>
-    client.collection(name).getList(page, size, {
-      filter: `${f} != null`,
-      sort: `-${f}`,
-    }),
+  const result = await client.collection(name).getList(
+    page,
+    size,
+    options
+      ? options
+      : {
+          filter: 'created != null',
+          sort: '-created',
+        },
   )
 
-  return [data, { mutate, refetch }]
+  return result
 }
 
-export function createDetailResource({
-  identifier,
-  name,
+export async function getRecord({
+  name = 'posts',
+  where,
 }: {
-  identifier: string
   name: CollectionName
+  where: string
 }) {
-  const f = name === 'events' || name === 'labs' ? 'id' : 'slug'
-  const [data, { mutate, refetch }] = createResource(() =>
-    client.collection(name).getFirstListItem(`${f}=${identifier}`),
-  )
+  const data = await client.collection(name).getOne(where)
 
-  return [data, { mutate, refetch }]
+  return data
 }

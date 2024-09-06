@@ -28,7 +28,7 @@ const LatestPosts: Component = (props: { size?: number }): JSX.Element => {
     <Suspense fallback={<Loading name="posts" />}>
       <Switch>
         <Match when={data.error}>
-          <Error message={data.error()} name="posts" />
+          <Error message={data.error} name="posts" />
         </Match>
         <Match when={data()}>
           <PostsBasicList data={data()} />

@@ -13,8 +13,10 @@ import LinksLayout from './features/links/LinksLayout'
 import EventsLayout from './features/events/EventsLayout'
 import ArchiveLayout from './features/generic/archive/ArchiveLayout'
 
-import HomeRoute from './features/home/HomeRoute'
 import IndexRoute from './features/generic/IndexRoute'
+import PageNotFound from './features/generic/PageNotFound'
+
+import HomeRoute from './features/home/HomeRoute'
 
 // --- style imports ----------------------------------------------------------
 import './app.css'
@@ -44,6 +46,7 @@ const App: Component = (): JSX.Element => {
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
+          <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
 
@@ -55,6 +58,7 @@ const App: Component = (): JSX.Element => {
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
+          <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
 
@@ -66,6 +70,7 @@ const App: Component = (): JSX.Element => {
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
+          <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
 
@@ -77,6 +82,7 @@ const App: Component = (): JSX.Element => {
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
+          <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
 
@@ -88,6 +94,7 @@ const App: Component = (): JSX.Element => {
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
+          <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
 
@@ -99,10 +106,12 @@ const App: Component = (): JSX.Element => {
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
+          <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
 
         <Route path="/" component={HomeRoute} />
+        <Route path="*404" component={PageNotFound} />
       </Router>
     </MetaProvider>
   )

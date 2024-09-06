@@ -1,86 +1,109 @@
 import {
+  createResource,
   type Component,
   type JSX,
-  createResource,
-  Match,
-  Suspense,
-  Switch,
+  type Resource,
 } from 'solid-js'
-import { A } from '@solidjs/router'
+import { A, useParams } from '@solidjs/router'
 import type { ListResult, RecordModel } from 'pocketbase'
 import sanitizeHtml from 'sanitize-html'
 
-import { client } from '~/lib/pocketbase'
-import { type CollectionName } from '~/lib/api'
+import { getManyRecords } from '~/lib/api'
 import { formatDatetime } from '~/lib/helpers/datetime'
 
 import Error from './Error'
 import Loading from './Loading'
 
-const PaginatedListBasic: Component<{
-  name: CollectionName
-  page?: number
-  size?: number
-}> = (props): JSX.Element => {
-  const p = props.page ?? 1
-  const s = props.size ?? 10
-  const f =
-    props.name === 'events' || props.name === 'labs' ? 'created' : 'published'
+const pageSizeMap: Record<string, number> = {
+  code: 10,
+  events: 100,
+  labs: 10,
+  links: 100,
+  notes: 10,
+  posts: 10,
+}
 
-  const [data] = createResource(() =>
-    client.collection(props.name).getList(p, s, {
-      filter: `${f} != null`,
-      sort: `-${f}`,
-    }),
+const PaginatedListBasic: Component<{
+  name: string
+}> = (props): JSX.Element => {
+  const params = useParams()
+  const sortColumn = props.name === 'events' ? 'created' : 'published'
+
+  const [data] = createResource(
+    () => (params.page ? parseInt(params.page, 10) : 1),
+    (page) =>
+      getManyRecords({
+        name: props.name,
+        options: {
+          filter: `${sortColumn} != null`,
+          sort: `-${sortColumn}`,
+        },
+        page,
+        size: pageSizeMap[props.name],
+      }),
   )
 
   return (
     <>
-      <Suspense fallback={<Loading name={props.name} />}>
-        <Switch>
-          <Match when={data.error}>
-            <Error message={data.error()} name={props.name} />
-          </Match>
-          <Match when={data()}>
-            <BasicList data={data()} name={props.name} />
-          </Match>
-        </Switch>
-      </Suspense>
+      {data.loading ? (
+        <Loading name={props.name} />
+      ) : data.error ? (
+        <Error message={data.error} name={props.name} />
+      ) : (
+        <BasicList data={data} name={props.name} />
+      )}
     </>
   )
 }
 
 export default PaginatedListBasic
 
-function BasicList({
-  data,
-  name = 'posts',
-}: {
-  data?: ListResult<RecordModel>
-  name: CollectionName
+function BasicList(props: {
+  data?: Resource<ListResult<RecordModel>>
+  name: string
 }): JSX.Element | null {
-  if (!data) return null
+  if (!props.data) return null
+  if (!props.data()) return null
 
-  const { items } = data
+  const name = props.name
+  const items = props.data()?.items ?? []
+  const page = props.data()?.page ?? 1
+  const totalPages = props.data()?.totalPages ?? 1
 
   return (
-    <ul class={`${name} paginated basic`}>
-      {Array.isArray(items) && items.length > 0 ? (
-        items.map((d) => {
-          const abstract = sanitizeHtml(d.abstract)
-          return (
+    <>
+      <ul class={`${name} paginated basic`}>
+        {Array.isArray(items) && items.length > 0 ? (
+          items.map((d) => {
+            const abstract = sanitizeHtml(d.abstract)
+            return (
+              <li>
+                <time>{formatDatetime(d.published, 'long')}</time>
+                <h4>
+                  <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
+                </h4>
+                <div innerHTML={abstract} />
+              </li>
+            )
+          })
+        ) : (
+          <li>No data.</li>
+        )}
+      </ul>
+      {totalPages > 1 && (
+        <menu>
+          {page > 1 && (
             <li>
-              <time>{formatDatetime(d.published, 'long')}</time>
-              <h4>
-                <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
-              </h4>
-              <div innerHTML={abstract} />
+              <A href={`/${name}/${page - 1}`}>Previous</A>
             </li>
-          )
-        })
-      ) : (
-        <li>No data.</li>
+          )}
+          {page < totalPages && (
+            <li>
+              <A href={`/${name}/${page + 1}`}>Next</A>
+            </li>
+          )}
+        </menu>
       )}
-    </ul>
+    </>
   )
 }
