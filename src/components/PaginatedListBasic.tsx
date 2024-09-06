@@ -1,5 +1,8 @@
 import {
   createResource,
+  For,
+  Match,
+  Switch,
   type Component,
   type JSX,
   type Resource,
@@ -10,6 +13,8 @@ import sanitizeHtml from 'sanitize-html'
 
 import { getManyRecords } from '~/lib/api'
 import { formatDatetime } from '~/lib/helpers/datetime'
+
+import LinkItemList from '~/features/links/LinkItemList'
 
 import Error from './Error'
 import Loading from './Loading'
@@ -73,23 +78,29 @@ function BasicList(props: {
   return (
     <>
       <ul class={`${name} paginated basic`}>
-        {Array.isArray(items) && items.length > 0 ? (
-          items.map((d) => {
-            const abstract = sanitizeHtml(d.abstract)
-            return (
-              <li>
-                <time>{formatDatetime(d.published, 'long')}</time>
-                <h4>
-                  <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
-                </h4>
-                <div innerHTML={abstract} />
-              </li>
-            )
-          })
-        ) : (
-          <li>No data.</li>
-        )}
+        <Switch>
+          <Match when={'links' === name}>
+            <LinkItemList items={items} />
+          </Match>
+          <Match when={'links' !== name}>
+            <For each={items}>
+              {(d) => {
+                const abstract = sanitizeHtml(d.abstract)
+                return (
+                  <li>
+                    <time>{formatDatetime(d.published, 'long')}</time>
+                    <h4>
+                      <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
+                    </h4>
+                    <div innerHTML={abstract} />
+                  </li>
+                )
+              }}
+            </For>
+          </Match>
+        </Switch>
       </ul>
+
       {totalPages > 1 && (
         <menu>
           {page > 1 && (

@@ -1,5 +1,5 @@
 // --- vendor imports ---------------------------------------------------------
-import { type Component, type JSX, lazy } from 'solid-js'
+import { lazy, type Component, type JSX } from 'solid-js'
 import { MetaProvider } from '@solidjs/meta'
 import { Route, Router } from '@solidjs/router'
 
@@ -24,13 +24,13 @@ import './app.css'
 // --- dynamic imports --------------------------------------------------------
 
 // lazy generic routes
-const DetailRoute = lazy(() => import('./features/generic/DetailRoute'))
 const ArchiveIndexRoute = lazy(
   () => import('./features/generic/archive/ArchiveIndexRoute'),
 )
 const DayRoute = lazy(() => import('./features/generic/archive/DayRoute'))
 const MonthRoute = lazy(() => import('./features/generic/archive/MonthRoute'))
 const YearRoute = lazy(() => import('./features/generic/archive/YearRoute'))
+const DetailRoute = lazy(() => import('./features/generic/DetailRoute'))
 
 // --- end of imports ---------------------------------------------------------
 
@@ -93,7 +93,6 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
-          <Route path="/detail/:id" component={DetailRoute} />
           <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>

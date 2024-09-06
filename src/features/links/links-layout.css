@@ -25,9 +25,55 @@
       }
     }
 
+    & ul.links.paginated {
+      margin-block: 2rem;
+      margin-inline: 0;
+      padding: 0;
+      & ul,
+      & li {
+        margin: 0;
+        padding: 0;
+      }
+      & li {
+        list-style: none;
+      }
+      & > li {
+        display: grid;
+        gap: 3rem;
+        & > time {
+          border-right: 1px solid var(--color-links-a50);
+          color: var(--color-links-a50);
+          display: block;
+          font-family: var(--font-sans-serif);
+          font-size: var(--text-size-4);
+          grid-column: 1/4;
+          padding-inline: 0 2rem;
+          text-align: right;
+        }
+        & ul {
+          grid-column: 4/13;
+          & li > a {
+            font-family: var(--font-sans-serif);
+            font-size: var(--text-size-3);
+            font-weight: var(--font-weight-bold);
+            text-decoration: none;
+            &[href^='http']::before {
+              content: '' !important;
+              margin-inline: 0 !important;
+            }
+          }
+          & li > div {
+            & p {
+              margin-block: 0 1rem;
+            }
+          }
+        }
+      }
+    }
+
     & form {
       & .label {
-        color: var(--color-notes);
+        color: var(--color-links);
       }
 
       & input[type='text'],
