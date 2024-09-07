@@ -52,11 +52,11 @@
 
 @layer elements {
   body {
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-color: transparent;
     background-image: url('/img/misty-mountains.webp');
     background-size: cover;
-    background-position: 0% 62%;
+    background-position: 0% 65%;
     background-repeat: no-repeat;
     color: hsl(0, 0%, 30%);
     font-family: var(--font-serif);
@@ -156,6 +156,10 @@
       margin: 0 0 1rem 0;
       min-height: 20rem;
       padding-block: 0;
+
+      @media (--md-n-below) {
+        min-height: 10rem;
+      }
 
       & > hgroup {
         align-items: center;
@@ -460,6 +464,11 @@
           padding: 0.5rem 1rem;
           position: relative;
           text-decoration: none;
+
+          @media (--sm-n-below) {
+            font-size: var(--text-size-02);
+            padding: 0.5rem;
+          }
 
           &:link,
           &:visited {
