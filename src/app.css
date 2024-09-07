@@ -75,6 +75,16 @@
   h3,
   h4,
   h5,
+  h6,
+  time {
+    font-family: var(--font-sans-serif);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
   h6 {
     & a {
       text-decoration: none;
@@ -169,49 +179,25 @@
         align-items: center;
         display: flex;
         font-weight: 700;
-        padding-inline: 0.5rem 6rem;
+        padding-inline: 0.5rem 2rem;
       }
       &.posts h2 {
-        background: linear-gradient(
-          to right,
-          var(--color-posts-a50) 33.3%,
-          transparent
-        );
+        background: var(--color-posts);
       }
       &.notes h2 {
-        background: linear-gradient(
-          to right,
-          var(--color-notes-a50) 33.3%,
-          transparent
-        );
+        background: var(--color-notes);
       }
       &.code h2 {
-        background: linear-gradient(
-          to right,
-          var(--color-code-a50) 33.3%,
-          transparent
-        );
+        background: var(--color-code);
       }
       &.links h2 {
-        background: linear-gradient(
-          to right,
-          var(--color-links-a50) 33.3%,
-          transparent
-        );
+        background: var(--color-links);
       }
       &.labs h2 {
-        background: linear-gradient(
-          to right,
-          var(--color-labs-a50) 33.3%,
-          transparent
-        );
+        background: var(--color-labs);
       }
       &.events h2 {
-        background: linear-gradient(
-          to right,
-          var(--color-events-a50) 33.3%,
-          transparent
-        );
+        background: var(--color-events);
       }
 
       & nav.secondary {
@@ -224,6 +210,11 @@
         margin-inline: auto 5dvw;
         padding-block: 0;
         padding-inline: 6rem 0;
+
+        @media (--md-n-below) {
+          display: none;
+        }
+
         &:after {
           align-items: center;
           background-color: var(--color-primary);
@@ -270,6 +261,12 @@
       top: 0;
       width: fit-content;
 
+      @media (--md-n-below) {
+        gap: 0.5rem;
+        padding-block: 0.4rem;
+        padding-inline: 6rem 0.375rem;
+      }
+
       & a {
         display: block;
         &:link,
@@ -311,6 +308,11 @@
         top: -5rem;
         text-transform: uppercase;
         pointer-events: none;
+
+        @media (--md-n-below) {
+          font-size: var(--text-size-11);
+          margin-block: -3.5rem 0;
+        }
       }
 
       & article {
@@ -420,6 +422,11 @@
         padding: 1px 0 0 0;
         position: fixed;
         right: 5dvw;
+
+        @media (--md-only) {
+          left: 0;
+          right: 0;
+        }
 
         &:before {
           background: linear-gradient(

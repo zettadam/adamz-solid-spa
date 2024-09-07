@@ -29,12 +29,6 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
             <li class="news">
               <A href="/news">News</A>
             </li>
-            <li class="feeds">
-              <A href="/feeds">Feeds</A>
-            </li>
-            <li class="auth">
-              <A href="/sign-in">Sign in</A>
-            </li>
             <li class="about">
               <A href="/about">About</A>
             </li>
