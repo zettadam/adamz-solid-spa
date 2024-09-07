@@ -16,8 +16,8 @@ const AboutMe: Component = (): JSX.Element => {
         </p>
         <p>
           I climb web mountains on weekdays. On Saturdays, I follow the
-          Dao—mostly the <em>not trying</em> part. Any other time, I rest on my
-          laurels and fritter hours away polishing my RPG character sheet.
+          Dao—mainly that part about <em>not trying</em>. Any other time, I rest
+          on my laurels and fritter hours away polishing my RPG character sheet.
         </p>
         <p>
           A ranged barbarian…{' '}

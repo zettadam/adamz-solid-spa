@@ -32,9 +32,6 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
             <li class="about">
               <A href="/about">About</A>
             </li>
-            <li>
-              <a href="#copyright">C</a>
-            </li>
           </menu>
         </nav>
       </header>

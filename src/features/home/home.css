@@ -80,7 +80,6 @@
       & li {
         align-items: flex-start;
         display: flex;
-        font-size: var(--text-size-3);
         gap: 2rem;
         text-shadow: 0 0 2px rgb(0, 0, 0);
       }
@@ -89,7 +88,6 @@
         display: inline-block;
         flex-basis: 7rem;
         flex-shrink: 0;
-        font-size: 1.2rem;
         margin: 0;
         padding: 0;
       }
