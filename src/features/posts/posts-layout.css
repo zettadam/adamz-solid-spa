@@ -39,6 +39,24 @@
       }
     }
 
+    & main {
+      & h2 {
+        font-size: var(--text-size-5);
+      }
+      & h3 {
+        font-size: var(--text-size-4);
+      }
+      & h4 {
+        font-size: var(--text-size-3);
+      }
+      & h5 {
+        font-size: var(--text-size-2);
+      }
+      & h6 {
+        font-size: var(--text-size-1);
+      }
+    }
+
     & ul.paginated {
       display: grid;
       gap: 2rem;
@@ -75,6 +93,12 @@
       & .code-editor {
         border-color: var(--color-posts);
       }
+    }
+
+    pre {
+      background: hsl(0, 0%, 95%);
+      border: 1px solid hsl(0, 0%, 90%);
+      padding: 0.5rem;
     }
   }
 }

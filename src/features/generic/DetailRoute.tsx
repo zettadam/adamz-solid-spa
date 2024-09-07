@@ -5,13 +5,10 @@ import {
   type JSX,
   type Component,
 } from 'solid-js'
-import { Title } from '@solidjs/meta'
 import { useLocation, useParams } from '@solidjs/router'
 
 import Detail from '~/components/Detail'
 import type { CollectionName } from '~/lib/api'
-
-import { sectionTitleMap } from './constants'
 
 const DetailRoute: Component = (): JSX.Element => {
   const [section, setSection] = createSignal('')
@@ -26,9 +23,6 @@ const DetailRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>
-        {id} – {sectionTitleMap[section()]} — Adam Ziolkowski
-      </Title>
       {section() && (
         <div class="page detail">
           <h2>In detail</h2>

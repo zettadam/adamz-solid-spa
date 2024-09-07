@@ -9,7 +9,7 @@ const ArchiveLayout: ParentComponent = (props): JSX.Element => {
     <div class="page archive">
       <h2>Archive</h2>
 
-      {props.children}
+      <main id="content">{props.children}</main>
 
       <aside>
         <nav>

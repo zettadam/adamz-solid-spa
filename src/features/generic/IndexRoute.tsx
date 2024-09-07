@@ -13,7 +13,7 @@ const IndexRoute: Component = (): JSX.Element => {
       <Title>Latest {s()} — Adam Ziolkowski</Title>
       <div classList={{ page: true, index: true }}>
         <h2>Latest</h2>
-        {s() && <PaginatedListBasic name={s()} />}
+        <main id="content">{s() && <PaginatedListBasic name={s()} />}</main>
       </div>
     </>
   )

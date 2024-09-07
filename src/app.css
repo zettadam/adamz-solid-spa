@@ -52,11 +52,11 @@
 
 @layer elements {
   body {
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-color: transparent;
     background-image: url('/img/misty-mountains.webp');
     background-size: cover;
-    background-position: 0% 65%;
+    background-position: 0% 62%;
     background-repeat: no-repeat;
     color: hsl(0, 0%, 30%);
     font-family: var(--font-serif);
@@ -408,6 +408,14 @@
     }
 
     & > footer {
+      p#copyright {
+        display: block;
+        margin-block: 2rem 5rem;
+        margin-inline: auto;
+        text-align: center;
+        text-shadow: 0 0.125rem 0.25rem hsl(0, 0%, 100%);
+        width: max-content;
+      }
       & nav {
         align-items: center;
         background: linear-gradient(

@@ -52,6 +52,9 @@
           grid-column: 1/4;
           padding-inline: 0 2rem;
           text-align: right;
+          @media (--md-n-below) {
+            font-size: var(--text-size-2);
+          }
         }
         & ul {
           grid-column: 4/13;
