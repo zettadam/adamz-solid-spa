@@ -35,7 +35,6 @@
         display: grid;
         gap: 2rem;
         grid-template-columns: repeat(12, 1fr);
-        font-family: var(--font-sans-serif);
         margin-block: 0 2rem;
         & > time {
           border-right: 1px solid var(--color-links-a50);
@@ -49,12 +48,13 @@
             font-size: var(--text-size-2);
           }
         }
-        & ul {
+        & > ul {
           grid-column: 4/13;
           & > li {
             margin-block: 0 2rem;
           }
           & li > a {
+            font-family: var(--font-sans-serif);
             font-size: var(--text-size-5);
             font-weight: var(--font-weight-bold);
             text-decoration: none;
@@ -76,6 +76,7 @@
               margin: 0;
               padding: 0;
               & > a {
+                font-family: var(--font-serif);
                 font-size: var(--text-size-1);
                 font-weight: var(--font-weight-normal);
               }
