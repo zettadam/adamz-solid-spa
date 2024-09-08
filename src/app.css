@@ -91,13 +91,31 @@
     }
   }
 
-  p a {
-    font-weight: var(--font-weight-bold);
+  main {
+    & h2 {
+      font-size: var(--text-size-5);
+    }
+    & h3 {
+      font-size: var(--text-size-4);
+    }
+    & h4 {
+      font-size: var(--text-size-3);
+    }
+    & h5 {
+      font-size: var(--text-size-2);
+    }
+    & h6 {
+      font-size: var(--text-size-1);
+    }
+
+    p,
+    li {
+      font-size: var(--text-size-2);
+    }
   }
 
   blockquote {
     & p {
-      font-family: 'Mate', serif;
       font-style: italic;
       font-weight: 400;
     }
@@ -410,11 +428,16 @@
     & > footer {
       p#copyright {
         display: block;
+        font-family: var(--font-sans-serif);
         margin-block: 2rem 5rem;
         margin-inline: auto;
         text-align: center;
-        text-shadow: 0 0.125rem 0.25rem hsl(0, 0%, 100%);
+        text-shadow: 0 0 0.25rem hsl(0, 0%, 100%);
         width: max-content;
+        & a {
+          color: var(--color-black);
+          font-weight: var(--font-weight-normal);
+        }
       }
       & nav {
         align-items: center;

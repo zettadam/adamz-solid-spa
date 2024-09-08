@@ -39,7 +39,9 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
       {props.children}
 
       <footer>
-        <p id="copyright">Copyright &copy; 2024 Adam Ziolkowski</p>
+        <p id="copyright">
+          &copy; 2024 <a href="mailto:zett.adam@gmail.com">Adam Ziolkowski</a>
+        </p>
         <nav id="main-navigation">
           <span>
             <A href="/posts" class="posts">

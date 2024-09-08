@@ -89,9 +89,9 @@ function BasicList(props: {
                 return (
                   <li>
                     <time>{formatDatetime(d.published, 'long')}</time>
-                    <h4>
+                    <h3>
                       <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
-                    </h4>
+                    </h3>
                     <div innerHTML={abstract} />
                   </li>
                 )

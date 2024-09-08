@@ -39,24 +39,6 @@
       }
     }
 
-    & main {
-      & h2 {
-        font-size: var(--text-size-5);
-      }
-      & h3 {
-        font-size: var(--text-size-4);
-      }
-      & h4 {
-        font-size: var(--text-size-3);
-      }
-      & h5 {
-        font-size: var(--text-size-2);
-      }
-      & h6 {
-        font-size: var(--text-size-1);
-      }
-    }
-
     & ul.paginated {
       display: grid;
       gap: 2rem;
@@ -66,6 +48,13 @@
       margin-inline: 0;
       padding: 0;
 
+      @media (--lg-n-below) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (--md-n-below) {
+        grid-template-columns: 1fr;
+      }
+
       & li {
         border-top: 0.25rem solid var(--color-posts-a25);
         display: block;
@@ -73,8 +62,7 @@
         padding: 1rem;
       }
 
-      & h4 {
-        font-size: var(--text-size-6);
+      & h3 {
         margin: 0;
       }
     }

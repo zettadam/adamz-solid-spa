@@ -15,7 +15,7 @@
     & figure {
       margin: 3rem 0;
       padding: 3rem;
-      & > blockquote p {
+      & blockquote p {
         color: rgb(0, 0, 0);
         font-family: var(--font-serif);
         font-size: 1.8rem;
@@ -80,13 +80,14 @@
       & li {
         align-items: flex-start;
         display: flex;
+        font-size: var(--text-size-2);
         gap: 2rem;
         text-shadow: 0 0 2px rgb(0, 0, 0);
       }
       & time {
         color: var(--color-white);
         display: inline-block;
-        flex-basis: 7rem;
+        flex-basis: 8rem;
         flex-shrink: 0;
         margin: 0;
         padding: 0;
