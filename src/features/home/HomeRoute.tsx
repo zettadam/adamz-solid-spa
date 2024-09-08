@@ -15,8 +15,8 @@ const HomeRoute: Component = (): JSX.Element => {
         content="You have arrived at the place Adam Ziolkowski calls home. Welcome friend and enter."
       />
       <div class="home">
-        <AboutMe />
         <Quotation />
+        <AboutMe />
       </div>
     </>
   )
