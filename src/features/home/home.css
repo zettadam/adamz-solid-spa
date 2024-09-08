@@ -42,7 +42,7 @@
 
   .about-me {
     background: rgba(69, 123, 157, 0.8);
-    border-left: 1rem solid rgb(0, 0, 0);
+    border-left: 0 solid rgb(0, 0, 0);
     display: flex;
     grid-column: 5/13;
     grid-row: 2/3;
@@ -67,11 +67,11 @@
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
       content: '';
       display: block;
-      flex: 0 0 8rem;
+      flex: 0 0 9rem;
       float: left;
       margin: 0 2rem 2rem 0;
-      height: 8rem;
-      width: 8rem;
+      height: 9rem;
+      width: 9rem;
       animation: pulse 2s infinite;
     }
 
@@ -85,6 +85,7 @@
         margin-bottom: 0;
         font-size: 1rem;
         font-style: italic;
+        text-align: right;
       }
     }
 

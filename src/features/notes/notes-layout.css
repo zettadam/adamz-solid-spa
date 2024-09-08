@@ -1,13 +1,5 @@
 @layer app {
   .notes-layout {
-    & nav.page {
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--color-notes-a50) 25%
-      );
-    }
-
     & :focus-visible {
       background-color: var(--color-notes-a125);
       outline: 1px solid var(--color-notes);
@@ -22,23 +14,7 @@
       border-top: 0.25rem solid var(--color-notes);
 
       & > h2 {
-        color: var(--color-notes);
-      }
-    }
-
-    & form {
-      & .label {
-        color: var(--color-notes);
-      }
-
-      & input[type='text'],
-      & input[type='number'],
-      & input[type='date'],
-      & input[type='datetime-local'],
-      & select,
-      & .text-editor .tiptap,
-      & .code-editor {
-        border-color: var(--color-notes);
+        background-color: var(--color-notes);
       }
     }
   }

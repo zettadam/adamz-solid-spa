@@ -2,14 +2,6 @@
   .posts-layout {
     width: 100%;
 
-    & nav.page {
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--color-posts-a50) 25%
-      );
-    }
-
     & :focus-visible {
       background-color: var(--color-posts-a125);
       outline: 1px solid var(--color-posts);
@@ -23,8 +15,8 @@
     & div.page {
       border-color: var(--color-posts);
 
-      & > h2 {
-        color: var(--color-posts);
+      & > h2:first-of-type {
+        background-color: var(--color-posts);
       }
 
       & a {
@@ -42,15 +34,12 @@
     & ul.paginated {
       display: grid;
       gap: 2rem;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       grid-template-rows: auto;
-      margin-block: 2rem;
+      margin-block: 0;
       margin-inline: 0;
       padding: 0;
 
-      @media (--lg-n-below) {
-        grid-template-columns: repeat(2, 1fr);
-      }
       @media (--md-n-below) {
         grid-template-columns: 1fr;
       }
@@ -67,26 +56,12 @@
       }
     }
 
-    & form {
-      & .label {
-        color: var(--color-posts);
-      }
-
-      & input[type='text'],
-      & input[type='number'],
-      & input[type='date'],
-      & input[type='datetime-local'],
-      & select,
-      & .text-editor .tiptap,
-      & .code-editor {
-        border-color: var(--color-posts);
-      }
-    }
-
     pre {
-      background: hsl(0, 0%, 95%);
-      border: 1px solid hsl(0, 0%, 90%);
-      padding: 0.5rem;
+      background: var(--color-posts);
+      border-radius: var(--radius-3);
+      color: var(--color-white);
+      font-size: var(--text-size-1);
+      padding: 0.75rem;
     }
   }
 }

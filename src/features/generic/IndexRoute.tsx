@@ -14,6 +14,7 @@ const IndexRoute: Component = (): JSX.Element => {
       <div classList={{ page: true, index: true }}>
         <h2>Latest</h2>
         <main id="content">{s() && <PaginatedListBasic name={s()} />}</main>
+        <aside>Aside</aside>
       </div>
     </>
   )

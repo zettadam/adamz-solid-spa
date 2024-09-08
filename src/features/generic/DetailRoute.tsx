@@ -27,6 +27,7 @@ const DetailRoute: Component = (): JSX.Element => {
         <div class="page detail">
           <h2>In detail</h2>
           <Detail identifier={id} name={section() as CollectionName} />
+          <aside>Aside</aside>
         </div>
       )}
     </>
