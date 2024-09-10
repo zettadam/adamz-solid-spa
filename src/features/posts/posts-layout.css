@@ -92,13 +92,18 @@
     }
 
     pre {
-      background: var(--color-posts);
+      background: hsl(0, 0%, 90%);
       border-radius: var(--radius-3);
-      color: var(--color-white);
+      color: var(--color-black);
       font-size: var(--text-size-1);
       margin-inline: -5dvw;
       padding-block: 1.5rem;
       padding-inline: 5dvw;
+
+      &.file {
+        background: var(--color-primary);
+        color: var(--color-white);
+      }
     }
   }
 }
