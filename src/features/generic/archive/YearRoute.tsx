@@ -1,48 +1,68 @@
 import {
-  createEffect,
   createMemo,
-  createSignal,
+  createResource,
+  onCleanup,
   type Component,
   type JSX,
 } from 'solid-js'
 import { Title } from '@solidjs/meta'
-import { A, useLocation, useParams } from '@solidjs/router'
+import { useLocation, useParams } from '@solidjs/router'
+
+import { getAllRecords, type CollectionName } from '~/lib/api'
+import Error from '~/components/Error'
+import Loading from '~/components/Loading'
+import ArchiveMatrix from '~/components/ArchiveMatrix'
+import { getTimezoneOffset } from '~/lib/helpers/datetime'
+import PageNotFound from '../PageNotFound'
 
 const YearRoute: Component = (): JSX.Element => {
-  const [section, setSection] = createSignal('')
+  const location = useLocation()
   const { year } = useParams()
-  const l = useLocation()
-  const p = createMemo(() => l.pathname)
 
-  createEffect(() => {
-    const s = p().split('/')[1]
-    setSection(s ?? '')
+  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
+
+  if (!section() || !year) return <PageNotFound />
+
+  const tzOffset = getTimezoneOffset()
+
+  const startTime = `${year}-01-01 00:00:00.000 ${tzOffset}`
+  const endTime = `${year}-12-31 23:59:59.999 ${tzOffset}`
+
+  const [data] = createResource(async () => {
+    const ac = new AbortController()
+    onCleanup(() => ac.abort())
+
+    const data = await getAllRecords({
+      name: section() as CollectionName,
+      options: {
+        fields: `published`,
+        filter: `published != null && published >= "${startTime}" && published <= "${endTime}"`,
+        perPage: 1000000,
+        sort: `-published`,
+      },
+    })
+    return data
   })
 
   return (
     <>
-      <Title>
-        Archived {section()} in {year} — Adam Ziolkowski
-      </Title>
-      <main>
-        <h3>{year}</h3>
-        <p>Year page will be rendered here.</p>
-        <nav>
-          <A href={`/${section()}/archive`}>Archive</A>
-          <A href={`/${section()}/archive/${year}/01`}>January</A>
-          <A href={`/${section()}/archive/${year}/02`}>February</A>
-          <A href={`/${section()}/archive/${year}/03`}>March</A>
-          <A href={`/${section()}/archive/${year}/04`}>April</A>
-          <A href={`/${section()}/archive/${year}/05`}>May</A>
-          <A href={`/${section()}/archive/${year}/06`}>June</A>
-          <A href={`/${section()}/archive/${year}/07`}>July</A>
-          <A href={`/${section()}/archive/${year}/08`}>August</A>
-          <A href={`/${section()}/archive/${year}/09`}>September</A>
-          <A href={`/${section()}/archive/${year}/10`}>October</A>
-          <A href={`/${section()}/archive/${year}/11`}>November</A>
-          <A href={`/${section()}/archive/${year}/12`}>December</A>
-        </nav>
-      </main>
+      <Title>Archived {section()}— Adam Ziolkowski</Title>
+      <div class="page archive">
+        <h2>Year Archive</h2>
+        <main>
+          {data.loading ? (
+            <Loading name={section()} />
+          ) : data.error ? (
+            <Error message={data.error} name={section()} />
+          ) : (
+            <ArchiveMatrix
+              data={data}
+              name={section() as CollectionName}
+              year
+            />
+          )}
+        </main>
+      </div>
     </>
   )
 }

@@ -1,4 +1,11 @@
 @layer app {
+  div.main-layout {
+    & header.code {
+      h2 {
+        background: var(--color-code);
+      }
+    }
+  }
   .code-layout {
     & :focus-visible {
       background-color: var(--color-code-a125);

@@ -1,4 +1,11 @@
 @layer app {
+  div.main-layout {
+    & header.events {
+      h2 {
+        background: var(--color-events);
+      }
+    }
+  }
   .events-layout {
     & :focus-visible {
       background-color: var(--color-events-a125);

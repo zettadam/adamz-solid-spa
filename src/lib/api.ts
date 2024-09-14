@@ -26,13 +26,21 @@ export async function getAllRecords({
   options,
 }: {
   name: CollectionName
-  options?: { filter?: string; sort?: string }
+  options?: {
+    fields?: string
+    filter?: string
+    perPage?: number
+    resourceKey?: string
+    sort?: string
+  }
 }) {
   const data = await client.collection(name).getFullList(
     options
-      ? options
+      ? { perPage: 1000000, requestKey: `${name}-all`, ...options }
       : {
           filter: 'created != null',
+          perPage: 1000000,
+          requestKey: `${name}-all`,
           sort: '-created',
         },
   )
@@ -46,7 +54,12 @@ export async function getManyRecords({
   size = 10,
 }: {
   name: string
-  options?: { filter?: string; sort?: string }
+  options?: {
+    fields?: string
+    filter?: string
+    resourceKey?: string
+    sort?: string
+  }
   page?: number
   size?: number
 }) {

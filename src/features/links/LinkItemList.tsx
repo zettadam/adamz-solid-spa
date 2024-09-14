@@ -6,7 +6,9 @@ import { formatDate } from '~/lib/helpers/datetime'
 
 const LinkItemList: Component<{
   items: RecordModel[]
-}> = (props): JSX.Element => {
+}> = (props): JSX.Element | null => {
+  if (!props.items || props.items.length < 1) return null
+
   const groupedItems = props.items.reduce(
     (groups: { [k: string]: RecordModel[] }, item) => {
       const date: string | null = formatDate(item.published, 'medium')

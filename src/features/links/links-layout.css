@@ -1,4 +1,11 @@
 @layer app {
+  div.main-layout {
+    & header.links {
+      h2 {
+        background: var(--color-links);
+      }
+    }
+  }
   .links-layout {
     & :focus-visible {
       background-color: var(--color-links-a125);

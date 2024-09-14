@@ -1,33 +1,27 @@
-import {
-  createEffect,
-  createMemo,
-  createSignal,
-  type JSX,
-  type Component,
-} from 'solid-js'
+import { createMemo, type JSX, type Component } from 'solid-js'
 import { useLocation, useParams } from '@solidjs/router'
 
 import Detail from '~/components/Detail'
+import ArchiveAside from '~/components/ArchiveAside'
 import type { CollectionName } from '~/lib/api'
 
-const DetailRoute: Component = (): JSX.Element => {
-  const [section, setSection] = createSignal('')
-  const { id } = useParams()
-  const l = useLocation()
-  const p = createMemo(() => l.pathname)
+import PageNotFound from './PageNotFound'
 
-  createEffect(() => {
-    const s = p().split('/')[1]
-    setSection(s ?? '')
-  })
+const DetailRoute: Component = (): JSX.Element => {
+  const location = useLocation()
+  const { id } = useParams()
+
+  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
+
+  if (!section() || !id) return <PageNotFound />
 
   return (
     <div class="page detail">
       <h2>In detail</h2>
-      {section() && (
-        <Detail identifier={id} name={section() as CollectionName} />
-      )}
-      <aside>Aside</aside>
+      <Detail identifier={id} name={section() as CollectionName} />
+      <aside>
+        <ArchiveAside name={section() as CollectionName} />
+      </aside>
     </div>
   )
 }

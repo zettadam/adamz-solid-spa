@@ -1,6 +1,7 @@
 import {
   createResource,
   Match,
+  onCleanup,
   Suspense,
   Switch,
   type Component,
@@ -22,9 +23,12 @@ const Detail: Component<{
   identifier: string
   name: CollectionName
 }> = (props): JSX.Element => {
-  const [data] = createResource(() =>
-    client.collection(props.name).getOne(props.identifier),
-  )
+  const [data] = createResource(async () => {
+    const ac = new AbortController()
+    onCleanup(() => ac.abort())
+    const data = await client.collection(props.name).getOne(props.identifier)
+    return data
+  })
 
   return (
     <main class={`${props.name} detail`} id="content">
@@ -35,7 +39,7 @@ const Detail: Component<{
           </Match>
           <Match when={data()}>
             <Title>
-              {data()?.title || data()?.name} – {sectionTitleMap[props.name]} —
+              {data()?.title || data()?.name}— {sectionTitleMap[props.name]}—
               Adam Ziolkowski
             </Title>
             {'posts' === props.name && <PostDetail data={data()} />}

@@ -1,4 +1,11 @@
 @layer app {
+  div.main-layout {
+    & header.labs {
+      h2 {
+        background: var(--color-labs);
+      }
+    }
+  }
   .labs-layout {
     & :focus-visible {
       background-color: var(--color-labs-a125);

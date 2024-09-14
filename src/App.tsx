@@ -11,7 +11,6 @@ import CodeLayout from './features/code/CodeLayout'
 import LabsLayout from './features/labs/LabsLayout'
 import LinksLayout from './features/links/LinksLayout'
 import EventsLayout from './features/events/EventsLayout'
-import ArchiveLayout from './features/generic/archive/ArchiveLayout'
 
 import IndexRoute from './features/generic/IndexRoute'
 import PageNotFound from './features/generic/PageNotFound'
@@ -39,7 +38,7 @@ const App: Component = (): JSX.Element => {
     <MetaProvider>
       <Router root={MainLayout}>
         <Route path="/posts" component={PostsLayout}>
-          <Route path="/archive" component={ArchiveLayout}>
+          <Route path="/archive">
             <Route path="/:year/:month/:day" component={DayRoute} />
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
@@ -51,7 +50,7 @@ const App: Component = (): JSX.Element => {
         </Route>
 
         <Route path="/notes" component={NotesLayout}>
-          <Route path="/archive" component={ArchiveLayout}>
+          <Route path="/archive">
             <Route path="/:year/:month/:day" component={DayRoute} />
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
@@ -63,7 +62,7 @@ const App: Component = (): JSX.Element => {
         </Route>
 
         <Route path="/code" component={CodeLayout}>
-          <Route path="/archive" component={ArchiveLayout}>
+          <Route path="/archive">
             <Route path="/:year/:month/:day" component={DayRoute} />
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
@@ -75,7 +74,7 @@ const App: Component = (): JSX.Element => {
         </Route>
 
         <Route path="/labs" component={LabsLayout}>
-          <Route path="/archive" component={ArchiveLayout}>
+          <Route path="/archive">
             <Route path="/:year/:month/:day" component={DayRoute} />
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
@@ -87,7 +86,7 @@ const App: Component = (): JSX.Element => {
         </Route>
 
         <Route path="/links" component={LinksLayout}>
-          <Route path="/archive" component={ArchiveLayout}>
+          <Route path="/archive">
             <Route path="/:year/:month/:day" component={DayRoute} />
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
@@ -98,7 +97,7 @@ const App: Component = (): JSX.Element => {
         </Route>
 
         <Route path="/events" component={EventsLayout}>
-          <Route path="/archive" component={ArchiveLayout}>
+          <Route path="/archive">
             <Route path="/:year/:month/:day" component={DayRoute} />
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />

@@ -2,20 +2,18 @@ import {
   createResource,
   For,
   Match,
+  onCleanup,
   Switch,
   type Component,
   type JSX,
-  type Resource,
 } from 'solid-js'
 import { A, useParams } from '@solidjs/router'
-import type { ListResult, RecordModel } from 'pocketbase'
 import sanitizeHtml from 'sanitize-html'
 
-import { getManyRecords } from '~/lib/api'
-import { formatDatetime } from '~/lib/helpers/datetime'
-
+import { formatDate } from '~/lib/helpers/datetime'
 import LinkItemList from '~/features/links/LinkItemList'
 
+import { getManyRecords } from '~/lib/api'
 import Error from './Error'
 import Loading from './Loading'
 
@@ -36,8 +34,11 @@ const PaginatedListBasic: Component<{
 
   const [data] = createResource(
     () => (params.page ? parseInt(params.page, 10) : 1),
-    (page) =>
-      getManyRecords({
+    async (page) => {
+      const ac = new AbortController()
+      onCleanup(() => ac.abort())
+
+      const data = await getManyRecords({
         name: props.name,
         options: {
           filter: `${sortColumn} != null`,
@@ -45,7 +46,9 @@ const PaginatedListBasic: Component<{
         },
         page,
         size: pageSizeMap[props.name],
-      }),
+      })
+      return data
+    },
   )
 
   return (
@@ -55,7 +58,7 @@ const PaginatedListBasic: Component<{
       ) : data.error ? (
         <Error message={data.error} name={props.name} />
       ) : (
-        <BasicList data={data} name={props.name} />
+        <ListBasic data={data} name={props.name} />
       )}
     </>
   )
@@ -63,12 +66,8 @@ const PaginatedListBasic: Component<{
 
 export default PaginatedListBasic
 
-function BasicList(props: {
-  data?: Resource<ListResult<RecordModel>>
-  name: string
-}): JSX.Element | null {
-  if (!props.data) return null
-  if (!props.data()) return null
+function ListBasic(props: { data?: any; name: string }): JSX.Element | null {
+  if (!props.data || !props.data()) return null
 
   const name = props.name
   const items = props.data()?.items ?? []
@@ -88,7 +87,7 @@ function BasicList(props: {
                 const abstract = sanitizeHtml(d.abstract)
                 return (
                   <li>
-                    <time>{formatDatetime(d.published, 'long')}</time>
+                    <time>{formatDate(d.published, 'long')}</time>
                     <h3>
                       <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
                     </h3>

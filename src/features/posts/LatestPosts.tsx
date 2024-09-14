@@ -1,6 +1,7 @@
 import {
   createResource,
   Match,
+  onCleanup,
   Suspense,
   Switch,
   type Component,
@@ -17,12 +18,16 @@ const LatestPosts: Component = (props: { size?: number }): JSX.Element => {
   let size: number
   if (!props.size) size = 3
 
-  const [data] = createResource(() =>
-    client.collection('posts').getList(1, size, {
+  const [data] = createResource(async () => {
+    const ac = new AbortController()
+    onCleanup(() => ac.abort())
+
+    const data = await client.collection('posts').getList(1, size, {
       filter: `published != null`,
       sort: `-published`,
-    }),
-  )
+    })
+    return data
+  })
 
   return (
     <Suspense fallback={<Loading name="posts" />}>

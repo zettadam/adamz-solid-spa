@@ -68,7 +68,9 @@ const mediumDateFormat = new Intl.DateTimeFormat('en-US', {
 })
 
 const shortDateFormat = new Intl.DateTimeFormat('en-US', {
-  dateStyle: 'short',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
   timeZone: 'America/Chicago',
 })
 
@@ -100,4 +102,16 @@ export function formatDate(
   } else {
     return null
   }
+}
+
+export function getTimezoneOffset() {
+  let o = new Date().getTimezoneOffset()
+  let s = o > 0 ? '-' : '+'
+  o = Math.abs(o)
+  let hh = Math.floor(o / 60)
+    .toString()
+    .padStart(2, '0')
+  let mm = (o % 60).toString().padStart(2, '0')
+
+  return `${s}${hh}:${mm}`
 }

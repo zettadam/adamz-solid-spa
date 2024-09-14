@@ -1,4 +1,12 @@
 @layer app {
+  div.main-layout {
+    & header.posts {
+      & h2 {
+        background: var(--color-posts);
+      }
+    }
+  }
+
   .posts-layout {
     width: 100%;
 
@@ -62,7 +70,7 @@
     & aside {
       margin-block: 1rem;
     }
-    & main {
+    & div.page.detail main {
       padding-inline: 5dvw;
     }
 
