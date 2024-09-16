@@ -111,11 +111,6 @@
     & h6 {
       font-size: var(--text-size-1);
     }
-
-    p,
-    li {
-      font-size: var(--text-size-2);
-    }
   }
 
   blockquote {

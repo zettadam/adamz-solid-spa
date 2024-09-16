@@ -38,10 +38,15 @@ const PaginatedListBasic: Component<{
       const ac = new AbortController()
       onCleanup(() => ac.abort())
 
+      let filter = `${sortColumn} != null`
+      if (params.tag) {
+        filter += ` && tags ?~ "${params.tag}"`
+      }
+
       const data = await getManyRecords({
         name: props.name,
         options: {
-          filter: `${sortColumn} != null`,
+          filter,
           sort: `-${sortColumn}`,
         },
         page,

@@ -89,6 +89,18 @@
               }
             }
           }
+          & li > nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            & a {
+              background: var(--color-links-a25);
+              border-radius: var(--radius-2);
+              color: var(--color-links);
+              margin-inline: 0;
+              padding: 0 0.5rem;
+            }
+          }
         }
       }
     }
