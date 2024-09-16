@@ -77,6 +77,7 @@ function ArchiveList(props: { data?: any; name: string }): JSX.Element | null {
   const { day, month, year } = useParams()
 
   const items = groupFn(data)
+  console.log('items', items)
 
   return (
     <menu>
@@ -108,7 +109,9 @@ function ArchiveList(props: { data?: any; name: string }): JSX.Element | null {
                       <For
                         each={Object.entries(
                           info.days as { [k: string]: number },
-                        )}>
+                        )
+                          .sort()
+                          .reverse()}>
                         {([d, c]) => (
                           <li>
                             {!day ||
