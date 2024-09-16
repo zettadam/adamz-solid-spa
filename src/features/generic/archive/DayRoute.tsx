@@ -37,8 +37,8 @@ const DayRoute: Component = (): JSX.Element => {
       options: {
         fields:
           'links' === section()
-            ? `url,title,abstract,published`
-            : `id,title,slug,abstract,published`,
+            ? `url,title,abstract,published,tags`
+            : `id,title,slug,abstract,published,tags`,
         filter: `published != null && published >= "${startTime}" && published <= "${endTime}"`,
         perPage: 1000000,
         sort: `-published`,

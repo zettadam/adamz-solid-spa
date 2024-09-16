@@ -30,7 +30,8 @@ const DayRoute = lazy(() => import('./features/generic/archive/DayRoute'))
 const MonthRoute = lazy(() => import('./features/generic/archive/MonthRoute'))
 const YearRoute = lazy(() => import('./features/generic/archive/YearRoute'))
 
-const TagIndexRoute = lazy(() => import('./features/generic/TagIndexRoute'))
+const TagIndexRoute = lazy(() => import('./features/generic/tag/TagIndexRoute'))
+const TagRoute = lazy(() => import('./features/generic/tag/TagRoute'))
 const DetailRoute = lazy(() => import('./features/generic/DetailRoute'))
 
 // --- end of imports ---------------------------------------------------------
@@ -94,9 +95,10 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
-          <Route path="/tag">
-            <Route path="/:tag/:page" component={TagIndexRoute} />
-            <Route path="/:tag" component={TagIndexRoute} />
+          <Route path="/tags">
+            <Route path="/:tag/:page" component={TagRoute} />
+            <Route path="/:tag" component={TagRoute} />
+            <Route path="/" component={TagIndexRoute} />
           </Route>
           <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />

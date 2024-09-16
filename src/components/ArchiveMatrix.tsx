@@ -35,34 +35,44 @@ const ArchiveMatrix: Component<{
                     }
                   },
                 )}>
-                {([m, info]) => (
-                  <li>
-                    <h4>
-                      <A href={`/${name}/archive/${y}/${m}`}>
-                        {monthNamesLong[m]}
-                      </A>{' '}
-                      ({info.total} links)
-                    </h4>
-                    <menu class="days">
-                      <For each={monthDays}>
-                        {(i) => (
-                          <li>
-                            {info.days[i] ? (
-                              <span>
-                                <A href={`/${name}/archive/${y}/${m}/${i}`}>
-                                  {i}
-                                </A>
-                                <b>{info.days[i]}</b>
-                              </span>
-                            ) : (
-                              i
-                            )}
-                          </li>
-                        )}
-                      </For>
-                    </menu>
-                  </li>
-                )}
+                {([m, info]) => {
+                  const max = Math.max(...Object.values(info.days))
+                  console.log('month max', max)
+                  return (
+                    <li>
+                      <h4>
+                        <A href={`/${name}/archive/${y}/${m}`}>
+                          {monthNamesLong[m]}
+                        </A>{' '}
+                        ({info.total} links)
+                      </h4>
+                      <menu class="days">
+                        <For each={monthDays}>
+                          {(i) => {
+                            return (
+                              <li>
+                                {info.days[i] ? (
+                                  <>
+                                    <A href={`/${name}/archive/${y}/${m}/${i}`}>
+                                      {i}
+                                    </A>
+                                    <span
+                                      class="bar"
+                                      style={{ height: `${info.days[i]}rem` }}
+                                    />
+                                    <b>{info.days[i]}</b>
+                                  </>
+                                ) : (
+                                  i
+                                )}
+                              </li>
+                            )
+                          }}
+                        </For>
+                      </menu>
+                    </li>
+                  )
+                }}
               </For>
             </menu>
           </li>

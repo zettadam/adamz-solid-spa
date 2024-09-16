@@ -30,27 +30,29 @@ const PaginatedListBasic: Component<{
   name: string
 }> = (props): JSX.Element => {
   const params = useParams()
-  const sortColumn = props.name === 'events' ? 'created' : 'published'
 
   const [data] = createResource(
-    () => (params.page ? parseInt(params.page, 10) : 1),
-    async (page) => {
+    () => ({
+      name: props.name,
+      page: params.page ? parseInt(params.page, 10) : 1,
+      tag: params.tag,
+    }),
+    async ({ name, page, tag }) => {
       const ac = new AbortController()
       onCleanup(() => ac.abort())
 
+      const sortColumn = name === 'events' ? 'created' : 'published'
       let filter = `${sortColumn} != null`
-      if (params.tag) {
-        filter += ` && tags ?~ "${params.tag}"`
-      }
+      if (tag) filter += ` && tags ?~ "${tag}"`
 
       const data = await getManyRecords({
-        name: props.name,
+        name,
         options: {
           filter,
           sort: `-${sortColumn}`,
         },
         page,
-        size: pageSizeMap[props.name],
+        size: pageSizeMap[name],
       })
       return data
     },

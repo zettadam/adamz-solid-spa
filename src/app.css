@@ -382,9 +382,12 @@
             gap: 0.5rem;
             grid-template-columns: repeat(31, 1fr);
             & li {
+              align-items: center;
               color: hsl(0, 0%, 75%);
-              & b {
-                color: hsl(0, 0%, 25%);
+              display: flex;
+              flex-direction: column;
+              & .bar {
+                min-width: 1ch;
               }
             }
             & a {
@@ -458,6 +461,33 @@
           border-bottom: 1px solid hsl(0, 0%, 25%);
           font-weight: var(--font-weight-bold);
           margin-block: 1rem 3rem;
+        }
+      }
+    }
+
+    & menu {
+      & li {
+        font-family: var(--font-sans-serif);
+        list-style: none;
+      }
+      &.tag-index {
+        --min: 30ch;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(
+          auto-fit,
+          minmax(min(100%, var(--min)), 1fr)
+        );
+        margin: 1rem;
+        padding: 0;
+
+        & li {
+          margin: 0;
+          padding: 0;
+        }
+
+        & a {
+          padding: 0.25rem 0.5rem;
         }
       }
     }

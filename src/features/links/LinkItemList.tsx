@@ -1,5 +1,5 @@
 import { For, type Component, type JSX } from 'solid-js'
-import { A } from '@solidjs/router'
+import { A, useParams } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 import { RecordModel } from 'pocketbase'
 
@@ -8,6 +8,7 @@ import { formatDate } from '~/lib/helpers/datetime'
 const LinkItemList: Component<{
   items: RecordModel[]
 }> = (props): JSX.Element | null => {
+  const params = useParams()
   if (!props.items || props.items.length < 1) return null
 
   const groupedItems = props.items.reduce(
@@ -39,7 +40,13 @@ const LinkItemList: Component<{
                       {x.tags && (
                         <nav class="tags">
                           <For each={x.tags}>
-                            {(t) => <A href={`/links/tag/${t}`}>{t}</A>}
+                            {(t) =>
+                              t === params.tag ? (
+                                <b>{t}</b>
+                              ) : (
+                                <A href={`/links/tags/${t}`}>{t}</A>
+                              )
+                            }
                           </For>
                         </nav>
                       )}

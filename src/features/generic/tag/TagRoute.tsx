@@ -5,9 +5,9 @@ import { useLocation, useParams } from '@solidjs/router'
 import { CollectionName } from '~/lib/api'
 import PaginatedListBasic from '~/components/PaginatedListBasic'
 import ArchiveAside from '~/components/ArchiveAside'
-import PageNotFound from './PageNotFound'
+import PageNotFound from '../PageNotFound'
 
-const TagIndexRoute: Component = (): JSX.Element => {
+const TagRoute: Component = (): JSX.Element => {
   const location = useLocation()
   const params = useParams()
   const section: Accessor<string> = createMemo(
@@ -22,7 +22,7 @@ const TagIndexRoute: Component = (): JSX.Element => {
         Latest {section()} tagged "{params.tag}"— Adam Ziolkowski
       </Title>
       <div class="page index">
-        <h2>Tag: {params.tag}</h2>
+        <h2>Tag</h2>
         <main id="content">
           {section() && <PaginatedListBasic name={section()} />}
         </main>
@@ -34,4 +34,4 @@ const TagIndexRoute: Component = (): JSX.Element => {
   )
 }
 
-export default TagIndexRoute
+export default TagRoute

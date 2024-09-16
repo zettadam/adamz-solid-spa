@@ -13,6 +13,8 @@ const LinksLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/links/archive">Archive</A>
         <span class="divider" />
+        <A href="/links/tags">Tags</A>
+        <span class="divider" />
         <input
           type="search"
           name="keyword"
