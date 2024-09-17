@@ -115,3 +115,15 @@ export function getTimezoneOffset() {
 
   return `${s}${hh}:${mm}`
 }
+
+export function monthDays(year: string | number, month: string | number) {
+  const d = new Date(`${year}-${month}-15`)
+  const y = d.getFullYear()
+  const m = d.getMonth()
+  const n = new Date(y, m + 1, 0).getDate()
+
+  return Array.from({ length: n }, (_, i: number) => {
+    i++
+    return i.toString().padStart(2, '0')
+  })
+}

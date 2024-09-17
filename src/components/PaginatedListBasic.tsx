@@ -36,14 +36,30 @@ const PaginatedListBasic: Component<{
       name: props.name,
       page: params.page ? parseInt(params.page, 10) : 1,
       tag: params.tag,
+      value: params.value,
     }),
-    async ({ name, page, tag }) => {
+    async ({ name, page, tag, value }) => {
       const ac = new AbortController()
       onCleanup(() => ac.abort())
 
       const sortColumn = name === 'events' ? 'created' : 'published'
       let filter = `${sortColumn} != null`
-      if (tag) filter += ` && tags ?~ "${tag}"`
+      if (tag) {
+        filter += ` && tags ?~ "${tag}"`
+      }
+      if (value) {
+        if (value !== '0' && value !== '100+') {
+          const v = value.split('-')
+          if (v.length) {
+            console.log('v', v)
+            filter += ` && (significance >= ${parseInt(v[0], 10)} && significance <= ${parseInt(v[1], 10)})`
+          }
+        } else if (value === '100+') {
+          filter += ` && significance > 100`
+        } else {
+          filter += ` && significance < 1`
+        }
+      }
 
       const data = await getManyRecords({
         name,

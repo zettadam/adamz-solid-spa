@@ -1,10 +1,10 @@
 import { For, type Component, type JSX } from 'solid-js'
 import { A } from '@solidjs/router'
 
-import { formatDate } from '~/lib/helpers/datetime'
+import { formatDate, monthDays } from '~/lib/helpers/datetime'
 import { type CollectionName } from '~/lib/api'
 
-import { monthDays, monthNamesLong } from '~/features/generic/constants'
+import { monthNamesLong } from '~/features/generic/constants'
 
 const ArchiveMatrix: Component<{
   data?: any
@@ -46,30 +46,33 @@ const ArchiveMatrix: Component<{
                         </A>{' '}
                         ({info.total} links)
                       </h4>
-                      <menu class="days">
-                        <For each={monthDays}>
-                          {(i) => {
-                            return (
-                              <li>
-                                {info.days[i] ? (
-                                  <>
-                                    <A href={`/${name}/archive/${y}/${m}/${i}`}>
-                                      {i}
-                                    </A>
-                                    <span
-                                      class="bar"
-                                      style={{ height: `${info.days[i]}rem` }}
-                                    />
-                                    <b>{info.days[i]}</b>
-                                  </>
-                                ) : (
-                                  i
-                                )}
-                              </li>
-                            )
-                          }}
-                        </For>
-                      </menu>
+                      <div class="hbox-swipe">
+                        <menu class="days">
+                          <For each={monthDays(y, m)}>
+                            {(i) => {
+                              return (
+                                <li>
+                                  {info.days[i] ? (
+                                    <>
+                                      <A
+                                        href={`/${name}/archive/${y}/${m}/${i}`}>
+                                        {i}
+                                      </A>
+                                      <span
+                                        class="bar"
+                                        style={{ height: `${info.days[i]}rem` }}
+                                      />
+                                      <b>{info.days[i]}</b>
+                                    </>
+                                  ) : (
+                                    i
+                                  )}
+                                </li>
+                              )
+                            }}
+                          </For>
+                        </menu>
+                      </div>
                     </li>
                   )
                 }}

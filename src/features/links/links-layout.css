@@ -122,7 +122,8 @@
       }
     }
 
-    & menu.days {
+    & menu.days,
+    & menu.value-index {
       & .bar {
         border: 1px solid var(--color-links-a50);
         background: var(--color-links-a25);

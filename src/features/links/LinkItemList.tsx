@@ -44,7 +44,9 @@ const LinkItemList: Component<{
                               t === params.tag ? (
                                 <b>{t}</b>
                               ) : (
-                                <A href={`/links/tags/${t}`}>{t}</A>
+                                <A href={`/links/tags/${t}`} target="_blank">
+                                  {t}
+                                </A>
                               )
                             }
                           </For>

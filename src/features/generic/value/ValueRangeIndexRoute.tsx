@@ -11,12 +11,12 @@ import { useLocation } from '@solidjs/router'
 import { CollectionName, getAllRecords } from '~/lib/api'
 import Loading from '~/components/Loading'
 import Error from '~/components/Error'
-import ArchiveMatrix from '~/components/ArchiveMatrix'
+import ValueRangeMatrix from '~/components/ValueRangeMatrix'
 import PageNotFound from '../PageNotFound'
 
-const ArchiveIndexRoute: Component = (): JSX.Element => {
-  const l = useLocation()
-  const section = createMemo(() => l.pathname.split('/')[1])
+const ValueRangeIndexRoute: Component = (): JSX.Element => {
+  const location = useLocation()
+  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 
@@ -27,7 +27,7 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
     const data = await getAllRecords({
       name: section() as CollectionName,
       options: {
-        fields: `published`,
+        fields: `significance`,
         filter: `published != null`,
         perPage: 1000000,
         sort: `-published`,
@@ -38,16 +38,16 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>Archived {section()}— Adam Ziolkowski</Title>
+      <Title>Value range index in {section()}— Adam Ziolkowski</Title>
       <div class="page archive">
-        <h2>Archive Index</h2>
-        <main class="full-width">
+        <h2>Value Range: Index</h2>
+        <main>
           {data.loading ? (
             <Loading name={section()} />
           ) : data.error ? (
             <Error message={data.error} name={section()} />
           ) : (
-            <ArchiveMatrix data={data} name={section() as CollectionName} />
+            <ValueRangeMatrix data={data} name={section() as CollectionName} />
           )}
         </main>
       </div>
@@ -55,4 +55,4 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
   )
 }
 
-export default ArchiveIndexRoute
+export default ValueRangeIndexRoute

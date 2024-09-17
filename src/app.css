@@ -380,7 +380,8 @@
           & menu.days {
             display: grid;
             gap: 0.5rem;
-            grid-template-columns: repeat(31, 1fr);
+            grid-template-columns: repeat(31, 2rem);
+            white-space: nowrap;
             & li {
               align-items: center;
               color: hsl(0, 0%, 75%);
@@ -393,6 +394,7 @@
             & a {
               display: flex;
               flex-direction: column;
+              font-weight: var(--font-weight-bold);
             }
           }
           & li {
@@ -414,6 +416,9 @@
 
       & > main {
         grid-column: 1/9;
+        &.full-width {
+          grid-column: 1/13;
+        }
       }
 
       & > aside {
@@ -488,6 +493,15 @@
 
         & a {
           padding: 0.25rem 0.5rem;
+        }
+      }
+
+      &.value-index {
+        display: grid;
+        gap: 0.5rem;
+        & li {
+          display: grid;
+          grid-template-columns: 5rem 5rem 1fr;
         }
       }
     }
@@ -709,5 +723,10 @@
         }
       }
     }
+  }
+
+  & .hbox-swipe {
+    overflow-x: auto;
+    width: 100%;
   }
 }
