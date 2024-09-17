@@ -5,7 +5,7 @@ import {
   type Component,
   type JSX,
 } from 'solid-js'
-import { Title } from '@solidjs/meta'
+import { Meta, Title } from '@solidjs/meta'
 import { A, useLocation, useParams } from '@solidjs/router'
 
 import { CollectionName, getAllRecords } from '~/lib/api'
@@ -53,6 +53,10 @@ const DayRoute: Component = (): JSX.Element => {
         Archived {section()} on {monthNamesLong[month]} {day}, {year}— Adam
         Ziolkowski
       </Title>
+      <Meta
+        name="description"
+        content={`Daily archive of ${section()} for ${monthNamesLong[month]} ${day}, ${year}`}
+      />
       <div class="page archive">
         <h2>Day Archive</h2>
         <nav>

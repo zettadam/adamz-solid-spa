@@ -5,7 +5,7 @@ import {
   type Component,
   type JSX,
 } from 'solid-js'
-import { Title } from '@solidjs/meta'
+import { Meta, Title } from '@solidjs/meta'
 import { A, useLocation, useParams } from '@solidjs/router'
 
 import { getAllRecords, type CollectionName } from '~/lib/api'
@@ -56,6 +56,10 @@ const MonthRoute: Component = (): JSX.Element => {
       <Title>
         Archived {section()} in {monthNamesLong[month]}, {year}— Adam Ziolkowski
       </Title>
+      <Meta
+        name="description"
+        content={`Monthly archive of ${section()} for ${monthNamesLong[month]}, ${year}`}
+      />
       <div class="page archive">
         <h2>Month Archive</h2>
         <nav>

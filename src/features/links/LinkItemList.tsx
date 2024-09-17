@@ -26,7 +26,7 @@ const LinkItemList: Component<{
       {(d) => {
         return (
           <li>
-            <time datetime={d}>{d}</time>
+            {!params.day && <time datetime={d}>{d}</time>}
             <ul>
               <For each={groupedItems[d]}>
                 {(x) => {

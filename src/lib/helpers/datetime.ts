@@ -116,7 +116,7 @@ export function getTimezoneOffset() {
   return `${s}${hh}:${mm}`
 }
 
-export function monthDays(year: string | number, month: string | number) {
+export function getMonthDays(year: string | number, month: string | number) {
   const d = new Date(`${year}-${month}-15`)
   const y = d.getFullYear()
   const m = d.getMonth()

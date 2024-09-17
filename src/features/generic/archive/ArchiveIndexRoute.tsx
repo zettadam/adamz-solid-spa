@@ -5,7 +5,7 @@ import {
   type Component,
   type JSX,
 } from 'solid-js'
-import { Title } from '@solidjs/meta'
+import { Meta, Title } from '@solidjs/meta'
 import { useLocation } from '@solidjs/router'
 
 import { CollectionName, getAllRecords } from '~/lib/api'
@@ -39,6 +39,7 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>Archived {section()}— Adam Ziolkowski</Title>
+      <Meta name="description" content={`Matrix of archived ${section()}`} />
       <div class="page archive">
         <h2>Archive Index</h2>
         <main class="full-width">
