@@ -35,7 +35,9 @@ const LinkItemList: Component<{
                     : undefined
                   return (
                     <li>
-                      <a href={x.url}>{x.title}</a>
+                      <h3>
+                        <a href={x.url}>{x.title}</a>
+                      </h3>
                       <div innerHTML={abstract} />
                       {x.tags && (
                         <nav class="tags">
