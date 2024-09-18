@@ -42,7 +42,7 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
       <Meta name="description" content={`Matrix of archived ${section()}`} />
       <div class="page archive">
         <h2>Archive Index</h2>
-        <main class="full-width">
+        <main class="full-width" id="content">
           {data.loading ? (
             <Loading name={section()} />
           ) : data.error ? (

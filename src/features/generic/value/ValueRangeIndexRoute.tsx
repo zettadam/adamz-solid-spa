@@ -41,7 +41,7 @@ const ValueRangeIndexRoute: Component = (): JSX.Element => {
       <Title>Value range index in {section()}— Adam Ziolkowski</Title>
       <div class="page archive">
         <h2>Value Range: Index</h2>
-        <main>
+        <main id="content">
           {data.loading ? (
             <Loading name={section()} />
           ) : data.error ? (

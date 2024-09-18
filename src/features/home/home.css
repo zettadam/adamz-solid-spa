@@ -1,6 +1,6 @@
 @layer app {
   div.main-layout {
-    & > header.home {
+    & > header[role='banner'].home {
       min-height: 1rem;
     }
   }

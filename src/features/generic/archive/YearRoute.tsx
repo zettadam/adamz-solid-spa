@@ -53,7 +53,7 @@ const YearRoute: Component = (): JSX.Element => {
       />
       <div class="page archive">
         <h2>Year Archive</h2>
-        <main>
+        <main id="content">
           {data.loading ? (
             <Loading name={section()} />
           ) : data.error ? (

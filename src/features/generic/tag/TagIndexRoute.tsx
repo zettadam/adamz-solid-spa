@@ -41,7 +41,7 @@ const TagIndexRoute: Component = (): JSX.Element => {
       <Title>Tags in {section()}— Adam Ziolkowski</Title>
       <div class="page archive">
         <h2>Tag Index</h2>
-        <main>
+        <main id="content">
           {data.loading ? (
             <Loading name={section()} />
           ) : data.error ? (

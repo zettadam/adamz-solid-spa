@@ -74,7 +74,7 @@ const MonthRoute: Component = (): JSX.Element => {
           </ul>
         </nav>
 
-        <main>
+        <main id="content">
           {data.loading ? (
             <Loading name={section()} />
           ) : data.error ? (
