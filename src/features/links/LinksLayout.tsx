@@ -1,6 +1,8 @@
 import { A } from '@solidjs/router'
 import type { JSX, ParentComponent } from 'solid-js'
 
+import SearchForm from '~/components/SearchForm'
+
 import './links-layout.css'
 
 const LinksLayout: ParentComponent = (props): JSX.Element => {
@@ -17,12 +19,7 @@ const LinksLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/links/value">Value</A>
         <span class="divider" />
-        <input
-          type="search"
-          name="keyword"
-          placeholder="Search links"
-          disabled
-        />
+        <SearchForm name="links" />
       </nav>
 
       {props.children}

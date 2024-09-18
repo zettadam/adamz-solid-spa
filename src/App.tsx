@@ -39,6 +39,7 @@ const ValueRangeIndexRoute = lazy(
 const ValueRangeRoute = lazy(
   () => import('./features/generic/value/ValueRangeRoute'),
 )
+const SearchRoute = lazy(() => import('./features/generic/SearchRoute'))
 const DetailRoute = lazy(() => import('./features/generic/DetailRoute'))
 
 // --- end of imports ---------------------------------------------------------
@@ -54,6 +55,11 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
+          <Route path="/search">
+            <Route path="/:query/:page" component={SearchRoute} />
+            <Route path="/:query" component={SearchRoute} />
+            <Route path="/" component={SearchRoute} />
+          </Route>
           <Route path="/detail/:id" component={DetailRoute} />
           <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
@@ -65,6 +71,11 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
+          </Route>
+          <Route path="/search">
+            <Route path="/:query/:page" component={SearchRoute} />
+            <Route path="/:query" component={SearchRoute} />
+            <Route path="/" component={SearchRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
           <Route path="/:page" component={IndexRoute} />
@@ -78,6 +89,11 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
+          <Route path="/search">
+            <Route path="/:query/:page" component={SearchRoute} />
+            <Route path="/:query" component={SearchRoute} />
+            <Route path="/" component={SearchRoute} />
+          </Route>
           <Route path="/detail/:id" component={DetailRoute} />
           <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
@@ -89,6 +105,11 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
+          </Route>
+          <Route path="/search">
+            <Route path="/:query/:page" component={SearchRoute} />
+            <Route path="/:query" component={SearchRoute} />
+            <Route path="/" component={SearchRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
           <Route path="/:page" component={IndexRoute} />
@@ -112,6 +133,11 @@ const App: Component = (): JSX.Element => {
             <Route path="/:value" component={ValueRangeRoute} />
             <Route path="/" component={ValueRangeIndexRoute} />
           </Route>
+          <Route path="/search">
+            <Route path="/:query/:page" component={SearchRoute} />
+            <Route path="/:query" component={SearchRoute} />
+            <Route path="/" component={SearchRoute} />
+          </Route>
           <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
@@ -122,6 +148,11 @@ const App: Component = (): JSX.Element => {
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
+          </Route>
+          <Route path="/search">
+            <Route path="/:query/:page" component={SearchRoute} />
+            <Route path="/:query" component={SearchRoute} />
+            <Route path="/" component={SearchRoute} />
           </Route>
           <Route path="/detail/:id" component={DetailRoute} />
           <Route path="/:page" component={IndexRoute} />

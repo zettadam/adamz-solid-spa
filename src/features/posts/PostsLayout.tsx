@@ -1,6 +1,7 @@
 import { A } from '@solidjs/router'
 import type { JSX, ParentComponent } from 'solid-js'
 
+import SearchForm from '~/components/SearchForm'
 import './posts-layout.css'
 
 const PostsLayout: ParentComponent = (props): JSX.Element => {
@@ -13,12 +14,7 @@ const PostsLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/posts/archive">Archive</A>
         <span class="divider" />
-        <input
-          type="search"
-          name="keyword"
-          placeholder="Search posts"
-          disabled
-        />
+        <SearchForm name="posts" />
       </nav>
 
       {props.children}

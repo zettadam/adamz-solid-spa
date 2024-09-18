@@ -35,15 +35,23 @@ const PaginatedListBasic: Component<{
     () => ({
       name: props.name,
       page: params.page ? parseInt(params.page, 10) : 1,
+      query: params.query,
       tag: params.tag,
       value: params.value,
     }),
-    async ({ name, page, tag, value }) => {
+    async ({ name, page, query, tag, value }) => {
       const ac = new AbortController()
       onCleanup(() => ac.abort())
 
       const sortColumn = name === 'events' ? 'created' : 'published'
       let filter = `${sortColumn} != null`
+      if (query) {
+        const d = decodeURI(query)
+        const q = d ? d.replace(/\s+/g, ' ').replace(/[^a-zA-Z0-9 -]/g, '') : ''
+        if (q) {
+          filter += ` && (title ?~ "${q}" || abstract ?~ "${q}")`
+        }
+      }
       if (tag) {
         filter += ` && tags ?~ "${tag}"`
       }
