@@ -29,8 +29,8 @@ const SearchForm: Component<{
       <input
         type="search"
         name="q"
-        value={decodeURI(params.query) || ''}
-        placeholder={`Search ${props.name}`}
+        value={params.query ? decodeURI(params.query) : ''}
+        placeholder={`Search ${props.name}…`}
       />
     </form>
   )
