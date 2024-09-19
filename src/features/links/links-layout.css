@@ -82,10 +82,7 @@
               }
             }
           }
-          & li > nav {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: flex-end;
+          & nav.tags {
             & a {
               background: var(--color-links-a25);
               color: var(--color-links);
@@ -97,9 +94,6 @@
             & a,
             & b {
               border-radius: var(--radius-2);
-              font-family: var(--font-sans-serif);
-              margin: 0;
-              padding: 0 0.5rem;
             }
           }
         }
