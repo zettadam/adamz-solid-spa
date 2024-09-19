@@ -1,22 +1,16 @@
-import {
-  createMemo,
-  createResource,
-  onCleanup,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createMemo, createResource, onCleanup } from 'solid-js'
 import { Title } from '@solidjs/meta'
-import { useLocation } from '@solidjs/router'
+import { type RouteSectionProps } from '@solidjs/router'
 
-import { CollectionName, getAllRecords } from '~/lib/api'
+import { getAllRecords, type CollectionName } from '~/lib/api'
 import Loading from '~/components/Loading'
 import Error from '~/components/Error'
 import ValueRangeMatrix from '~/components/ValueRangeMatrix'
+
 import PageNotFound from '../PageNotFound'
 
-const ValueRangeIndexRoute: Component = (): JSX.Element => {
-  const location = useLocation()
-  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
+const ValueRangeIndexRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 
@@ -38,7 +32,7 @@ const ValueRangeIndexRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>Value range index in {section()}— Adam Ziolkowski</Title>
+      <Title>Value range index in {section()}—Adam Ziolkowski</Title>
       <div class="page archive">
         <h2>Value Range: Index</h2>
         <main id="content">

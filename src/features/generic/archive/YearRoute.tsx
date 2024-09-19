@@ -1,25 +1,18 @@
-import {
-  createMemo,
-  createResource,
-  onCleanup,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createMemo, createResource, onCleanup } from 'solid-js'
 import { Meta, Title } from '@solidjs/meta'
-import { useLocation, useParams } from '@solidjs/router'
+import { type RouteSectionProps } from '@solidjs/router'
 
 import { getAllRecords, type CollectionName } from '~/lib/api'
+import { getTimezoneOffset } from '~/lib/helpers/datetime'
 import Error from '~/components/Error'
 import Loading from '~/components/Loading'
 import ArchiveMatrix from '~/components/ArchiveMatrix'
-import { getTimezoneOffset } from '~/lib/helpers/datetime'
+
 import PageNotFound from '../PageNotFound'
 
-const YearRoute: Component = (): JSX.Element => {
-  const location = useLocation()
-  const { year } = useParams()
-
-  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
+const YearRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
+  const year = props.params.year
 
   if (!section() || !year) return <PageNotFound />
 

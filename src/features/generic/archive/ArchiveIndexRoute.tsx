@@ -1,22 +1,16 @@
-import {
-  createMemo,
-  createResource,
-  onCleanup,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createMemo, createResource, onCleanup } from 'solid-js'
 import { Meta, Title } from '@solidjs/meta'
-import { useLocation } from '@solidjs/router'
+import { type RouteSectionProps } from '@solidjs/router'
 
-import { CollectionName, getAllRecords } from '~/lib/api'
+import { getAllRecords, type CollectionName } from '~/lib/api'
 import Loading from '~/components/Loading'
 import Error from '~/components/Error'
 import ArchiveMatrix from '~/components/ArchiveMatrix'
+
 import PageNotFound from '../PageNotFound'
 
-const ArchiveIndexRoute: Component = (): JSX.Element => {
-  const l = useLocation()
-  const section = createMemo(() => l.pathname.split('/')[1])
+const ArchiveIndexRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 
@@ -38,7 +32,7 @@ const ArchiveIndexRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>Archived {section()}— Adam Ziolkowski</Title>
+      <Title>Archived {section()}—Adam Ziolkowski</Title>
       <Meta name="description" content={`Matrix of archived ${section()}`} />
       <div class="page archive">
         <h2>Archive Index</h2>

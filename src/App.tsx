@@ -1,5 +1,4 @@
 // --- vendor imports ---------------------------------------------------------
-import { lazy, type Component, type JSX } from 'solid-js'
 import { MetaProvider } from '@solidjs/meta'
 import { Route, Router } from '@solidjs/router'
 
@@ -12,39 +11,29 @@ import LabsLayout from './features/labs/LabsLayout'
 import LinksLayout from './features/links/LinksLayout'
 import EventsLayout from './features/events/EventsLayout'
 
-import IndexRoute from './features/generic/IndexRoute'
-import PageNotFound from './features/generic/PageNotFound'
-
 import HomeRoute from './features/home/HomeRoute'
+
+// generic routes
+import IndexRoute from './features/generic/IndexRoute'
+import ArchiveIndexRoute from './features/generic/archive/ArchiveIndexRoute'
+import DayRoute from './features/generic/archive/DayRoute'
+import MonthRoute from './features/generic/archive/MonthRoute'
+import YearRoute from './features/generic/archive/YearRoute'
+import TagIndexRoute from './features/generic/tag/TagIndexRoute'
+import TagRoute from './features/generic/tag/TagRoute'
+import ValueRangeIndexRoute from './features/generic/value/ValueRangeIndexRoute'
+import ValueRangeRoute from './features/generic/value/ValueRangeRoute'
+import SearchRoute from './features/generic/SearchRoute'
+import DetailRoute from './features/generic/DetailRoute'
+
+import PageNotFound from './features/generic/PageNotFound'
 
 // --- style imports ----------------------------------------------------------
 import './app.css'
 
-// --- dynamic imports --------------------------------------------------------
-
-// lazy generic routes
-const ArchiveIndexRoute = lazy(
-  () => import('./features/generic/archive/ArchiveIndexRoute'),
-)
-const DayRoute = lazy(() => import('./features/generic/archive/DayRoute'))
-const MonthRoute = lazy(() => import('./features/generic/archive/MonthRoute'))
-const YearRoute = lazy(() => import('./features/generic/archive/YearRoute'))
-
-const TagIndexRoute = lazy(() => import('./features/generic/tag/TagIndexRoute'))
-const TagRoute = lazy(() => import('./features/generic/tag/TagRoute'))
-
-const ValueRangeIndexRoute = lazy(
-  () => import('./features/generic/value/ValueRangeIndexRoute'),
-)
-const ValueRangeRoute = lazy(
-  () => import('./features/generic/value/ValueRangeRoute'),
-)
-const SearchRoute = lazy(() => import('./features/generic/SearchRoute'))
-const DetailRoute = lazy(() => import('./features/generic/DetailRoute'))
-
 // --- end of imports ---------------------------------------------------------
 
-const App: Component = (): JSX.Element => {
+const App = () => {
   return (
     <MetaProvider>
       <Router root={MainLayout}>

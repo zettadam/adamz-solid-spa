@@ -1,9 +1,8 @@
-import { A } from '@solidjs/router'
-import type { JSX, ParentComponent } from 'solid-js'
+import { A, type RouteSectionProps } from '@solidjs/router'
 
 import './events-layout.css'
 
-const EventsLayout: ParentComponent = (props): JSX.Element => {
+const EventsLayout = (props: RouteSectionProps) => {
   return (
     <div class="events-layout">
       <nav class="page">

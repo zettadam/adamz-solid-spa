@@ -1,17 +1,15 @@
-import { createMemo, type Accessor, type JSX, type Component } from 'solid-js'
+import { createMemo } from 'solid-js'
 import { Meta, Title } from '@solidjs/meta'
-import { useLocation } from '@solidjs/router'
+import { type RouteSectionProps } from '@solidjs/router'
 
-import { CollectionName } from '~/lib/api'
 import PaginatedListBasic from '~/components/PaginatedListBasic'
 import ArchiveAside from '~/components/ArchiveAside'
+import { type CollectionName } from '~/lib/api'
+
 import PageNotFound from './PageNotFound'
 
-const IndexRoute: Component = (): JSX.Element => {
-  const location = useLocation()
-  const section: Accessor<string> = createMemo(
-    () => location.pathname.split('/')[1] ?? '',
-  )
+const IndexRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 

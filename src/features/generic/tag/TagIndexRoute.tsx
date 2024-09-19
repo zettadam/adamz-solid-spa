@@ -1,12 +1,6 @@
-import {
-  createMemo,
-  createResource,
-  onCleanup,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createMemo, createResource, onCleanup } from 'solid-js'
 import { Title } from '@solidjs/meta'
-import { useLocation } from '@solidjs/router'
+import { type RouteSectionProps } from '@solidjs/router'
 
 import { CollectionName, getAllRecords } from '~/lib/api'
 import Loading from '~/components/Loading'
@@ -14,9 +8,8 @@ import Error from '~/components/Error'
 import TagMatrix from '~/components/TagMatrix'
 import PageNotFound from '../PageNotFound'
 
-const TagIndexRoute: Component = (): JSX.Element => {
-  const location = useLocation()
-  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
+const TagIndexRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 
@@ -38,7 +31,7 @@ const TagIndexRoute: Component = (): JSX.Element => {
 
   return (
     <>
-      <Title>Tags in {section()}— Adam Ziolkowski</Title>
+      <Title>Tags in {section()}—Adam Ziolkowski</Title>
       <div class="page archive">
         <h2>Tag Index</h2>
         <main id="content">

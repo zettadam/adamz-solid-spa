@@ -1,26 +1,21 @@
-import {
-  createMemo,
-  createResource,
-  onCleanup,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createMemo, createResource, onCleanup } from 'solid-js'
 import { Meta, Title } from '@solidjs/meta'
-import { A, useLocation, useParams } from '@solidjs/router'
+import { A, type RouteSectionProps } from '@solidjs/router'
 
-import { CollectionName, getAllRecords } from '~/lib/api'
+import { getAllRecords, type CollectionName } from '~/lib/api'
 import { getTimezoneOffset } from '~/lib/helpers/datetime'
-import { monthNamesLong } from '../constants'
 import Loading from '~/components/Loading'
 import ListBasic from '~/components/ListBasic'
 import ArchiveAside from '~/components/ArchiveAside'
+
+import { monthNamesLong } from '../constants'
 import PageNotFound from '../PageNotFound'
 
-const DayRoute: Component = (): JSX.Element => {
-  const location = useLocation()
-  const { day, month, year } = useParams()
-
-  const section = createMemo(() => location.pathname.split('/')[1] ?? '')
+const DayRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
+  const year = props.params.year
+  const month = props.params.month
+  const day = props.params.day
 
   if (!section() || !year || !month || !day) return <PageNotFound />
 
@@ -50,7 +45,7 @@ const DayRoute: Component = (): JSX.Element => {
   return (
     <>
       <Title>
-        Archived {section()} on {monthNamesLong[month]} {day}, {year}— Adam
+        Archived {section()} on {monthNamesLong[month]} {day}, {year}—Adam
         Ziolkowski
       </Title>
       <Meta

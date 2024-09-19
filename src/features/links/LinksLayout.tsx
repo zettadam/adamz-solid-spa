@@ -1,11 +1,10 @@
-import { A } from '@solidjs/router'
-import type { JSX, ParentComponent } from 'solid-js'
+import { A, type RouteSectionProps } from '@solidjs/router'
 
 import SearchForm from '~/components/SearchForm'
 
 import './links-layout.css'
 
-const LinksLayout: ParentComponent = (props): JSX.Element => {
+const LinksLayout = (props: RouteSectionProps) => {
   return (
     <div class="links-layout">
       <nav class="page">

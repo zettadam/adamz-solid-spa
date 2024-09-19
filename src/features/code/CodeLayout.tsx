@@ -1,9 +1,8 @@
-import { A } from '@solidjs/router'
-import type { JSX, ParentComponent } from 'solid-js'
+import { A, type RouteSectionProps } from '@solidjs/router'
 
 import './code-layout.css'
 
-const CodeLayout: ParentComponent = (props): JSX.Element => {
+const CodeLayout = (props: RouteSectionProps) => {
   return (
     <div class="code-layout">
       <nav class="page">
