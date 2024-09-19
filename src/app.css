@@ -599,8 +599,10 @@
 
     & > footer {
       p#copyright {
-        display: block;
+        align-items: center;
+        display: flex;
         font-family: var(--font-sans-serif);
+        gap: 1rem;
         margin-block: 2rem 5rem;
         margin-inline: auto;
         text-align: center;
@@ -743,8 +745,39 @@
     }
   }
 
-  & .hbox-swipe {
+  .hbox-swipe {
     overflow-x: auto;
     width: 100%;
+  }
+
+  footer:not(.home) {
+    p#copyright {
+      & a {
+        align-items: center;
+        display: flex;
+        gap: 1rem;
+        &::before {
+          background-image: url(/img/adam.webp);
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border: 2px solid rgb(255, 255, 255);
+          border-radius: 50%;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          content: '';
+          display: block;
+          flex: 0 0 4rem;
+          height: 4rem;
+          width: 4rem;
+          animation: pulse 2s infinite;
+        }
+      }
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      transform: scale(0.9, 0.9);
+    }
   }
 }
