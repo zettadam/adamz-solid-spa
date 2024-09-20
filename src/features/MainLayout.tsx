@@ -12,12 +12,12 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           {section() ? (
             <>
               <h1>
-                <A href="/">Adam Ziolkowski</A>
+                <A href="/">adamz.one</A>
               </h1>
               <h2>{section()}</h2>
             </>
           ) : (
-            <h1>Adam Ziolkowski</h1>
+            <h1>adamz.one</h1>
           )}
         </hgroup>
         <nav class="secondary">
