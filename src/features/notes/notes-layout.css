@@ -19,8 +19,6 @@
     }
 
     & div.page {
-      border-top: 0.25rem solid var(--color-notes);
-
       & > h2 {
         background-color: var(--color-notes);
       }

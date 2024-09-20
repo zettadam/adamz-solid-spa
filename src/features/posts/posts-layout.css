@@ -21,8 +21,6 @@
     }
 
     & div.page {
-      border-color: var(--color-posts);
-
       & > h2:first-of-type {
         background-color: var(--color-posts);
       }

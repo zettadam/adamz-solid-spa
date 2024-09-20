@@ -18,8 +18,6 @@
     }
 
     & div.page {
-      border-color: var(--color-labs);
-
       & > h2 {
         background-color: var(--color-labs);
       }
