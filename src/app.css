@@ -57,7 +57,7 @@
   body {
     background-attachment: fixed, fixed;
     background-color: hsl(0, 0%, 100%);
-    background-image: url('img/brush-transparent-bottom.webp'),
+    background-image: url('/img/brush-transparent-bottom.webp'),
       url('/img/misty-mountains.webp');
     background-size: cover, cover;
     background-position:
