@@ -1,9 +1,7 @@
 @layer app {
-  div.main-layout {
-    & header.code {
-      h2 {
-        background: var(--color-code);
-      }
+  header.code {
+    & h2 {
+      background: var(--color-code);
     }
   }
   .code-layout {

@@ -1,9 +1,7 @@
 @layer app {
-  div.main-layout {
-    & header.events {
-      h2 {
-        background: var(--color-events);
-      }
+  header.events {
+    & h2 {
+      background: var(--color-events);
     }
   }
   .events-layout {

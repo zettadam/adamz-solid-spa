@@ -1,15 +1,11 @@
 @layer app {
-  div.main-layout {
-    & header.posts {
-      & h2 {
-        background: var(--color-posts);
-      }
+  header.posts {
+    & h2 {
+      background: var(--color-posts);
     }
   }
 
   .posts-layout {
-    width: 100%;
-
     & :focus-visible {
       background-color: var(--color-posts-a125);
       outline: 1px solid var(--color-posts);

@@ -1,9 +1,7 @@
 @layer app {
-  div.main-layout {
-    & header.labs {
-      h2 {
-        background: var(--color-labs);
-      }
+  header.labs {
+    & h2 {
+      background: var(--color-labs);
     }
   }
   .labs-layout {

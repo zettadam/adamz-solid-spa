@@ -1,9 +1,7 @@
 @layer app {
-  div.main-layout {
-    & header.links {
-      h2 {
-        background: var(--color-links);
-      }
+  header.links {
+    & h2 {
+      background: var(--color-links);
     }
   }
   .links-layout {

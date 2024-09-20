@@ -1,12 +1,9 @@
 @layer app {
-  div.main-layout {
-    & header.notes {
-      h2 {
-        background: var(--color-notes);
-      }
+  header.notes {
+    & h2 {
+      background: var(--color-notes);
     }
   }
-
   .notes-layout {
     & :focus-visible {
       background-color: var(--color-notes-a125);
