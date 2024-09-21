@@ -1,6 +1,13 @@
 import { createMemo, type JSX, type ParentComponent } from 'solid-js'
 import { A, useLocation } from '@solidjs/router'
 
+import MastodonIcon from '~/components/icons/MastodonIcon'
+import GithubIcon from '~/components/icons/GithubIcon'
+import LinkedInIcon from '~/components/icons/LinkedInIcon'
+import CodepenIcon from '~/components/icons/CodepenIcon'
+import CodeSandboxIcon from '~/components/icons/CodeSandboxIcon'
+import StackblitzIcon from '~/components/icons/StackblitzIcon'
+
 const MainLayout: ParentComponent = (props): JSX.Element => {
   const location = useLocation()
   const section = createMemo(() => location.pathname.split('/')[1] ?? '')
@@ -35,8 +42,42 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
       {props.children}
 
       <footer class={section() || 'home'}>
+        <ul class="elsewhere">
+          <li class="github">
+            <a href="https://github.com/zettadam" target="_blank">
+              <GithubIcon size={32} />
+            </a>
+          </li>
+          <li class="codepen">
+            <a href="https://codepen.io/zettadam" target="_blank">
+              <CodepenIcon size={32} />
+            </a>
+          </li>
+          <li class="codesandbox">
+            <a href="https://codesandbox.io/u/zettadam" target="_blank">
+              <CodeSandboxIcon size={32} />
+            </a>
+          </li>
+          <li class="stackblitz">
+            <a href="https://stackblitz.com/@zettadam" target="_blank">
+              <StackblitzIcon size={32} />
+            </a>
+          </li>
+          <li class="mastodon">
+            <a href="https://mastodon.social/@adamzett" target="_blank">
+              <MastodonIcon size={32} />
+            </a>
+          </li>
+          <li class="linkedin">
+            <a
+              href="https://www.linkedin.com/in/adam-ziolkowski-9513581b/"
+              target="_blank">
+              <LinkedInIcon size={32} />
+            </a>
+          </li>
+        </ul>
         <p id="copyright">
-          &copy; 2024 <a href="mailto:zett.adam@gmail.com">Adam Z.</a>
+          &copy; 2024 <span>Adam Z.</span>
         </p>
         <nav id="main-navigation">
           <span>
