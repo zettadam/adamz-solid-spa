@@ -7,6 +7,7 @@ import LinkedInIcon from '~/components/icons/LinkedInIcon'
 import CodepenIcon from '~/components/icons/CodepenIcon'
 import CodeSandboxIcon from '~/components/icons/CodeSandboxIcon'
 import StackblitzIcon from '~/components/icons/StackblitzIcon'
+import PinterestIcon from '~/components/icons/PinterestIcon'
 
 const MainLayout: ParentComponent = (props): JSX.Element => {
   const location = useLocation()
@@ -63,6 +64,11 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
               <StackblitzIcon size={32} />
             </a>
           </li>
+          <li class="pinterest">
+            <a href="https://www.pinterest.com/zettadam/" target="_blank">
+              <PinterestIcon size={32} />
+            </a>
+          </li>
           <li class="mastodon">
             <a href="https://mastodon.social/@adamzett" target="_blank">
               <MastodonIcon size={32} />
@@ -78,6 +84,30 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
         </ul>
         <p id="copyright">
           &copy; 2024 <span>Adam Z.</span>
+        </p>
+        <p>
+          <small>
+            Written solely by hand with{' '}
+            <a href="https://www.solidjs.com/" target="_blank">
+              SolidJS
+            </a>
+            ,{' '}
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+              target="_blank">
+              HTML
+            </a>
+            ,{' '}
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+              target="_blank">
+              CSS
+            </a>{' '}
+            and{' '}
+            <a href="https://pocketbase.io/" target="blank">
+              PocketBase
+            </a>
+          </small>
         </p>
         <nav id="main-navigation">
           <span>

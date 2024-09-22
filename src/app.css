@@ -614,19 +614,30 @@
           }
         }
       }
-      & p#copyright {
+      & p {
         align-items: center;
         display: flex;
         font-family: var(--font-sans-serif);
         gap: 1rem;
-        margin-block: 2rem 5rem;
+        margin-block: 2rem;
         margin-inline: auto;
         text-align: center;
-        text-shadow: 0 0 0.25rem hsl(0, 0%, 100%);
         width: max-content;
+        &:last-of-type {
+          margin-block: 2rem 5rem;
+        }
         & a {
           color: var(--color-black);
           font-weight: var(--font-weight-normal);
+        }
+        & small {
+          & a {
+            display: inline !important;
+            &::before {
+              content: '' !important;
+              margin: 0 !important;
+            }
+          }
         }
       }
       & nav {
