@@ -4,7 +4,7 @@
       background: var(--color-code);
     }
   }
-  .code-layout {
+  div.code-layout {
     & :focus-visible {
       background-color: var(--color-code-a125);
       outline: 1px solid var(--color-code);
@@ -18,6 +18,46 @@
     & div.page {
       & > h2 {
         background-color: var(--color-code);
+      }
+
+      & article {
+        & header {
+          & h1 {
+            font-size: var(--text-size-3);
+          }
+        }
+
+        & pre {
+          font-size: var(--text-size-1);
+        }
+      }
+    }
+
+    & nav.tags,
+    & menu.tag-index {
+      & a {
+        background: var(--color-code-a25);
+        color: var(--color-code);
+        text-decoration: none;
+      }
+      & b {
+        background: var(--color-links);
+        color: var(--color-white);
+      }
+      & a,
+      & b {
+        border-radius: var(--radius-2);
+      }
+    }
+
+    & menu.days,
+    & menu.value-index {
+      & .bar {
+        border: 1px solid var(--color-code-a50);
+        background: var(--color-code-a25);
+      }
+      & b {
+        color: var(--color-code-a50);
       }
     }
   }

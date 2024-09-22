@@ -78,30 +78,24 @@
               }
             }
           }
-          & nav.tags {
-            & a {
-              background: var(--color-links-a25);
-              color: var(--color-links);
-            }
-            & b {
-              background: var(--color-links);
-              color: var(--color-white);
-            }
-            & a,
-            & b {
-              border-radius: var(--radius-2);
-            }
-          }
         }
       }
     }
 
+    & nav.tags,
     & menu.tag-index {
       & a {
         background: var(--color-links-a25);
-        border-radius: var(--radius-2);
         color: var(--color-links);
         text-decoration: none;
+      }
+      & b {
+        background: var(--color-links);
+        color: var(--color-white);
+      }
+      & a,
+      & b {
+        border-radius: var(--radius-2);
       }
     }
 

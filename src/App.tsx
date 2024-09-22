@@ -28,9 +28,6 @@ import DetailRoute from './features/generic/DetailRoute'
 
 import PageNotFound from './features/generic/PageNotFound'
 
-// --- style imports ----------------------------------------------------------
-import './app.css'
-
 // --- end of imports ---------------------------------------------------------
 
 const App = () => {

@@ -1,28 +1,19 @@
-import {
-  createResource,
-  Match,
-  onCleanup,
-  Suspense,
-  Switch,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createResource, Match, onCleanup, Suspense, Switch } from 'solid-js'
 import { Title } from '@solidjs/meta'
+import sanitize from 'sanitize-html'
+import { RecordModel } from 'pocketbase'
+
 import { client } from '~/lib/pocketbase'
 import { formatDatetime } from '~/lib/helpers/datetime'
 import type { CollectionName } from '~/lib/api'
 
 import Error from './Error'
 import Loading from './Loading'
-import sanitize from 'sanitize-html'
-import { RecordModel } from 'pocketbase'
+import CodeDetail from '~/features/code/CodeDetail'
 
 import { sectionTitleMap } from '~/features/generic/constants'
 
-const Detail: Component<{
-  identifier: string
-  name: CollectionName
-}> = (props): JSX.Element => {
+const Detail = (props: { identifier: string; name: CollectionName }) => {
   const [data] = createResource(async () => {
     const ac = new AbortController()
     onCleanup(() => ac.abort())
@@ -39,7 +30,7 @@ const Detail: Component<{
           </Match>
           <Match when={data()}>
             <Title>
-              {data()?.title || data()?.name}— {sectionTitleMap[props.name]}—
+              {data()?.title || data()?.name}—{sectionTitleMap[props.name]}—
               Adam Ziolkowski
             </Title>
             {'posts' === props.name && <PostDetail data={data()} />}
@@ -56,7 +47,7 @@ const Detail: Component<{
 
 export default Detail
 
-function PostDetail(props: { data?: RecordModel }): JSX.Element | null {
+function PostDetail(props: { data?: RecordModel }) {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
@@ -84,7 +75,7 @@ function PostDetail(props: { data?: RecordModel }): JSX.Element | null {
   )
 }
 
-function NoteDetail(props: { data?: RecordModel }): JSX.Element | null {
+function NoteDetail(props: { data?: RecordModel }) {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
@@ -106,7 +97,7 @@ function NoteDetail(props: { data?: RecordModel }): JSX.Element | null {
   )
 }
 
-function LabDetail(props: { data?: RecordModel }): JSX.Element | null {
+function LabDetail(props: { data?: RecordModel }) {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 
@@ -128,29 +119,7 @@ function LabDetail(props: { data?: RecordModel }): JSX.Element | null {
   )
 }
 
-function CodeDetail(props: { data?: RecordModel }): JSX.Element | null {
-  if (!props?.data || Object.keys(props?.data).length < 1) return null
-  const item = props.data
-
-  const published = item.published
-    ? formatDatetime(item.published, 'long')
-    : null
-  const abstract = item.abstract ? sanitize(item.abstract) : null
-  const body = item.body ? sanitize(item.body) : null
-
-  return (
-    <article>
-      <header>
-        <h1>{props.data.title}</h1>
-        {published && <time>{published}</time>}
-      </header>
-      {abstract && <section class="abstract" innerHTML={abstract} />}
-      {body && <section class="body" innerHTML={body} />}
-    </article>
-  )
-}
-
-function EventDetail(props: { data?: RecordModel }): JSX.Element | null {
+function EventDetail(props: { data?: RecordModel }) {
   if (!props?.data || Object.keys(props?.data).length < 1) return null
   const item = props.data
 

@@ -13,6 +13,7 @@
   "dependencies": {
     "@solidjs/meta": "0.29.4",
     "@solidjs/router": "0.14.5",
+    "highlight.js": "11.10.0",
     "pocketbase": "0.21.5",
     "sanitize-html": "2.13.0",
     "solid-js": "1.8.22"
