@@ -1,14 +1,11 @@
-import { For, Match, Switch, type Component, type JSX } from 'solid-js'
+import { For, Match, Switch } from 'solid-js'
 import { A } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 
 import { formatDatetime } from '~/lib/helpers/datetime'
 import LinkItemList from '~/features/links/LinkItemList'
 
-const ListBasic: Component<{
-  data?: any
-  name: string
-}> = (props): JSX.Element | null => {
+const ListBasic = (props: { data?: any; name: string }) => {
   if (!props.data || !props.data()) return null
 
   const name = props.name

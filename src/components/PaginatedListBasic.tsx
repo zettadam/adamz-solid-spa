@@ -1,12 +1,4 @@
-import {
-  createResource,
-  For,
-  Match,
-  onCleanup,
-  Switch,
-  type Component,
-  type JSX,
-} from 'solid-js'
+import { createResource, For, Match, onCleanup, Switch } from 'solid-js'
 import { A, useParams } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 
@@ -26,9 +18,7 @@ const pageSizeMap: Record<string, number> = {
   posts: 10,
 }
 
-const PaginatedListBasic: Component<{
-  name: string
-}> = (props): JSX.Element => {
+const PaginatedListBasic = (props: { name: string }) => {
   const params = useParams()
 
   const [data] = createResource(
@@ -59,7 +49,6 @@ const PaginatedListBasic: Component<{
         if (value !== '0' && value !== '100+') {
           const v = value.split('-')
           if (v.length) {
-            console.log('v', v)
             filter += ` && (significance >= ${parseInt(v[0], 10)} && significance <= ${parseInt(v[1], 10)})`
           }
         } else if (value === '100+') {
@@ -97,7 +86,7 @@ const PaginatedListBasic: Component<{
 
 export default PaginatedListBasic
 
-function ListBasic(props: { data?: any; name: string }): JSX.Element | null {
+function ListBasic(props: { data?: any; name: string }) {
   if (!props.data || !props.data()) return null
 
   const name = props.name

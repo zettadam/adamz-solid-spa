@@ -87,7 +87,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
         </p>
         <p>
           <small>
-            Written solely by hand with{' '}
+            Written entirely by hand with{' '}
             <a href="https://www.solidjs.com/" target="_blank">
               SolidJS
             </a>

@@ -312,9 +312,9 @@
       grid-auto-flow: row;
       grid-auto-rows: min-content;
       grid-template-columns: repeat(12, 1fr);
-      margin: 0 0 10rem 0;
+      margin: 0;
       min-height: 60rem;
-      padding-block: 0 1rem;
+      padding-block: 0 1rem 10rem 1rem;
       padding-inline: 5dvw;
 
       & > h2:first-of-type {
@@ -588,12 +588,19 @@
     }
 
     & > footer {
+      background: var(--color-primary);
+      color: hsl(0, 0%, 50%);
+
+      & a {
+        text-decoration: none;
+      }
+
       & ul.elsewhere {
         display: flex;
         gap: 1rem;
         margin-block: 0;
         margin-inline: auto;
-        padding: 0;
+        padding: 5rem 0;
         width: max-content;
         & li {
           display: block;
@@ -603,11 +610,11 @@
         & a {
           &:link,
           &:visited {
-            color: var(--color-primary-a50);
+            color: var(--color-white);
           }
           &:active,
           &:hover {
-            color: var(--color-black);
+            color: var(--color-white);
           }
           &::before {
             content: '' !important;
@@ -619,15 +626,16 @@
         display: flex;
         font-family: var(--font-sans-serif);
         gap: 1rem;
-        margin-block: 2rem;
+        margin-block: 0;
         margin-inline: auto;
+        padding-block: 2rem;
         text-align: center;
         width: max-content;
         &:last-of-type {
-          margin-block: 2rem 5rem;
+          padding-block: 2rem 5rem;
         }
         & a {
-          color: var(--color-black);
+          color: var(--color-white);
           font-weight: var(--font-weight-normal);
         }
         & small {
@@ -712,25 +720,16 @@
           }
 
           &.posts {
-            &:not(.active):hover {
-              color: var(--color-posts);
-            }
             &.active {
               background-color: var(--color-posts);
             }
           }
           &.notes {
-            &:not(.active):hover {
-              color: var(--color-notes);
-            }
             &.active {
               background-color: var(--color-notes);
             }
           }
           &.code {
-            &:not(.active):hover {
-              color: var(--color-code);
-            }
             &.active {
               background-color: var(--color-code);
             }
@@ -744,25 +743,16 @@
             color: white;
           }
           &.links {
-            &:not(.active):hover {
-              color: var(--color-links);
-            }
             &.active {
               background-color: var(--color-links);
             }
           }
           &.labs {
-            &:not(.active):hover {
-              color: var(--color-labs);
-            }
             &.active {
               background-color: var(--color-labs);
             }
           }
           &.events {
-            &:not(.active):hover {
-              color: var(--color-events);
-            }
             &.active {
               background-color: var(--color-events);
             }
