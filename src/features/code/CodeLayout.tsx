@@ -1,5 +1,6 @@
 import { A, type RouteSectionProps } from '@solidjs/router'
 
+import SearchForm from '~/components/SearchForm'
 import './code-layout.css'
 
 const CodeLayout = (props: RouteSectionProps) => {
@@ -12,12 +13,9 @@ const CodeLayout = (props: RouteSectionProps) => {
         <span class="divider" />
         <A href="/code/archive">Archive</A>
         <span class="divider" />
-        <input
-          type="search"
-          name="keyword"
-          placeholder="Search code snippets"
-          disabled
-        />
+        <A href="/code/tags">Tags</A>
+        <span class="divider" />
+        <SearchForm name="code" />
       </nav>
 
       {props.children}

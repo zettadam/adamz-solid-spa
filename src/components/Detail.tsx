@@ -15,13 +15,16 @@ import Loading from './Loading'
 import { sectionTitleMap } from '~/features/generic/constants'
 
 const Detail = (props: { identifier: string; name: CollectionName }) => {
-  const [data] = createResource(async () => {
-    const ac = new AbortController()
-    onCleanup(() => ac.abort())
+  const [data] = createResource(
+    () => props.name,
+    async (name) => {
+      const ac = new AbortController()
+      onCleanup(() => ac.abort())
 
-    const data = await client.collection(props.name).getOne(props.identifier)
-    return data
-  })
+      const data = await client.collection(name).getOne(props.identifier)
+      return data
+    },
+  )
 
   return (
     <main class={`${props.name} detail`} id="content">
@@ -37,11 +40,23 @@ const Detail = (props: { identifier: string; name: CollectionName }) => {
             {data()?.title || data()?.name}—{sectionTitleMap[props.name]}—Adam
             Ziolkowski
           </Title>
-          {'posts' === props.name && <PostDetail data={data()} />}
-          {'notes' === props.name && <NoteDetail data={data()} />}
-          {'labs' === props.name && <LabDetail data={data()} />}
-          {'code' === props.name && <CodeDetail data={data()} />}
-          {'events' === props.name && <EventDetail data={data()} />}
+          <Switch>
+            <Match when={'posts' === props.name}>
+              <PostDetail data={data()} />
+            </Match>
+            <Match when={'notes' === props.name}>
+              <NoteDetail data={data()} />
+            </Match>
+            <Match when={'labs' === props.name}>
+              <LabDetail data={data()} />
+            </Match>
+            <Match when={'code' === props.name}>
+              <CodeDetail data={data()} />
+            </Match>
+            <Match when={'events' === props.name}>
+              <EventDetail data={data()} />
+            </Match>
+          </Switch>
         </Match>
       </Switch>
     </main>

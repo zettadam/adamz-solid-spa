@@ -41,6 +41,11 @@ const App = () => {
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
+          <Route path="/tags">
+            <Route path="/:tag/:page" component={TagRoute} />
+            <Route path="/:tag" component={TagRoute} />
+            <Route path="/" component={TagIndexRoute} />
+          </Route>
           <Route path="/search">
             <Route path="/:query/:page" component={SearchRoute} />
             <Route path="/:query" component={SearchRoute} />
@@ -57,6 +62,11 @@ const App = () => {
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
+          </Route>
+          <Route path="/tags">
+            <Route path="/:tag/:page" component={TagRoute} />
+            <Route path="/:tag" component={TagRoute} />
+            <Route path="/" component={TagIndexRoute} />
           </Route>
           <Route path="/search">
             <Route path="/:query/:page" component={SearchRoute} />
@@ -75,6 +85,11 @@ const App = () => {
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
           </Route>
+          <Route path="/tags">
+            <Route path="/:tag/:page" component={TagRoute} />
+            <Route path="/:tag" component={TagRoute} />
+            <Route path="/" component={TagIndexRoute} />
+          </Route>
           <Route path="/search">
             <Route path="/:query/:page" component={SearchRoute} />
             <Route path="/:query" component={SearchRoute} />
@@ -91,6 +106,11 @@ const App = () => {
             <Route path="/:year/:month" component={MonthRoute} />
             <Route path="/:year" component={YearRoute} />
             <Route path="/" component={ArchiveIndexRoute} />
+          </Route>
+          <Route path="/tags">
+            <Route path="/:tag/:page" component={TagRoute} />
+            <Route path="/:tag" component={TagRoute} />
+            <Route path="/" component={TagIndexRoute} />
           </Route>
           <Route path="/search">
             <Route path="/:query/:page" component={SearchRoute} />
