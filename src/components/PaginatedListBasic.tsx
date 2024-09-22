@@ -8,6 +8,7 @@ import LinkItemList from '~/features/links/LinkItemList'
 import { getManyRecords } from '~/lib/api'
 import Error from './Error'
 import Loading from './Loading'
+import CodeItemList from '~/features/code/CodeItemList'
 
 const pageSizeMap: Record<string, number> = {
   code: 10,
@@ -101,7 +102,10 @@ function ListBasic(props: { data?: any; name: string }) {
           <Match when={'links' === name}>
             <LinkItemList items={items} />
           </Match>
-          <Match when={'links' !== name}>
+          <Match when={'code' === name}>
+            <CodeItemList items={items} />
+          </Match>
+          <Match when={'links' !== name && 'code' !== name}>
             <For each={items}>
               {(d) => {
                 const abstract = sanitizeHtml(d.abstract)

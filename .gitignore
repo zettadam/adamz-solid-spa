@@ -4,12 +4,14 @@ logs
 npm-debug.log*
 
 node_modules
+
 dist
 dist-ssr
-*.local
+*.tsbuildinfo
 
 db/*
 
+*.local
 .env*
 
 # Editor directories and files
