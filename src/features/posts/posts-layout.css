@@ -117,4 +117,15 @@
       }
     }
   }
+
+  footer.posts {
+    background: var(--color-posts-a25);
+    box-shadow: inset 0 0 1rem var(--color-posts-a25);
+    color: var(--color-posts);
+    & ul.elsewhere {
+      & a {
+        color: var(--color-posts);
+      }
+    }
+  }
 }

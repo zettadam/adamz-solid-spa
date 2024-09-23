@@ -4,27 +4,30 @@ import { Route, Router } from '@solidjs/router'
 
 // --- local imports ----------------------------------------------------------
 import MainLayout from '~/features/MainLayout'
-import PostsLayout from './features/posts/PostsLayout'
-import NotesLayout from './features/notes/NotesLayout'
 import CodeLayout from './features/code/CodeLayout'
+import EventsLayout from './features/events/EventsLayout'
 import LabsLayout from './features/labs/LabsLayout'
 import LinksLayout from './features/links/LinksLayout'
-import EventsLayout from './features/events/EventsLayout'
+import NotesLayout from './features/notes/NotesLayout'
+import PostsLayout from './features/posts/PostsLayout'
 
 import HomeRoute from './features/home/HomeRoute'
 
 // generic routes
+import DetailRoute from './features/generic/DetailRoute'
 import IndexRoute from './features/generic/IndexRoute'
+import SearchRoute from './features/generic/SearchRoute'
+
 import ArchiveIndexRoute from './features/generic/archive/ArchiveIndexRoute'
 import DayRoute from './features/generic/archive/DayRoute'
 import MonthRoute from './features/generic/archive/MonthRoute'
 import YearRoute from './features/generic/archive/YearRoute'
+
 import TagIndexRoute from './features/generic/tag/TagIndexRoute'
 import TagRoute from './features/generic/tag/TagRoute'
+
 import ValueRangeIndexRoute from './features/generic/value/ValueRangeIndexRoute'
 import ValueRangeRoute from './features/generic/value/ValueRangeRoute'
-import SearchRoute from './features/generic/SearchRoute'
-import DetailRoute from './features/generic/DetailRoute'
 
 import PageNotFound from './features/generic/PageNotFound'
 
