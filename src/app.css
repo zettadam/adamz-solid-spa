@@ -1,5 +1,3 @@
-@layer reset, elements, component, third-party, app;
-
 @layer reset {
   :root {
     overscroll-behavior: none;
