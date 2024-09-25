@@ -120,7 +120,7 @@
 
   footer.posts {
     background-color: var(--color-posts-a25);
-    background-image: url(img/wave-posts-footer.svg);
+    background-image: url(/img/wave-posts-footer.svg);
     background-position: 100% 0;
     color: var(--color-posts);
     padding-block: 22rem 0;

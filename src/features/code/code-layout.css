@@ -127,7 +127,7 @@
 
   footer.code {
     background-color: var(--color-code-a25);
-    background-image: url(img/wave-code-footer.svg);
+    background-image: url(/img/wave-code-footer.svg);
     background-position: 100% 0;
     color: var(--color-code);
     padding-block: 33rem 0;

@@ -24,7 +24,7 @@
 
   footer.notes {
     background-color: var(--color-notes-a25);
-    background-image: url(img/wave-notes-footer.svg);
+    background-image: url(/img/wave-notes-footer.svg);
     background-position: 0 100%;
     color: var(--color-notes);
     padding-block: 33rem 0;
