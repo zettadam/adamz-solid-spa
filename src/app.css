@@ -326,13 +326,12 @@
       padding-inline: 5dvw;
 
       & > h2:first-of-type {
-        color: var(--color-white);
         font-family: var(--font-sans-serif);
         font-size: var(--text-size-8);
         font-weight: 700;
         grid-column: 1/13;
         line-height: 1;
-        margin: 0;
+        margin-block: 0.3rem 0;
         padding: 1rem 1rem 0 1rem;
         text-transform: uppercase;
         pointer-events: none;

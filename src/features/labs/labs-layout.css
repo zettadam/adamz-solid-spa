@@ -17,7 +17,8 @@
 
     & div.page {
       & > h2 {
-        background-color: var(--color-labs);
+        border-top: 0.25rem solid var(--color-labs-a50);
+        color: var(--color-labs-a50);
       }
     }
   }
