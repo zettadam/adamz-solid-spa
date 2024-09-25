@@ -12,21 +12,62 @@
     <link rel="manifest" href="/site.webmanifest" />
     <style>
       @layer reset, elements, component, speed-highlight, app;
+
+      @layer elements {
+        body {
+          background-attachment: fixed, fixed;
+          background-color: hsl(0, 0%, 100%);
+          background-image: url('/img/brush-transparent-bottom.webp'),
+            url('/img/misty-mountains.webp');
+          background-size: cover, cover;
+          background-position:
+            50% 50%,
+            0% 62%;
+          background-repeat: no-repeat, no-repeat;
+        }
+      }
+
+      @layer app {
+        .main-layout {
+          & header[role='banner'] {
+            &:not(.home) {
+              background-image: url(/img/wave-header.svg);
+              background-position: left bottom;
+              background-repeat: no-repeat;
+              background-size: cover;
+            }
+          }
+        }
+
+        .about-me::before {
+          background-image: url(/img/adam.webp);
+        }
+
+        footer {
+          &.posts {
+            background-image: url(/img/wave-posts-footer.svg);
+          }
+          &.notes {
+            background-image: url(/img/wave-notes-footer.svg);
+          }
+          &.links {
+            background-image: url(/img/wave-links-footer.svg);
+          }
+          &.labs {
+            background-image: url(/img/wave-labs-footer.svg);
+          }
+          &.code {
+            background-image: url(/img/wave-code-footer.svg);
+          }
+          &.events {
+            background-image: url(/img/wave-events-footer.svg);
+          }
+        }
+      }
     </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
-
-    <!-- preload background-images -->
-    <img src="/img/misty-mountains.webp" style="display: none" />
-    <img src="/img/adam.webp" style="display: none" />
-    <img src="/img/wave-header.svg" style="display: none" />
-    <img src="/img/wave-posts-footer.svg" style="display: none" />
-    <img src="/img/wave-notes-footer.svg" style="display: none" />
-    <img src="/img/wave-links-footer.svg" style="display: none" />
-    <img src="/img/wave-code-footer.svg" style="display: none" />
-    <img src="/img/wave-labs-footer.svg" style="display: none" />
-    <img src="/img/wave-events-footer.svg" style="display: none" />
   </body>
 </html>

@@ -24,7 +24,6 @@
 
   footer.labs {
     background-color: var(--color-labs-a25);
-    background-image: url(/img/wave-labs-footer.svg);
     background-position: 90% 0;
     color: var(--color-labs);
     padding-block: 33rem 0;

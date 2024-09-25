@@ -24,7 +24,6 @@
 
   footer.events {
     background-color: var(--color-events-a25);
-    background-image: url(/img/wave-events-footer.svg);
     background-position: 10% 0;
     color: var(--color-events);
     padding-block: 33rem 0;
