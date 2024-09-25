@@ -17,7 +17,6 @@
 
     & div.page {
       & > h2 {
-        border-top: 0.25rem solid var(--color-links-a50);
         color: var(--color-links-a50);
       }
     }

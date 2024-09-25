@@ -18,7 +18,6 @@
 
     & div.page {
       & > h2:first-of-type {
-        border-top: 0.25rem solid var(--color-posts-a50);
         color: var(--color-posts-a50);
       }
 
