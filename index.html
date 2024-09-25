@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- shortcut icons -->
     <link
       rel="shortcut icon"
       type="image/png"
@@ -10,8 +12,9 @@
       href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
     <style>
-      @layer reset, elements, component, speed-highlight, app;
+      @layer reset, elements, component, app;
 
       @layer elements {
         body {
@@ -31,7 +34,7 @@
         .main-layout {
           & header[role='banner'] {
             &:not(.home) {
-              background-image: url(/img/wave-header.svg);
+              background-image: url('/img/wave-header.svg');
               background-position: left bottom;
               background-repeat: no-repeat;
               background-size: cover;
@@ -40,27 +43,27 @@
         }
 
         .about-me::before {
-          background-image: url(/img/adam.webp);
+          background-image: url('/img/adam.webp');
         }
 
         footer {
           &.posts {
-            background-image: url(/img/wave-posts-footer.svg);
+            background-image: url('/img/wave-posts-footer.svg');
           }
           &.notes {
-            background-image: url(/img/wave-notes-footer.svg);
+            background-image: url('/img/wave-notes-footer.svg');
           }
           &.links {
-            background-image: url(/img/wave-links-footer.svg);
+            background-image: url('/img/wave-links-footer.svg');
           }
           &.labs {
-            background-image: url(/img/wave-labs-footer.svg);
+            background-image: url('/img/wave-labs-footer.svg');
           }
           &.code {
-            background-image: url(/img/wave-code-footer.svg);
+            background-image: url('/img/wave-code-footer.svg');
           }
           &.events {
-            background-image: url(/img/wave-events-footer.svg);
+            background-image: url('/img/wave-events-footer.svg');
           }
         }
       }
