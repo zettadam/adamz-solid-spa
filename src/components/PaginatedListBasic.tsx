@@ -5,7 +5,7 @@ import sanitizeHtml from 'sanitize-html'
 import { formatDate } from '~/lib/helpers/datetime'
 import LinkItemList from '~/features/links/LinkItemList'
 
-import { getManyRecords } from '~/lib/api'
+import { CollectionName, getManyRecords } from '~/lib/api'
 import Error from './Error'
 import Loading from './Loading'
 import CodeItemList from '~/features/code/CodeItemList'
@@ -19,57 +19,71 @@ const pageSizeMap: Record<string, number> = {
   posts: 10,
 }
 
+const queryFn = async ({
+  name,
+  page,
+  query,
+  tag,
+  value,
+}: {
+  name: CollectionName
+  page: number
+  query?: string
+  tag?: string
+  value?: string
+}) => {
+  const ac = new AbortController()
+  onCleanup(() => ac.abort())
+
+  const sortColumn = name === 'events' ? 'created' : 'published'
+  let filter = `${sortColumn} != null`
+  if (query) {
+    const d = decodeURI(query)
+    const q = d ? d.replace(/\s+/g, ' ').replace(/[^a-zA-Z0-9 -]/g, '') : ''
+    if (q) {
+      filter += ` && (title ?~ "${q}" || abstract ?~ "${q}")`
+    }
+  }
+  if (tag) {
+    filter += ` && tags ?~ "${tag}"`
+  }
+  if (value) {
+    if (value !== '0' && value !== '100+') {
+      const v = value.split('-')
+      if (v.length) {
+        filter += ` && (significance >= ${parseInt(v[0], 10)} && significance <= ${parseInt(v[1], 10)})`
+      }
+    } else if (value === '100+') {
+      filter += ` && significance > 100`
+    } else {
+      filter += ` && significance < 1`
+    }
+  }
+
+  const data = await getManyRecords({
+    name,
+    options: {
+      filter,
+      sort: `-${sortColumn}`,
+    },
+    page,
+    size: pageSizeMap[name],
+  })
+  return data
+}
+
 const PaginatedListBasic = (props: { name: string }) => {
   const params = useParams()
 
   const [data] = createResource(
     () => ({
-      name: props.name,
+      name: props.name as CollectionName,
       page: params.page ? parseInt(params.page, 10) : 1,
       query: params.query,
       tag: params.tag,
       value: params.value,
     }),
-    async ({ name, page, query, tag, value }) => {
-      const ac = new AbortController()
-      onCleanup(() => ac.abort())
-
-      const sortColumn = name === 'events' ? 'created' : 'published'
-      let filter = `${sortColumn} != null`
-      if (query) {
-        const d = decodeURI(query)
-        const q = d ? d.replace(/\s+/g, ' ').replace(/[^a-zA-Z0-9 -]/g, '') : ''
-        if (q) {
-          filter += ` && (title ?~ "${q}" || abstract ?~ "${q}")`
-        }
-      }
-      if (tag) {
-        filter += ` && tags ?~ "${tag}"`
-      }
-      if (value) {
-        if (value !== '0' && value !== '100+') {
-          const v = value.split('-')
-          if (v.length) {
-            filter += ` && (significance >= ${parseInt(v[0], 10)} && significance <= ${parseInt(v[1], 10)})`
-          }
-        } else if (value === '100+') {
-          filter += ` && significance > 100`
-        } else {
-          filter += ` && significance < 1`
-        }
-      }
-
-      const data = await getManyRecords({
-        name,
-        options: {
-          filter,
-          sort: `-${sortColumn}`,
-        },
-        page,
-        size: pageSizeMap[name],
-      })
-      return data
-    },
+    queryFn,
   )
 
   return (

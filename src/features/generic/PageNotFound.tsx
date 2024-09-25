@@ -4,9 +4,11 @@ const PageNotFound = () => {
   return (
     <>
       <Title>404 (Unknown route)—Adam Ziolkowski</Title>
-      <div class="not-found">
-        <h3>404</h3>
-        <p>Oops, looks like I cannot find the page you are looking for.</p>
+      <div class="page not-found">
+        <h2>404</h2>
+        <main>
+          <p>Oops, looks like I cannot find the page you are looking for.</p>
+        </main>
       </div>
     </>
   )
