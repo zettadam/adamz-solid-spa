@@ -167,15 +167,22 @@
     }
   }
 
-  div.main-layout {
+  .main-layout {
     border-top: 0.5rem solid var(--color-primary);
     & header[role='banner'] {
       align-items: flex-start;
       border-radius: 0.5rem;
       display: flex;
-      margin: 0 0 1rem 0;
+      margin: 0;
       min-height: 20rem;
       padding-block: 0;
+
+      &:not(.home) {
+        background-image: url(/img/wave-header.svg);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
 
       @media (--md-n-below) {
         min-height: 10rem;
@@ -259,7 +266,7 @@
 
     & nav.page {
       align-items: center;
-      background: linear-gradient(
+      background-image: linear-gradient(
         to right,
         transparent,
         var(--color-primary) 45%
@@ -267,7 +274,8 @@
       display: flex;
       gap: 1rem;
       justify-content: flex-end;
-      margin: 0 5dvw 0 auto;
+      margin-inline: auto 5dvw;
+      margin-block: -4rem 0;
       padding-block: 0.5rem;
       padding-inline: 9rem 0.5rem;
       position: sticky;
@@ -318,9 +326,6 @@
       padding-inline: 5dvw;
 
       & > h2:first-of-type {
-        border-color: var(--color-primary);
-        border-style: solid;
-        border-width: 0 0.5rem 0.5rem 0;
         color: var(--color-white);
         font-family: var(--font-sans-serif);
         font-size: var(--text-size-8);
@@ -588,6 +593,8 @@
     }
 
     & > footer {
+      background-size: cover;
+      background-repeat: no-repeat;
       & ul.elsewhere {
         display: flex;
         gap: 1rem;

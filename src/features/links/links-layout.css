@@ -112,9 +112,11 @@
   }
 
   footer.links {
-    background: var(--color-links-a25);
-    box-shadow: inset 0 0 1rem var(--color-links-a25);
+    background-color: var(--color-links-a25);
+    background-image: url(img/wave-links-footer.svg);
+    background-position: 0 50%;
     color: var(--color-links);
+    padding-block: 33rem 0;
     & ul.elsewhere {
       & a {
         color: var(--color-links);
