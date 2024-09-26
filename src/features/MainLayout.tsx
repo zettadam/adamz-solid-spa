@@ -47,7 +47,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="github">
             <a
               href="https://github.com/zettadam"
-              title="Adam on Github"
+              title="Adam at Github"
               target="_blank">
               <GithubIcon size={32} />
             </a>
