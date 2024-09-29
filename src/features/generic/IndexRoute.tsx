@@ -13,6 +13,7 @@ const IndexRoute = (props: RouteSectionProps) => {
 
   if (!section()) return <PageNotFound />
 
+  // TODO: See if we can make this better
   const getMetaDescription = () => {
     const descriptions: Record<string, string> = {
       posts: 'Latest posts written by Adam Ziolkowski',
