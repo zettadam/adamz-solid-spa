@@ -7,7 +7,7 @@ const AboutMe: Component = (): JSX.Element => {
     <div class="about-me">
       <span>
         <p>
-          Hi, I am{' '}
+          Hi, my name is{' '}
           <b>
             Adam{' '}
             <a href="https://www.howtopronounce.com/ziolkowski">Ziolkowski</a>
