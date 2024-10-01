@@ -122,26 +122,6 @@
 }
 
 @layer app {
-  button {
-    &.primary {
-      background-color: var(--color-primary);
-      color: white;
-      font-weight: 700;
-    }
-    &.secondary {
-      background-color: var(--color-secondary);
-      color: var(--color-primary);
-    }
-    &.tertiary {
-      background-color: var(--color-tertiary);
-      color: var(--color-primary);
-    }
-    &.danger {
-      background-color: var(--color-danger);
-      color: white;
-    }
-  }
-
   nav {
     & a {
       font-family: var(--font-sans-serif);
@@ -165,13 +145,6 @@
       margin: 0;
       min-height: 20rem;
       padding-block: 0;
-
-      &:not(.home) {
-        background-image: url(/img/wave-header.svg);
-        background-position: left bottom;
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
 
       @media (--md-n-below) {
         min-height: 10rem;
@@ -304,6 +277,7 @@
     & div.page {
       align-items: start;
       background-color: hsl(0, 0%, 100%);
+      border-top: 0.25rem solid var(--color-primary);
       display: grid;
       gap: 2rem;
       grid-auto-flow: row;
@@ -581,8 +555,6 @@
     }
 
     & > footer {
-      background-size: cover;
-      background-repeat: no-repeat;
       & ul.elsewhere {
         display: flex;
         gap: 1rem;

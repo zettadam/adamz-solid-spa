@@ -24,9 +24,8 @@
 
   footer.events {
     background-color: var(--color-events-a25);
-    background-position: 10% 0;
+    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-events-a25);
     color: var(--color-events);
-    padding-block: 33rem 0;
     & ul.elsewhere {
       & a {
         color: var(--color-events);

@@ -128,9 +128,8 @@
 
   footer.code {
     background-color: var(--color-code-a25);
-    background-position: 100% 0;
+    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-code-a25);
     color: var(--color-code);
-    padding-block: 33rem 0;
     & ul.elsewhere {
       & a {
         color: var(--color-code);

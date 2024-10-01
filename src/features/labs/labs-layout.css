@@ -24,9 +24,8 @@
 
   footer.labs {
     background-color: var(--color-labs-a25);
-    background-position: 90% 0;
+    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-labs-a25);
     color: var(--color-labs);
-    padding-block: 33rem 0;
     & ul.elsewhere {
       & a {
         color: var(--color-labs);

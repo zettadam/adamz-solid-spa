@@ -31,40 +31,8 @@
       }
 
       @layer app {
-        .main-layout {
-          & header[role='banner'] {
-            &:not(.home) {
-              background-image: url('/img/wave-header.svg');
-              background-position: left bottom;
-              background-repeat: no-repeat;
-              background-size: cover;
-            }
-          }
-        }
-
         .about-me::before {
           background-image: url('/img/adam.webp');
-        }
-
-        footer {
-          &.posts {
-            background-image: url('/img/wave-posts-footer.svg');
-          }
-          &.notes {
-            background-image: url('/img/wave-notes-footer.svg');
-          }
-          &.links {
-            background-image: url('/img/wave-links-footer.svg');
-          }
-          &.labs {
-            background-image: url('/img/wave-labs-footer.svg');
-          }
-          &.code {
-            background-image: url('/img/wave-code-footer.svg');
-          }
-          &.events {
-            background-image: url('/img/wave-events-footer.svg');
-          }
         }
       }
     </style>

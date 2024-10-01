@@ -113,9 +113,8 @@
 
   footer.links {
     background-color: var(--color-links-a25);
-    background-position: 0 50%;
+    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-links-a25);
     color: var(--color-links);
-    padding-block: 33rem 0;
     & ul.elsewhere {
       & a {
         color: var(--color-links);
