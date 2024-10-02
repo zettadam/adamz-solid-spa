@@ -9,26 +9,31 @@ import ArchiveMatrix from '~/components/ArchiveMatrix'
 
 import PageNotFound from '../PageNotFound'
 
+const queryFn = async ({ name }: { name: CollectionName }) => {
+  const ac = new AbortController()
+  onCleanup(() => ac.abort())
+
+  const data = await getAllRecords({
+    name,
+    options: {
+      fields: `published`,
+      filter: `published != null`,
+      perPage: 1000000,
+      sort: `-published`,
+    },
+  })
+  return data
+}
+
 const ArchiveIndexRoute = (props: RouteSectionProps) => {
   const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 
-  const [data] = createResource(async () => {
-    const ac = new AbortController()
-    onCleanup(() => ac.abort())
-
-    const data = await getAllRecords({
-      name: section() as CollectionName,
-      options: {
-        fields: `published`,
-        filter: `published != null`,
-        perPage: 1000000,
-        sort: `-published`,
-      },
-    })
-    return data
-  })
+  const [data] = createResource(
+    () => ({ name: section() as CollectionName }),
+    queryFn,
+  )
 
   return (
     <>

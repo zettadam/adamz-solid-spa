@@ -10,11 +10,6 @@
       outline: 1px solid var(--color-links);
     }
 
-    & a.create {
-      background-color: var(--color-links-a50);
-      color: white;
-    }
-
     & div.page {
       & > h2 {
         color: var(--color-links-a50);
@@ -86,7 +81,7 @@
     & menu.tag-index {
       & a {
         background: var(--color-links-a25);
-        color: var(--color-links);
+        color: var(--color-black);
         text-decoration: none;
       }
       & b {

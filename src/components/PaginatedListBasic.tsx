@@ -1,5 +1,5 @@
 import { createResource, For, Match, onCleanup, Switch } from 'solid-js'
-import { A, useParams } from '@solidjs/router'
+import { A, useParams, type Params } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 
 import { formatDate } from '~/lib/helpers/datetime'
@@ -21,39 +21,38 @@ const pageSizeMap: Record<string, number> = {
 
 const queryFn = async ({
   name,
-  page,
-  query,
-  tag,
-  value,
+  params,
 }: {
   name: CollectionName
-  page: number
-  query?: string
-  tag?: string
-  value?: string
+  params: Params
 }) => {
   const ac = new AbortController()
   onCleanup(() => ac.abort())
 
+  const page = params.page ? parseInt(params.page, 10) : 1
+
   const sortColumn = name === 'events' ? 'created' : 'published'
   let filter = `${sortColumn} != null`
-  if (query) {
-    const d = decodeURI(query)
+
+  if (params.query) {
+    const d = decodeURI(params.query)
     const q = d ? d.replace(/\s+/g, ' ').replace(/[^a-zA-Z0-9 -]/g, '') : ''
     if (q) {
       filter += ` && (title ?~ "${q}" || abstract ?~ "${q}")`
     }
   }
-  if (tag) {
-    filter += ` && tags ?~ "${tag}"`
+
+  if (params.tag) {
+    filter += ` && tags ?~ "${params.tag}"`
   }
-  if (value) {
-    if (value !== '0' && value !== '100+') {
-      const v = value.split('-')
+
+  if (params.value) {
+    if (params.value !== '0' && params.value !== '100+') {
+      const v = params.value.split('-')
       if (v.length) {
         filter += ` && (significance >= ${parseInt(v[0], 10)} && significance <= ${parseInt(v[1], 10)})`
       }
-    } else if (value === '100+') {
+    } else if (params.value === '100+') {
       filter += ` && significance > 100`
     } else {
       filter += ` && significance < 1`
@@ -69,6 +68,7 @@ const queryFn = async ({
     page,
     size: pageSizeMap[name],
   })
+
   return data
 }
 
@@ -78,10 +78,7 @@ const PaginatedListBasic = (props: { name: string }) => {
   const [data] = createResource(
     () => ({
       name: props.name as CollectionName,
-      page: params.page ? parseInt(params.page, 10) : 1,
-      query: params.query,
-      tag: params.tag,
-      value: params.value,
+      params,
     }),
     queryFn,
   )

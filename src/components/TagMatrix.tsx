@@ -23,7 +23,7 @@ const TagMatrix: Component<{
         )}>
         {([t, count]) => (
           <li>
-            <A href={`/${name}/tags/${t}`}>{t}</A> ({count})
+            <A href={`/${name}/tags/${t}`}>{t}</A> {count}
           </li>
         )}
       </For>

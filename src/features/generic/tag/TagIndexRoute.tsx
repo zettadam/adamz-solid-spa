@@ -2,32 +2,38 @@ import { createMemo, createResource, onCleanup } from 'solid-js'
 import { Title } from '@solidjs/meta'
 import { type RouteSectionProps } from '@solidjs/router'
 
-import { CollectionName, getAllRecords } from '~/lib/api'
+import { getAllRecords, type CollectionName } from '~/lib/api'
 import Loading from '~/components/Loading'
 import Error from '~/components/Error'
 import TagMatrix from '~/components/TagMatrix'
 import PageNotFound from '../PageNotFound'
+
+const queryFn = async ({ name }: { name: CollectionName }) => {
+  const ac = new AbortController()
+  onCleanup(() => ac.abort())
+
+  const data = await getAllRecords({
+    name,
+    options: {
+      fields: `tags`,
+      filter: `published != null`,
+      perPage: 1000000,
+      sort: `-published`,
+    },
+  })
+
+  return data
+}
 
 const TagIndexRoute = (props: RouteSectionProps) => {
   const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
 
   if (!section()) return <PageNotFound />
 
-  const [data] = createResource(async () => {
-    const ac = new AbortController()
-    onCleanup(() => ac.abort())
-
-    const data = await getAllRecords({
-      name: section() as CollectionName,
-      options: {
-        fields: `tags`,
-        filter: `published != null`,
-        perPage: 1000000,
-        sort: `-published`,
-      },
-    })
-    return data
-  })
+  const [data] = createResource(
+    () => ({ name: section() as CollectionName }),
+    queryFn,
+  )
 
   return (
     <>

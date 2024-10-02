@@ -12,12 +12,17 @@ import ArchiveAside from '~/components/ArchiveAside'
 import { monthNamesLong } from '../constants'
 import PageNotFound from '../PageNotFound'
 
-const MonthRoute = (props: RouteSectionProps) => {
-  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
-  const year = props.params.year
-  const month = props.params.month
-
-  if (!section() || !year || !month) return <PageNotFound />
+const queryFn = async ({
+  name,
+  year,
+  month,
+}: {
+  name: CollectionName
+  year: string
+  month: string
+}) => {
+  const ac = new AbortController()
+  onCleanup(() => ac.abort())
 
   const tzOffset = getTimezoneOffset()
   const ref = new Date(`${year}-${month}-15`)
@@ -26,33 +31,46 @@ const MonthRoute = (props: RouteSectionProps) => {
   const startTime = `${year}-${month}-01 00:00:00.000 ${tzOffset}`
   const endTime = `${year}-${month}-${lastDay} 23:59:59.999 ${tzOffset}`
 
-  const [data] = createResource(async () => {
-    const ac = new AbortController()
-    onCleanup(() => ac.abort())
-
-    const data = await getAllRecords({
-      name: section() as CollectionName,
-      options: {
-        fields:
-          'links' === section()
-            ? `url,title,abstract,published,tags`
-            : `id,title,slug,abstract,published,tags`,
-        filter: `published != null && published >= "${startTime}" && published <= "${endTime}"`,
-        perPage: 1000000,
-        sort: `-published`,
-      },
-    })
-    return data
+  const data = await getAllRecords({
+    name,
+    options: {
+      fields:
+        'links' === name
+          ? `url,title,abstract,published,tags`
+          : `id,title,slug,abstract,published,tags`,
+      filter: `published != null && published >= "${startTime}" && published <= "${endTime}"`,
+      perPage: 1000000,
+      sort: `-published`,
+    },
   })
+
+  return data
+}
+
+const MonthRoute = (props: RouteSectionProps) => {
+  const section = createMemo(() => props.location.pathname.split('/')[1] ?? '')
+  const p = props.params
+
+  if (!section() || !p.year || !p.month) return <PageNotFound />
+
+  const [data] = createResource(
+    () => ({
+      name: section() as CollectionName,
+      year: p.year,
+      month: p.month,
+    }),
+    queryFn,
+  )
 
   return (
     <>
       <Title>
-        Archived {section()} in {monthNamesLong[month]}, {year}— Adam Ziolkowski
+        Archived {section()} in {monthNamesLong[p.month]}, {p.year}— Adam
+        Ziolkowski
       </Title>
       <Meta
         name="description"
-        content={`Monthly archive of ${section()} for ${monthNamesLong[month]}, ${year}`}
+        content={`Monthly archive of ${section()} for ${monthNamesLong[p.month]}, ${p.year}`}
       />
       <div class="page archive">
         <h2>Month Archive</h2>
@@ -62,9 +80,9 @@ const MonthRoute = (props: RouteSectionProps) => {
               <A href={`/${section()}/archive`}>⁜</A>
             </li>
             <li>
-              <A href={`/${section()}/archive/${year}`}>{year}</A>
+              <A href={`/${section()}/archive/${p.year}`}>{p.year}</A>
             </li>
-            <li>{monthNamesLong[month]}</li>
+            <li>{monthNamesLong[p.month]}</li>
           </ul>
         </nav>
 
