@@ -70,7 +70,11 @@
   h3,
   h4,
   h5,
-  h6 {
+  h6,
+  input,
+  menu,
+  nav,
+  select {
     font-family: var(--font-sans-serif);
     line-height: 1.2;
   }

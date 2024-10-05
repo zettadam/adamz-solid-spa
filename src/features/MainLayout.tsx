@@ -47,6 +47,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="github">
             <a
               href="https://github.com/zettadam"
+              rel="me"
               title="Adam at Github"
               target="_blank">
               <GithubIcon size={32} />
@@ -55,6 +56,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="codepen">
             <a
               href="https://codepen.io/zettadam"
+              rel="me"
               title="Adam at Codepen"
               target="_blank">
               <CodepenIcon size={32} />
@@ -63,6 +65,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="codesandbox">
             <a
               href="https://codesandbox.io/u/zettadam"
+              rel="me"
               title="Adam at CodeSandbox"
               target="_blank">
               <CodeSandboxIcon size={32} />
@@ -71,6 +74,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="stackblitz">
             <a
               href="https://stackblitz.com/@zettadam"
+              rel="me"
               title="Adam at Stackblitz"
               target="_blank">
               <StackblitzIcon size={32} />
@@ -79,6 +83,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="pinterest">
             <a
               href="https://www.pinterest.com/zettadam/"
+              rel="me"
               title="Adam at Pinterest"
               target="_blank">
               <PinterestIcon size={32} />
@@ -87,6 +92,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="mastodon">
             <a
               href="https://mastodon.social/@adamzett"
+              rel="me"
               title="Adam at Mastodon"
               target="_blank">
               <MastodonIcon size={32} />
@@ -95,6 +101,7 @@ const MainLayout: ParentComponent = (props): JSX.Element => {
           <li class="linkedin">
             <a
               href="https://www.linkedin.com/in/adam-ziolkowski-9513581b/"
+              rel="me"
               title="Adam at LinkedIn"
               target="_blank">
               <LinkedInIcon size={32} />
