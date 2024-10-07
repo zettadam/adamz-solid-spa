@@ -1,34 +1,30 @@
 @layer app {
   header.events {
     & h2 {
-      background: var(--color-events);
+      background: var(--brown-lch);
     }
   }
   .events-layout {
     & :focus-visible {
-      background-color: var(--color-events-a125);
-      outline: 1px solid var(--color-events);
-    }
-
-    & a.create {
-      background-color: var(--color-events-a50);
-      color: white;
+      background-color: oklch(var(--brown-lch) / 0.125);
+      outline: 1px solid oklch(var(--brown-lch));
     }
 
     & div.page {
       & > h2 {
-        color: var(--color-events-a50);
+        color: oklch(var(--brown-lch) / 0.5);
       }
     }
   }
 
-  footer.events {
-    background-color: var(--color-events-a25);
-    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-events-a25);
-    color: var(--color-events);
-    & ul.elsewhere {
+  .main-layout {
+    & > footer.events {
+      background: oklch(var(--brown-lch) / 0.75);
+      box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);
+
+      & p,
       & a {
-        color: var(--color-events);
+        color: oklch(var(--white-lch));
       }
     }
   }

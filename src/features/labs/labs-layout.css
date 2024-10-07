@@ -1,34 +1,29 @@
 @layer app {
   header.labs {
     & h2 {
-      background: var(--color-labs);
+      background: oklch(var(--red-lch));
     }
   }
   .labs-layout {
     & :focus-visible {
-      background-color: var(--color-labs-a125);
-      outline: 1px solid var(--color-labs);
-    }
-
-    & a.create {
-      background-color: var(--color-labs-a50);
-      color: white;
+      background-color: oklch(var(--red-lch) / 0.125);
+      outline: 1px solid oklch(var(--red-lch));
     }
 
     & div.page {
       & > h2 {
-        color: var(--color-labs-a50);
+        color: oklch(var(--red-lch) / 0.5);
       }
     }
   }
 
-  footer.labs {
-    background-color: var(--color-labs-a25);
-    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-labs-a25);
-    color: var(--color-labs);
-    & ul.elsewhere {
+  .main-layout {
+    & > footer.labs {
+      background: oklch(var(--red-lch) / 0.75);
+      box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);
+      & p,
       & a {
-        color: var(--color-labs);
+        color: oklch(var(--white-lch));
       }
     }
   }

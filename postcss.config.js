@@ -9,7 +9,7 @@ const config = {
     postcssPresetEnv({
       stage: 3,
       features: {
-        'nesting-rules': true,
+        // 'nesting-rules': true,
         'custom-media-queries': true,
         'custom-selectors': ['auto', { preserve: true }],
       },

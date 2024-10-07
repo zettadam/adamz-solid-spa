@@ -1,19 +1,19 @@
 @layer app {
   header.posts {
     & h2 {
-      background: var(--color-posts);
+      background: oklch(var(--blue-lch));
     }
   }
 
   .posts-layout {
     & :focus-visible {
-      background-color: var(--color-posts-a125);
-      outline: 1px solid var(--color-posts);
+      background-color: oklch(var(--blue-lch) / 0.125);
+      outline: 1px solid oklch(var(--blue-lch));
     }
 
     & div.page {
       & > h2:first-of-type {
-        color: var(--color-posts-a50);
+        color: oklch(var(--blue-lch) / 0.5);
       }
 
       & a {
@@ -24,15 +24,6 @@
     }
 
     & main {
-      & h1,
-      & h2,
-      & h3,
-      & h4,
-      & h5,
-      & h6 {
-        color: var(--color-posts);
-      }
-
       & h2 {
         margin-block: 4rem 1rem;
       }
@@ -71,7 +62,7 @@
       }
 
       & li {
-        border-top: 0.25rem solid var(--color-posts-a25);
+        border-top: 0.25rem solid oklch(var(--blue-lch) / 0.25);
         display: block;
         margin: 0;
         padding: 1rem;
@@ -91,7 +82,7 @@
       }
 
       & section.abstract {
-        border-bottom: 1px solid hsl(0, 0%, 25%);
+        border-bottom: 1px solid oklch(var(--blue-lch));
         font-weight: var(--font-weight-bold);
         margin-block: 1rem 3rem;
       }
@@ -100,26 +91,21 @@
     pre {
       background: hsl(0, 0%, 90%);
       border-radius: var(--radius-3);
-      color: var(--color-black);
+      color: oklch(var(--black-lch));
       font-size: var(--text-size-1);
       margin-inline: -5dvw;
       padding-block: 1.5rem;
       padding-inline: 5dvw;
-
-      &.file {
-        background: var(--color-primary);
-        color: var(--color-white);
-      }
     }
   }
 
-  footer.posts {
-    background-color: var(--color-posts-a25);
-    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-posts-a25);
-    color: var(--color-posts);
-    & ul.elsewhere {
+  .main-layout {
+    & > footer.posts {
+      background: oklch(var(--blue-lch) / 0.75);
+      box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);
+      & p,
       & a {
-        color: var(--color-posts);
+        color: oklch(var(--white-lch));
       }
     }
   }

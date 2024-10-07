@@ -1,23 +1,18 @@
 @layer app {
   header.code {
     & h2 {
-      background: var(--color-code);
+      background: oklch(var(--orange-lch));
     }
   }
   .code-layout {
     & :focus-visible {
-      background-color: var(--color-code-a125);
-      outline: 1px solid var(--color-code);
-    }
-
-    & a.create {
-      background-color: var(--color-code-a50);
-      color: white;
+      background-color: oklch(var(--orange-lch) / 0.125);
+      outline: 1px solid oklch(var(--orange-lch));
     }
 
     & div.page {
       & > h2 {
-        color: var(--color-code-a50);
+        color: oklch(var(--orange-lch) / 0.5);
       }
 
       & article {
@@ -58,7 +53,7 @@
       }
 
       & > li {
-        border-top: 0.25rem solid var(--color-posts-a25);
+        border-top: 0.25rem solid oklch(var(--orange-lch) / 0.25);
         display: block;
         margin: 0 0 3rem 0;
         padding: 1rem;
@@ -100,13 +95,16 @@
     & nav.tags,
     & menu.tag-index {
       & a {
-        background: var(--color-code-a25);
-        color: var(--color-code);
+        background: oklch(var(--orange-lch) / 0.25);
         text-decoration: none;
+        &:link,
+        &:visited {
+          color: oklch(var(--black-lch)) !important;
+        }
       }
       & b {
-        background: var(--color-links);
-        color: var(--color-white);
+        background: oklch(var(--black-lch));
+        color: oklch(var(--orange-lch));
       }
       & a,
       & b {
@@ -117,22 +115,22 @@
     & menu.days,
     & menu.value-index {
       & .bar {
-        border: 1px solid var(--color-code-a50);
-        background: var(--color-code-a25);
+        border: 1px solid oklch(var(--orange-lch) / 0.5);
+        background: oklch(var(--orange-lch) / 0.25);
       }
       & b {
-        color: var(--color-code-a50);
+        color: oklch(var(--orange-lch) / 0.5);
       }
     }
   }
 
-  footer.code {
-    background-color: var(--color-code-a25);
-    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-code-a25);
-    color: var(--color-code);
-    & ul.elsewhere {
+  .main-layout {
+    & > footer.code {
+      background: oklch(var(--orange-lch) / 0.75);
+      box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);
+      & p,
       & a {
-        color: var(--color-code);
+        color: oklch(var(--black-lch));
       }
     }
   }

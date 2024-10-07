@@ -33,49 +33,69 @@
   --radius-5: 0.75rem;
   --radius-6: 1rem;
 
-  --color-white: hsl(0, 0%, 100%);
-  --color-black: hsl(0, 0%, 0%);
+  --white-lch: 93.3% 0.0379 93.84;
+  --black-lch: 24.54% 0.0079 4.04;
+  --blue-lch: 59.09% 0.1029 269.47;
+  --purple-lch: 37.58% 0.0621 327.86;
+  --green-lch: 61.42% 0.0792 121.2;
+  --yellow-lch: 87.07% 0.1349 99.4;
+  --orange-lch: 76.41% 0.1393 81.26;
+  --red-lch: 54.65% 0.1437 30.28;
+  --brown-lch: 50.66% 0.0367 56.03;
 
-  --color-primary: oklch(0% 0 0);
-  --color-secondary: oklch(86.53% 0.034 242.73);
+  --color-white: oklch(var(--white-lch));
+  --color-black: oklch(var(--black-lch));
+  --color-blue: oklch(var(--blue-lch));
+  --color-green: oklch(var(--green-lch));
+  --color-purple: oklch(var(--purple-lch));
+  --color-yellow: oklch(var(--yellow-lch));
+  --color-orange: oklch(var(--orange-lch));
+  --color-red: oklch(var(--red-lch));
+  --color-brown: oklch(var(--brown-lch));
+
+  --color-primary: var(--color-black);
+  --color-secondary: var(--color-white);
   --color-tertiary: transparent;
-  --color-danger: oklch(59.91% 0.22 27.28);
+  --color-info: var(--color-blue);
+  --color-success: var(--color-green);
+  --color-warning: var(--color-orange);
+  --color-danger: var(--color-red);
 
   --color-home: oklch(27.36% 0.078 263.12);
-  --color-home-a125: oklch(27.36% 0.078 263.12 / 12.5%);
-  --color-home-a25: oklch(27.36% 0.078 263.12 / 25%);
-  --color-home-a50: oklch(27.36% 0.078 263.12 / 50%);
-  --color-home-a75: oklch(27.36% 0.078 263.12 / 75%);
+  --color-home-a125: oklch(27.36% 0.078 263.12 / 0.125);
+  --color-home-a25: oklch(27.36% 0.078 263.12 / 0.25);
+  --color-home-a50: oklch(27.36% 0.078 263.12 / 0.5);
+  --color-home-a75: oklch(27.36% 0.078 263.12 / 0.75);
 
   --color-posts: oklch(51.89% 0.048 175.15);
-  --color-posts-a125: oklch(51.89% 0.048 175.15 / 12.5%);
-  --color-posts-a25: oklch(51.89% 0.048 175.15 / 25%);
-  --color-posts-a50: oklch(51.89% 0.048 175.15 / 50%);
+  --color-posts-a125: oklch(51.89% 0.048 175.15 / 0.125);
+  --color-posts-a25: oklch(51.89% 0.048 175.15 / 0.25);
+  --color-posts-a50: oklch(51.89% 0.048 175.15 / 0.5);
+  --color-posts-a75: oklch(51.89% 0.048 175.15 / 0.75);
 
   --color-notes: oklch(58.54% 0.09 78.23);
-  --color-notes-a125: oklch(58.54% 0.09 78.23 / 12.5%);
-  --color-notes-a25: oklch(58.54% 0.09 78.23 / 25%);
-  --color-notes-a50: oklch(58.54% 0.09 78.23 / 50%);
-
-  --color-links: oklch(60.45% 0.092 228.38);
-  --color-links-a125: oklch(60.45% 0.092 228.38 / 12.5%);
-  --color-links-a25: oklch(60.45% 0.092 228.38 / 25%);
-  --color-links-a50: oklch(60.45% 0.092 228.38 / 50%);
+  --color-notes-a125: oklch(58.54% 0.09 78.23 / 0.125);
+  --color-notes-a25: oklch(58.54% 0.09 78.23 / 0.25);
+  --color-notes-a50: oklch(58.54% 0.09 78.23 / 0.5);
+  --color-notes-a75: oklch(58.54% 0.09 78.23 / 0.75);
 
   --color-code: oklch(54.19% 0.134 35.43);
-  --color-code-a125: oklch(54.19% 0.134 35.43 / 12.5%);
-  --color-code-a25: oklch(54.19% 0.134 35.43 / 25%);
-  --color-code-a50: oklch(54.19% 0.134 35.43 / 50%);
+  --color-code-a125: oklch(54.19% 0.134 35.43 / 0.125);
+  --color-code-a25: oklch(54.19% 0.134 35.43 / 0.25);
+  --color-code-a50: oklch(54.19% 0.134 35.43 / 0.5);
+  --color-code-a75: oklch(54.19% 0.134 35.43 / 0.75);
 
   --color-labs: oklch(34.8% 0.108 354.76);
-  --color-labs-a125: oklch(34.8% 0.108 354.76 / 12.5%);
-  --color-labs-a25: oklch(34.8% 0.108 354.76 / 25%);
-  --color-labs-a50: oklch(34.8% 0.108 354.76 / 50%);
+  --color-labs-a125: oklch(34.8% 0.108 354.76 / 0.125);
+  --color-labs-a25: oklch(34.8% 0.108 354.76 / 0.25);
+  --color-labs-a50: oklch(34.8% 0.108 354.76 / 0.5);
+  --color-labs-a75: oklch(34.8% 0.108 354.76 / 0.75);
 
   --color-events: oklch(70.66% 0.141 122.53);
-  --color-events-a125: oklch(70.66% 0.141 122.53 / 12.5%);
-  --color-events-a25: oklch(70.66% 0.141 122.53 / 25%);
-  --color-events-a50: oklch(70.66% 0.141 122.53 / 50%);
+  --color-events-a125: oklch(70.66% 0.141 122.53 / 0.125);
+  --color-events-a25: oklch(70.66% 0.141 122.53 / 0.25);
+  --color-events-a50: oklch(70.66% 0.141 122.53 / 0.5);
+  --color-events-a75: oklch(70.66% 0.141 122.53 / 0.75);
 
   /* Custom media queries */
   @custom-media --motionOK (prefers-reduced-motion: no-preference);

@@ -17,7 +17,6 @@ const LinksLayout = (props: RouteSectionProps) => {
         <A href="/links/tags">Tags</A>
         <span class="divider" />
         <A href="/links/value">Value</A>
-        <span class="divider" />
         <SearchForm name="links" />
       </nav>
 

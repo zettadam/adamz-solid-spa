@@ -1,5 +1,5 @@
 @layer app {
-  div.main-layout {
+  .main-layout {
     & > header[role='banner'].home {
       min-height: 1rem;
     }
@@ -8,7 +8,7 @@
     border-top: 0;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: minmax(30em, 1fr) 1fr;
+    grid-template-rows: minmax(10em, 1fr) 1fr;
     margin-bottom: 10rem;
     min-height: 5rem;
 
@@ -23,28 +23,28 @@
       }
 
       & blockquote p {
-        color: rgb(0, 0, 0);
+        color: hsl(0, 0%, 100%);
         font-family: var(--font-serif);
         font-size: 1.8rem;
         margin: 0;
-        text-shadow: 0 0 5px rgb(255, 255, 255);
+        text-shadow: 0 0 5px hsl(0, 0%, 0%);
       }
       & figcaption p {
-        color: rgb(0, 0, 0);
+        color: hsl(0, 0%, 100%);
         margin: 1rem 0 0 0;
         font-family: var(--font-sans-serif);
         font-size: 1.2rem;
         text-align: right;
-        text-shadow: 0 0 5px rgb(255, 255, 255);
+        text-shadow: 0 0 5px hsl(0, 0%, 0%);
       }
     }
   }
 
   .about-me {
-    /* background: rgba(69, 123, 157, 0.8); */
-    background: hsla(0, 0%, 100%, 0.75);
-    border-left: 1rem solid hsla(0, 0%, 0%, 0.075);
+    background: oklch(var(--black-lch) / 0.65);
+    color: hsl(0, 0%, 100%);
     display: flex;
+    font-family: var(--font-sans-serif);
     grid-column: 5/13;
     grid-row: 2/3;
     margin: 0;
@@ -71,20 +71,11 @@
       grid-column: 2/13;
     }
 
-    & p {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      margin: 0 0 1rem 0;
-      &:last-of-type {
-        margin-bottom: 0;
-        font-size: 1rem;
-        font-style: italic;
-        text-align: right;
-      }
+    & a {
+      color: hsl(60, 100%, 50%);
     }
 
     & ul {
-      font-family: var(--font-family-serif);
       margin: 2rem 0;
       & li {
         align-items: flex-start;

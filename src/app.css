@@ -53,7 +53,8 @@
 
 @layer elements {
   body {
-    color: hsl(0, 0%, 30%);
+    background-color: oklch(var(--white-lch));
+    color: oklch(var(--black-lch));
     font-family: var(--font-serif);
     line-height: 1.5;
     margin: 0;
@@ -128,15 +129,38 @@
 @layer app {
   nav {
     & a {
-      font-family: var(--font-sans-serif);
+      display: inline-block;
       padding-inline: 0.5rem;
       text-decoration: none;
     }
     & > .divider {
-      background-color: hsl(0, 0%, 0%);
+      background-color: hsl(0, 0%, 100%);
       display: block;
       height: 1rem;
       width: 1px;
+    }
+
+    &:has(input[type='search']) {
+      & form {
+        margin-inline: 1rem 0;
+      }
+      & input[type='search'] {
+        transition: width 0.5s;
+        width: 10rem;
+        &:focus {
+          width: 20rem;
+        }
+      }
+    }
+
+    &:has(input[type='search']:focus) {
+      & form {
+        margin-inline: 0;
+      }
+      & a,
+      & > .divider {
+        display: none;
+      }
     }
   }
 
@@ -161,7 +185,7 @@
       }
       & h1,
       & h2 {
-        color: var(--color-white);
+        color: oklch(var(--white-lch));
         font-family: var(--font-sans-serif);
         font-size: var(--text-size-1);
         margin: 0;
@@ -169,9 +193,9 @@
         text-transform: lowercase;
       }
       & h1 {
-        background-color: var(--color-primary);
+        background: oklch(var(--black-lch));
         & a {
-          color: var(--color-white);
+          color: oklch(var(--white-lch));
         }
       }
       & h2 {
@@ -182,15 +206,11 @@
       }
 
       & nav.secondary {
-        background: linear-gradient(
-          to right,
-          transparent,
-          hsl(0, 0%, 100%) 25%
-        );
+        background: oklch(var(--white-lch));
         display: flex;
         margin-inline: auto 5dvw;
         padding-block: 0;
-        padding-inline: 6rem 0;
+        padding-inline: 0;
 
         @media (--md-n-below) {
           display: none;
@@ -198,8 +218,8 @@
 
         &:after {
           align-items: center;
-          background-color: var(--color-primary);
-          color: white;
+          background-color: oklch(var(--black-lch));
+          color: oklch(var(--white-lch));
           content: '\2318';
           display: block;
           font-size: 1.25rem;
@@ -217,7 +237,7 @@
             padding: 0;
             text-transform: lowercase;
             & a {
-              color: var(--color-primary);
+              color: oklch(var(--black-lch));
               margin: 0;
               padding: 0rem 1rem;
               &:active,
@@ -232,46 +252,41 @@
 
     & nav.page {
       align-items: center;
-      background-image: linear-gradient(
-        to right,
-        transparent,
-        var(--color-primary) 45%
-      );
+      background: oklch(var(--black-lch));
       display: flex;
-      gap: 1rem;
+      gap: 0.5rem;
       justify-content: flex-end;
       margin-inline: auto 5dvw;
       margin-block: -4rem 0;
       padding-block: 0.5rem;
-      padding-inline: 9rem 0.5rem;
+      padding-inline: 0.5rem;
       position: sticky;
       top: 0;
       width: fit-content;
 
       @media (--md-n-below) {
         gap: 0.5rem;
-        padding-block: 0.4rem;
-        padding-inline: 6rem 0.375rem;
+        padding-block: 0.375rem;
+        padding-inline: 0.375rem;
       }
 
       & a {
-        display: block;
         &:link,
         &:visited {
-          color: white;
+          color: oklch(var(--white-lch));
         }
         &:hover,
         &:active {
           font-weight: 600;
         }
         &.active {
-          color: rgba(240, 229, 125);
+          color: oklch(var(--yellow-lch));
         }
       }
 
       & input[type='search'] {
-        background-color: white;
-        border: 1px solid var(--color-primary);
+        background-color: oklch(var(--white-lch));
+        border: 1px solid oklch(var(--black-lch));
         font-size: var(--text-size-1);
         line-height: 1.5;
         padding: 0 0.5rem;
@@ -280,8 +295,8 @@
 
     & div.page {
       align-items: start;
-      background-color: hsl(0, 0%, 100%);
-      border-top: 0.25rem solid var(--color-primary);
+      background: oklch(var(--white-lch));
+      border-top: 0.25rem solid oklch(var(--black-lch));
       display: grid;
       gap: 2rem;
       grid-auto-flow: row;
@@ -291,6 +306,17 @@
       min-height: 60rem;
       padding-block: 0 1rem 10rem 1rem;
       padding-inline: 5dvw;
+
+      & a {
+        &:link,
+        &:visited {
+          color: oklch(var(--blue-lch));
+        }
+        &:hover,
+        &:active {
+          color: oklch(var(--black-lch));
+        }
+      }
 
       & > h2:first-of-type {
         font-family: var(--font-sans-serif);
@@ -360,7 +386,7 @@
             white-space: nowrap;
             & li {
               align-items: center;
-              color: hsl(0, 0%, 75%);
+              color: oklch(var(--black-lch));
               display: flex;
               flex-direction: column;
               & .bar {
@@ -439,7 +465,7 @@
               gap: 0.5rem;
             }
             & b {
-              color: hsl(0, 0%, 25%);
+              color: oklch(var(--black-lch));
             }
           }
           & a {
@@ -524,7 +550,7 @@
         & select,
         & .text-editor .tiptap,
         & .code-editor {
-          background-color: white;
+          background-color: oklch(var(--white-lch));
           border-radius: var(--radius-3);
           border-style: solid;
           border-width: 1px;
@@ -579,6 +605,7 @@
       }
       & p {
         align-items: center;
+        color: white;
         display: flex;
         font-family: var(--font-sans-serif);
         gap: 1rem;
@@ -592,6 +619,7 @@
         }
         & small {
           & a {
+            color: oklch(var(--white-lch));
             display: inline !important;
             &::before {
               content: '' !important;
@@ -605,9 +633,9 @@
         background: linear-gradient(
           to left,
           transparent 0%,
-          rgba(240, 229, 125, 0.5) 10%,
-          rgb(202, 165, 69) 50%,
-          rgba(240, 229, 125, 0.5) 90%,
+          oklch(var(--yellow-lch) / 0.5) 10%,
+          oklch(var(--orange-lch) / 0.5),
+          oklch(var(--yellow-lch) / 0.5) 90%,
           transparent 100%
         );
         bottom: 0;
@@ -628,7 +656,7 @@
           background: linear-gradient(
             to left,
             transparent 10%,
-            rgb(51, 51, 51) 50%,
+            oklch(var(--black-lch)) 50%,
             transparent 90%
           );
           content: '';
@@ -664,49 +692,49 @@
 
           &:link,
           &:visited {
-            color: var(--color-primary);
+            color: oklch(var(--black-lch));
           }
           &.active,
           &:active {
-            color: white;
+            color: oklch(var(--white-lch));
           }
 
           &.posts {
             &.active {
-              background-color: var(--color-posts);
+              background-color: oklch(var(--blue-lch));
             }
           }
           &.notes {
             &.active {
-              background-color: var(--color-notes);
+              background-color: oklch(var(--purple-lch));
             }
-          }
-          &.code {
-            &.active {
-              background-color: var(--color-code);
-            }
-          }
-          &.home {
-            background-color: var(--color-home);
-            border-top: 3px solid rgb(0, 127, 204);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            margin-top: calc(-0.5rem - 3px);
-            padding: 0.75rem 2rem;
-            color: white;
           }
           &.links {
             &.active {
-              background-color: var(--color-links);
+              background-color: oklch(var(--green-lch));
+            }
+          }
+          &.home {
+            background-color: oklch(var(--black-lch));
+            border-top: 3px solid oklch(var(--black-lch) / 0.125);
+            box-shadow: 0 0 0.75rem oklch(var(--black-lch) / 0.5);
+            margin-top: calc(-0.5rem - 3px);
+            padding: 0.75rem 2rem;
+            color: oklch(var(--white-lch));
+          }
+          &.code {
+            &.active {
+              background-color: oklch(var(--orange-lch));
             }
           }
           &.labs {
             &.active {
-              background-color: var(--color-labs);
+              background-color: oklch(var(--red-lch));
             }
           }
           &.events {
             &.active {
-              background-color: var(--color-events);
+              background-color: oklch(var(--brown-lch));
             }
           }
         }
@@ -730,9 +758,9 @@
           background-position: 50% 50%;
           background-repeat: no-repeat;
           background-size: cover;
-          border: 2px solid rgb(255, 255, 255);
+          border: 2px solid oklch(var(--white-lch));
           border-radius: 50%;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 5px oklch(var(--black-lch) / 0.5);
           content: '';
           display: block;
           flex: 0 0 4rem;

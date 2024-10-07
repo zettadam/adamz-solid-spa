@@ -5,13 +5,12 @@ const Quotation: Component = (): JSX.Element => {
     <figure>
       <blockquote>
         <p>
-          Nobody climbs mountains for scientific reasons. Science is used to
-          raise money for the expeditions, but{' '}
-          <strong>you really climb for the hell of it.</strong>
+          Somewhere between the bottom of the climb and the summit is the answer
+          to the mystery why we climb.
         </p>
       </blockquote>
       <figcaption>
-        <p>Edmund Hillary</p>
+        <p>Greg Child</p>
       </figcaption>
     </figure>
   )

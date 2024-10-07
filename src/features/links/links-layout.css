@@ -1,18 +1,18 @@
 @layer app {
   header.links {
     & h2 {
-      background: var(--color-links);
+      background: oklch(var(--green-lch));
     }
   }
   .links-layout {
     & :focus-visible {
-      background-color: var(--color-links-a125);
-      outline: 1px solid var(--color-links);
+      background-color: oklch(var(--green-lch) / 0.125);
+      outline: 1px solid oklch(var(--green-lch));
     }
 
     & div.page {
       & > h2 {
-        color: var(--color-links-a50);
+        color: oklch(var(--green-lch) / 0.5);
       }
     }
 
@@ -34,8 +34,8 @@
         }
         margin-block: 0 3rem;
         & > time {
-          border-right: 1px solid var(--color-links-a50);
-          color: var(--color-links-a50);
+          border-right: 1px solid oklch(var(--green-lch) / 0.5);
+          color: oklch(var(--green-lch) / 0.5);
           display: block;
           font-family: var(--font-sans-serif);
           font-size: var(--text-size-4);
@@ -55,7 +55,7 @@
             margin-block: 0 2rem;
           }
           & h3 {
-            margin: 0;
+            margin: 0 0 1rem 0;
             & a[href^='http']::before {
               content: '' !important;
               margin-inline: 0 !important;
@@ -80,13 +80,16 @@
     & nav.tags,
     & menu.tag-index {
       & a {
-        background: var(--color-links-a25);
-        color: var(--color-black);
+        background: oklch(var(--green-lch) / 0.25);
         text-decoration: none;
+        &:link,
+        &:visited {
+          color: oklch(var(--black-lch)) !important;
+        }
       }
       & b {
-        background: var(--color-links);
-        color: var(--color-white);
+        background: oklch(var(--green-lch));
+        color: oklch(var(--white-lch));
       }
       & a,
       & b {
@@ -97,22 +100,22 @@
     & menu.days,
     & menu.value-index {
       & .bar {
-        border: 1px solid var(--color-links-a50);
-        background: var(--color-links-a25);
+        border: 1px solid oklch(var(--green-lch) / 0.5);
+        background: oklch(var(--green-lch) / 0.25);
       }
       & b {
-        color: var(--color-links-a50);
+        color: oklch(var(--green-lch) / 0.5);
       }
     }
   }
 
-  footer.links {
-    background-color: var(--color-links-a25);
-    box-shadow: inset 0 0 0.25rem 0.25rem var(--color-links-a25);
-    color: var(--color-links);
-    & ul.elsewhere {
+  & .main-layout {
+    & > footer.links {
+      background: oklch(var(--green-lch) / 0.75);
+      box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);
+      & p,
       & a {
-        color: var(--color-links);
+        color: oklch(var(--white-lch));
       }
     }
   }

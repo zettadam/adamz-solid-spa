@@ -7,7 +7,7 @@ const AboutMe: Component = (): JSX.Element => {
     <div class="about-me">
       <span>
         <p>
-          Hi, my name is{' '}
+          Hi, I am{' '}
           <b>
             Adam{' '}
             <a href="https://www.howtopronounce.com/ziolkowski">Ziolkowski</a>
@@ -24,12 +24,10 @@ const AboutMe: Component = (): JSX.Element => {
           <a href="https://en.wikipedia.org/wiki/Alignment_(Dungeons_%26_Dragons)#Chaotic_good">
             chaotic good
           </a>
-          , on a quest to make better websites*.
+          , on a quest to make better web sites and apps.
         </p>
 
         <LatestPosts />
-
-        <p>* I make and consult on web apps from Monday to Friday.</p>
       </span>
     </div>
   )
