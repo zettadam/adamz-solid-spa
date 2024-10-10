@@ -89,9 +89,16 @@
     }
 
     pre {
-      background: hsl(0, 0%, 90%);
-      border-radius: var(--radius-3);
-      color: oklch(var(--black-lch));
+      background: oklch(var(--blue-lch));
+      border-color: color-mix(
+        in oklch,
+        oklch(var(--blue-lch)),
+        oklch(var(--black-lch))
+      );
+      border-style: solid;
+      border-width: 0.125rem;
+      border-radius: var(--radius-4);
+      color: oklch(var(--white-lch));
       font-size: var(--text-size-1);
       margin-inline: -5dvw;
       padding-block: 1.5rem;
