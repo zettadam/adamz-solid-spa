@@ -25,7 +25,8 @@
       & blockquote p {
         color: hsl(0, 0%, 100%);
         font-family: var(--font-serif);
-        font-size: 1.8rem;
+        font-size: var(--text-size-6);
+        font-weight: var(--font-weight-semibold);
         margin: 0;
         text-shadow: 0 0 5px hsl(0, 0%, 0%);
       }
@@ -41,7 +42,8 @@
   }
 
   .about-me {
-    background: oklch(var(--black-lch) / 0.65);
+    background: oklch(var(--black-lch) / 0.75);
+    border-bottom: 1rem solid oklch(var(--black-lch));
     color: hsl(0, 0%, 100%);
     display: flex;
     font-family: var(--font-sans-serif);

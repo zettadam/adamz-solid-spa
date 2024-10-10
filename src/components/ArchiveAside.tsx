@@ -90,69 +90,54 @@ function ArchiveList(props: { data?: any; name: string }) {
   const items = groupFn(data)
 
   return (
-    <menu>
+    <>
       <For each={Object.entries(items)}>
         {([y, months]) => (
-          <li>
-            {!p.year && <A href={`/${name}/archive/${y}`}>{y}</A>}
-            <menu>
-              <For
-                each={Object.entries(
-                  months as { [k: string]: { total: number; days: {} } },
-                )}>
-                {([m, info]) => (
-                  <li>
-                    {(!p.year && !p.month) ||
-                    (p.year === y && p.month !== m) ? (
-                      <span>
-                        <A href={`/${name}/archive/${y}/${m}`}>
-                          {monthNamesLong[m]}
-                        </A>
-                        <span>({info.total})</span>
-                      </span>
-                    ) : (
-                      <span>
-                        <b>{monthNamesLong[m]}</b>
-                        <span>({info.total})</span>
-                      </span>
-                    )}
-                    <menu>
-                      <For
-                        each={Object.entries(
-                          info.days as { [k: string]: number },
-                        )
-                          .sort()
-                          .reverse()}>
-                        {([d, c]) => (
-                          <li>
-                            {!p.day ||
-                            (p.year === y && p.month === m && p.day !== d) ? (
-                              <span>
-                                <A href={`/${name}/archive/${y}/${m}/${d}`}>
-                                  {monthNamesLong[m]} {d}
-                                </A>
-                                <span>({c})</span>
-                              </span>
-                            ) : (
-                              <span>
-                                <b>
-                                  {monthNamesLong[m]} {d}
-                                </b>
-                                <span>({c})</span>
-                              </span>
-                            )}
-                          </li>
-                        )}
-                      </For>
-                    </menu>
-                  </li>
-                )}
-              </For>
-            </menu>
-          </li>
+          <>
+            <h5>{!p.year && y}</h5>
+            <For
+              each={Object.entries(
+                months as { [k: string]: { total: number; days: {} } },
+              )}>
+              {([m, info], i) => (
+                <details open={i() < 1}>
+                  <summary>
+                    {monthNamesLong[m]} ({info.total})
+                  </summary>
+                  <menu>
+                    <For
+                      each={Object.entries(info.days as { [k: string]: number })
+                        .sort()
+                        .reverse()}>
+                      {([d, c]) => (
+                        <li>
+                          {!p.day ||
+                          (p.year === y && p.month === m && p.day !== d) ? (
+                            <span>
+                              <A href={`/${name}/archive/${y}/${m}/${d}`}>
+                                {monthNamesLong[m]} {d}
+                              </A>
+                              <span>({c})</span>
+                            </span>
+                          ) : (
+                            <span>
+                              <b>
+                                {monthNamesLong[m]} {d}
+                              </b>
+                              <span>({c})</span>
+                            </span>
+                          )}
+                        </li>
+                      )}
+                    </For>
+                  </menu>
+                </details>
+              )}
+            </For>
+          </>
         )}
       </For>
-    </menu>
+    </>
   )
 }
 
