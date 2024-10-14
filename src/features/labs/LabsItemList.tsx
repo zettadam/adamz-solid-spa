@@ -11,6 +11,8 @@ const LabsItemList = (props: { items: RecordModel[] }) => {
 
   const items = groupFn(props.items)
 
+  console.log('items', items)
+
   return (
     <For each={Object.keys(items)}>
       {(d) => {
@@ -30,6 +32,18 @@ const LabsItemList = (props: { items: RecordModel[] }) => {
                           {x.title}
                         </a>
                       </h3>
+                      {x.expand?.labs_groups_id && (
+                        <h4
+                          class="group"
+                          style={{
+                            'background-color':
+                              x.expand.labs_groups_id.color ??
+                              `oklch(var(--black-lch))`,
+                            color: `oklch(var(--white-lch))`,
+                          }}>
+                          {x.expand.labs_groups_id.name}
+                        </h4>
+                      )}
                       <div innerHTML={abstract} />
                       {x.tags && (
                         <nav class="tags">

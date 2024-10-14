@@ -13,6 +13,8 @@ const LabsLayout: ParentComponent = (props): JSX.Element => {
         <span class="divider" />
         <A href="/labs/archive">Archive</A>
         <span class="divider" />
+        <A href="/labs/tags">Tags</A>
+        <span class="divider" />
         <input
           type="search"
           name="keyword"

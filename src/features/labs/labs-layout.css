@@ -55,11 +55,23 @@
               margin-block: 0 2rem;
             }
             & h3 {
-              margin: 0 0 1rem 0;
+              margin: 0;
               & a[href^='http']::before {
                 content: '' !important;
                 margin-inline: 0 !important;
               }
+            }
+            & h4.group {
+              border-radius: var(--radius-2);
+              display: inline-block;
+              font-family: var(--font-sans-serif);
+              font-size: var(--text-size-02);
+              font-weight: var(--font-weight-semibold);
+              line-height: 1.6;
+              margin: 0 0 1rem 0;
+              padding-inline: 0.5rem;
+              text-transform: uppercase;
+              width: fit-content;
             }
             & li > div {
               & p {

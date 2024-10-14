@@ -20,12 +20,23 @@ const pageSizeMap: Record<string, number> = {
   posts: 10,
 }
 
+const expand: Record<CollectionName, string> = {
+  code: '',
+  events: '',
+  labs: 'labs_groups_id',
+  links: '',
+  notes: '',
+  posts: '',
+}
+
 const queryFn = async ({
   name,
   params,
+  expand = '',
 }: {
   name: CollectionName
   params: Params
+  expand?: string
 }) => {
   const ac = new AbortController()
   onCleanup(() => ac.abort())
@@ -60,12 +71,15 @@ const queryFn = async ({
     }
   }
 
+  const options: { expand?: string; filter: string; sort: string } = {
+    filter,
+    sort: `-${sortColumn}`,
+  }
+  if (expand !== '') options.expand = expand
+
   const data = await getManyRecords({
     name,
-    options: {
-      filter,
-      sort: `-${sortColumn}`,
-    },
+    options,
     page,
     size: pageSizeMap[name],
   })
@@ -80,6 +94,7 @@ const PaginatedListBasic = (props: { name: string }) => {
     () => ({
       name: props.name as CollectionName,
       params,
+      expand: expand[props.name as CollectionName],
     }),
     queryFn,
   )

@@ -55,6 +55,7 @@ export async function getManyRecords({
 }: {
   name: string
   options?: {
+    expand?: string
     fields?: string
     filter?: string
     resourceKey?: string
