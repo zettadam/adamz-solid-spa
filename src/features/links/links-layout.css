@@ -4,6 +4,7 @@
       background: oklch(var(--green-lch));
     }
   }
+
   .links-layout {
     & :focus-visible {
       background-color: oklch(var(--green-lch) / 0.125);
@@ -109,7 +110,7 @@
     }
   }
 
-  & .main-layout {
+  .main-layout {
     & > footer.links {
       background: oklch(var(--green-lch) / 0.75);
       box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);

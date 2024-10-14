@@ -4,6 +4,7 @@
       background: oklch(var(--red-lch));
     }
   }
+
   .labs-layout {
     & :focus-visible {
       background-color: oklch(var(--red-lch) / 0.125);

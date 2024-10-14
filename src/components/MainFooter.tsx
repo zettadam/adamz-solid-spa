@@ -107,31 +107,43 @@ function MainFooter(props: { section?: string }) {
         </p>
       </Show>
       <nav id="main-navigation">
-        <span>
-          <A href="/posts" class="posts">
-            Posts
-          </A>
-          <A href="/notes" class="notes">
-            Notes
-          </A>
-          <A href="/links" class="links">
-            Links
-          </A>
-        </span>
+        <menu>
+          <li>
+            <A href="/posts" class="posts">
+              Posts
+            </A>
+          </li>
+          <li>
+            <A href="/notes" class="notes">
+              Notes
+            </A>
+          </li>
+          <li>
+            <A href="/links" class="links">
+              Links
+            </A>
+          </li>
+        </menu>
         <A href="/" class="home">
           Home
         </A>
-        <span>
-          <A href="/code" class="code">
-            Code
-          </A>
-          <A href="/labs" class="labs">
-            Labs
-          </A>
-          <A href="/events" class="events">
-            Events
-          </A>
-        </span>
+        <menu>
+          <li>
+            <A href="/code" class="code">
+              Code
+            </A>
+          </li>
+          <li>
+            <A href="/labs" class="labs">
+              Labs
+            </A>
+          </li>
+          <li>
+            <A href="/events" class="events">
+              Events
+            </A>
+          </li>
+        </menu>
       </nav>
     </footer>
   )
