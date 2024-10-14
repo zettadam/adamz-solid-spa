@@ -14,6 +14,98 @@
       & > h2 {
         color: oklch(var(--red-lch) / 0.5);
       }
+
+      & ul.labs.paginated {
+        margin: 0;
+        padding: 0;
+        & > li {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          margin: 0 0 2rem 0;
+          padding: 0;
+          &:has(time) {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            & > ul {
+              grid-column: 4/13;
+            }
+          }
+          margin-block: 0 3rem;
+          & > time {
+            border-right: 1px solid oklch(var(--red-lch) / 0.5);
+            color: oklch(var(--red-lch) / 0.5);
+            display: block;
+            font-family: var(--font-sans-serif);
+            font-size: var(--text-size-4);
+            grid-column: 1/4;
+            line-height: 1.2;
+            padding: 0 2rem 0 0;
+            text-align: right;
+            @media (--md-n-below) {
+              font-size: var(--text-size-2);
+            }
+          }
+          & > ul {
+            margin: 0;
+            padding: 0;
+            & > li {
+              list-style: none;
+              margin-block: 0 2rem;
+            }
+            & h3 {
+              margin: 0 0 1rem 0;
+              & a[href^='http']::before {
+                content: '' !important;
+                margin-inline: 0 !important;
+              }
+            }
+            & li > div {
+              & p {
+                margin-block: 0 1rem;
+              }
+              & li {
+                & > a {
+                  font-family: var(--font-serif);
+                  font-size: var(--text-size-1);
+                  font-weight: var(--font-weight-normal);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      & nav.tags,
+      & menu.tag-index {
+        & a {
+          background: oklch(var(--red-lch) / 0.25);
+          text-decoration: none;
+          &:link,
+          &:visited {
+            color: oklch(var(--black-lch)) !important;
+          }
+        }
+        & b {
+          background: oklch(var(--red-lch));
+          color: oklch(var(--white-lch));
+        }
+        & a,
+        & b {
+          border-radius: var(--radius-2);
+        }
+      }
+
+      & menu.days,
+      & menu.value-index {
+        & .bar {
+          border: 1px solid oklch(var(--red-lch) / 0.5);
+          background: oklch(var(--red-lch) / 0.25);
+        }
+        & b {
+          color: oklch(var(--red-lch) / 0.5);
+        }
+      }
     }
   }
 

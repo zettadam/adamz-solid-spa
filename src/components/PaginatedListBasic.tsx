@@ -4,6 +4,7 @@ import sanitizeHtml from 'sanitize-html'
 
 import { formatDate } from '~/lib/helpers/datetime'
 import LinkItemList from '~/features/links/LinkItemList'
+import LabsItemList from '~/features/labs/LabsItemList'
 
 import { CollectionName, getManyRecords } from '~/lib/api'
 import Error from './Error'
@@ -116,7 +117,10 @@ function ListBasic(props: { data?: any; name: string }) {
           <Match when={'code' === name}>
             <CodeItemList items={items} />
           </Match>
-          <Match when={'links' !== name && 'code' !== name}>
+          <Match when={'labs' === name}>
+            <LabsItemList items={items} />
+          </Match>
+          <Match when={['links', 'code', 'labs'].indexOf(name) < 0}>
             <For each={items}>
               {(d) => {
                 const abstract = sanitizeHtml(d.abstract)
