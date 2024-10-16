@@ -53,12 +53,21 @@
 
 @layer elements {
   body {
+    background-attachment: fixed;
     background-color: oklch(var(--white-lch));
+    background-image: url('/img/mountain-steps.webp');
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: no-repeat;
     color: oklch(var(--black-lch));
     font-family: var(--font-serif);
     font-size: 1rem;
     margin: 0;
     padding: 0;
+
+    @media (--lg-n-below) {
+      background-position: 50% 50%;
+    }
   }
 
   button {
