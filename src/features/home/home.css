@@ -84,6 +84,7 @@
         display: flex;
         font-size: var(--text-size-2);
         gap: 2rem;
+        margin-block: 0 0.75rem;
       }
       & time {
         display: inline-block;
