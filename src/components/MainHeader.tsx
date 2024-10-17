@@ -17,14 +17,11 @@ function MainHeader(props: { section?: string }) {
       </hgroup>
       <nav class="secondary">
         <menu>
-          <li class="news">
-            <A href="/news">News</A>
-          </li>
           <li class="me">
             <A href="/me">@ me</A>
           </li>
           <li class="meta">
-            <A href="/meta">Meta</A>
+            <A href="/site">@ site</A>
           </li>
         </menu>
       </nav>

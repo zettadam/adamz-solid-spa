@@ -1,4 +1,5 @@
 // --- vendor imports ---------------------------------------------------------
+import { onMount } from 'solid-js'
 import { MetaProvider } from '@solidjs/meta'
 import { Route, Router } from '@solidjs/router'
 
@@ -167,6 +168,25 @@ const App = () => {
           <Route path="/:page" component={IndexRoute} />
           <Route path="/" component={IndexRoute} />
         </Route>
+
+        <Route
+          path="/site"
+          component={() => {
+            onMount(() => {
+              window.location.href = 'http://adamz.one/site'
+            })
+            return null
+          }}
+        />
+        <Route
+          path="/me"
+          component={() => {
+            onMount(() => {
+              window.location.href = 'http://adamz.one/me'
+            })
+            return null
+          }}
+        />
 
         <Route path="/" component={HomeRoute} />
         <Route path="*404" component={PageNotFound} />

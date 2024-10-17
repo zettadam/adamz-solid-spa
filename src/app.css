@@ -66,7 +66,7 @@
     padding: 0;
 
     @media (--lg-n-below) {
-      background-position: 50% 50%;
+      background-position: 25% 75%;
     }
   }
 
@@ -657,9 +657,9 @@
         background: linear-gradient(
           to left,
           transparent 0%,
-          oklch(var(--yellow-lch) / 0.5) 20%,
+          oklch(var(--yellow-lch) / 0.5) 10%,
           oklch(var(--yellow-lch)),
-          oklch(var(--yellow-lch) / 0.5) 80%,
+          oklch(var(--yellow-lch) / 0.5) 90%,
           transparent 100%
         );
         border-bottom: 1.5rem solid oklch(var(--black-lch));
@@ -674,9 +674,9 @@
         &:before {
           background: linear-gradient(
             to left,
-            transparent 20%,
+            transparent 0%,
             oklch(var(--black-lch)) 50%,
-            transparent 80%
+            transparent 100%
           );
           content: '';
           margin: 0;

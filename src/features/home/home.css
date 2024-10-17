@@ -20,12 +20,14 @@
 
       @media (--lg-n-below) {
         grid-column: 1/12;
+        padding: 0;
       }
 
       & blockquote p {
         color: hsl(0, 0%, 100%);
         font-family: var(--font-serif);
         font-size: var(--text-size-6);
+        font-style: normal;
         font-weight: var(--font-weight-semibold);
         margin: 0;
         text-shadow: 0 0 5px hsl(0, 0%, 0%);
@@ -66,11 +68,13 @@
       display: block;
       margin-inline: 0 2rem;
       height: 8rem;
+      width: 8rem;
       flex: 0 0 8rem;
     }
 
     @media (--lg-n-below) {
       grid-column: 2/13;
+      flex-direction: column;
     }
 
     & a {
@@ -79,19 +83,29 @@
 
     & ul {
       margin: 2rem 0;
+      padding: 0;
       & li {
         align-items: flex-start;
         display: flex;
         font-size: var(--text-size-2);
         gap: 2rem;
         margin-block: 0 0.75rem;
+        margin-inline: 0;
+        padding: 0;
+        @media (--md-n-below) {
+          flex-direction: column;
+          gap: 0.25rem;
+          margin-block: 0 1rem;
+        }
       }
       & time {
         display: inline-block;
-        flex-basis: 8rem;
-        flex-shrink: 0;
+        flex: 0 0 8rem;
         margin: 0;
         padding: 0;
+        @media (--md-n-below) {
+          flex: auto;
+        }
       }
     }
   }
