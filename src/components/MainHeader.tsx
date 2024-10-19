@@ -18,10 +18,10 @@ function MainHeader(props: { section?: string }) {
       <nav class="secondary">
         <menu>
           <li class="me">
-            <a href="/me">@ me</a>
+            <a href="https://adamz.one/me">@ me</a>
           </li>
           <li class="meta">
-            <a href="/site">@ site</a>
+            <a href="https://adamz.one/site">@ site</a>
           </li>
         </menu>
       </nav>
