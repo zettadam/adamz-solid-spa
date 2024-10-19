@@ -258,6 +258,9 @@
               color: oklch(var(--black-lch));
               margin: 0;
               padding: 0rem 1rem;
+              &:before {
+                content: '';
+              }
               &:active,
               &:hover {
                 font-weight: 700;
