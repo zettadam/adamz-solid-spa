@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "deploy": "rm -rf ./dist && npm run build && npm run sync",
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "predeploy": "rm -rf dist/ && npm run build",
     "preview": "vite preview",
-    "sync": "rsync -avz --delete dist/ $REMOTE_DEST"
+    "deploy": "rsync -avz --delete dist/ $REMOTE_DEST"
   },
   "dependencies": {
     "@solidjs/meta": "0.29.4",

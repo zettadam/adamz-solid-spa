@@ -24,16 +24,18 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        margin: 0 0 2rem 0;
+        margin-block: 0 3rem;
+        margin-inline: 0;
         padding: 0;
-        &:has(time) {
-          display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          & > ul {
-            grid-column: 4/13;
+        @media (--md-n-above) {
+          &:has(time) {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            & > ul {
+              grid-column: 4/13;
+            }
           }
         }
-        margin-block: 0 3rem;
         & > time {
           border-right: 1px solid oklch(var(--green-lch) / 0.5);
           color: oklch(var(--green-lch) / 0.5);
@@ -45,7 +47,9 @@
           padding: 0 2rem 0 0;
           text-align: right;
           @media (--md-n-below) {
+            border-right: 0;
             font-size: var(--text-size-2);
+            text-align: left;
           }
         }
         & > ul {

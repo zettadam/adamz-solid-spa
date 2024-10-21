@@ -326,9 +326,9 @@
         padding: 0;
         &.concepts {
           & li {
-            background-color: oklch(var(--green-lch) / 0.15);
+            background-color: oklch(var(--purple-lch) / 0.15);
             &.focus {
-              background-color: oklch(var(--green-lch));
+              background-color: oklch(var(--purple-lch));
             }
           }
         }
@@ -351,7 +351,7 @@
         & li {
           border-radius: var(--radius-2);
           font-size: var(--text-size-01);
-          line-height: 1.4;
+          line-height: 1.6;
           list-style: none;
           margin: 0;
           padding: 0 0.25rem;
