@@ -706,6 +706,10 @@
           margin-top: calc(-0.5rem - 3px);
           padding: 0.75rem 2rem;
           color: oklch(var(--white-lch));
+          @media (--md-n-below) {
+            margin-top: -0.25rem;
+            padding: 0.5rem 1rem;
+          }
         }
 
         & menu {
@@ -714,6 +718,9 @@
           margin: 0;
           padding: 0;
           width: 40dvw;
+          @media (--md-n-below) {
+            width: auto;
+          }
 
           &:first-of-type {
             justify-content: flex-end;
@@ -743,7 +750,7 @@
 
             @media (--sm-n-below) {
               font-size: var(--text-size-02);
-              padding: 0.5rem;
+              padding: 0.625rem 0.5rem;
             }
 
             &:link,
