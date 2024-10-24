@@ -139,8 +139,8 @@ function MainFooter(props: { section?: string }) {
             </A>
           </li>
           <li>
-            <A href="/events" class="events">
-              Events
+            <A href="/feeds" class="feeds">
+              Feeds
             </A>
           </li>
         </menu>

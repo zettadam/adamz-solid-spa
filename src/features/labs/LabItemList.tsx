@@ -1,17 +1,14 @@
 import { For } from 'solid-js'
 import { A, useParams } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
-import { RecordModel } from 'pocketbase'
 
-import { formatDate } from '~/lib/helpers/datetime'
+import { groupByPublishedDatetime, type Item } from '~/lib/helpers/array'
 
-const LabsItemList = (props: { items: RecordModel[] }) => {
+export default function LabItemList(props: { items: Item[] }) {
   const params = useParams()
   if (!props.items || props.items.length < 1) return null
 
-  const items = groupFn(props.items)
-
-  console.log('items', items)
+  const items = groupByPublishedDatetime(props.items)
 
   return (
     <For each={Object.keys(items)}>
@@ -68,20 +65,4 @@ const LabsItemList = (props: { items: RecordModel[] }) => {
       }}
     </For>
   )
-}
-
-export default LabsItemList
-
-function groupFn(items: RecordModel[]) {
-  const output = items.reduce(
-    (groups: { [k: string]: RecordModel[] }, item) => {
-      const date: string | null = formatDate(item.published, 'medium')
-      if (date && !(date in groups)) groups[date] = []
-      if (date) groups[date].push(item)
-      return groups
-    },
-    {},
-  )
-
-  return output
 }

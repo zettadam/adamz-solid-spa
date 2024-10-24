@@ -1,4 +1,4 @@
-import { createMemo } from 'solid-js'
+import { createMemo, Show } from 'solid-js'
 import { type RouteSectionProps } from '@solidjs/router'
 
 import Detail from '~/components/Detail'
@@ -17,7 +17,9 @@ const DetailRoute = (props: RouteSectionProps) => {
       <h2>In detail</h2>
       <Detail identifier={props.params.id} name={section() as CollectionName} />
       <aside>
-        <ArchiveAside name={section() as CollectionName} />
+        <Show when={section() !== 'feeds'}>
+          <ArchiveAside name={section() as CollectionName} />
+        </Show>
       </aside>
     </div>
   )

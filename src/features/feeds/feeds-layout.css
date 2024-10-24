@@ -1,0 +1,116 @@
+@layer app {
+  header.feeds {
+    & h2 {
+      background: oklch(var(--brown-lch));
+    }
+  }
+
+  .feeds-layout {
+    & :focus-visible {
+      background-color: oklch(var(--brown-lch) / 0.125);
+      outline: 1px solid oklch(var(--brown-lch));
+    }
+
+    & div.page {
+      & > h2 {
+        color: oklch(var(--brown-lch) / 0.5);
+      }
+
+      & main {
+        margin-inline: 1rem 0;
+        & > header {
+          & h3 {
+            margin-block: 0 1rem;
+          }
+        }
+      }
+
+      & > aside {
+        margin-block: 0 3rem;
+        & details {
+          margin-block: 0;
+          & menu {
+            margin-block: 0.5rem 0;
+            padding-block: 0;
+          }
+        }
+      }
+    }
+
+    & .feeditem-list {
+      & ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+        & li {
+          font-family: var(--font-sans-serif);
+          list-style: none;
+          margin: 0 0 1rem 0;
+          padding: 0.25rem 0;
+          & li {
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            & a {
+              &.feed {
+                flex: 0 0 25%;
+              }
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+          }
+        }
+      }
+      & a[href^='http'] {
+        &:before {
+          content: '';
+          display: none;
+        }
+      }
+    }
+
+    & nav.tags,
+    & menu.tag-index {
+      & a {
+        background: oklch(var(--brown-lch) / 0.25);
+        text-decoration: none;
+        &:link,
+        &:visited {
+          color: oklch(var(--black-lch)) !important;
+        }
+      }
+      & b {
+        background: oklch(var(--brown-lch));
+        color: oklch(var(--white-lch));
+      }
+      & a,
+      & b {
+        border-radius: var(--radius-2);
+      }
+    }
+
+    & menu.days,
+    & menu.value-index {
+      & .bar {
+        border: 1px solid oklch(var(--brown-lch) / 0.5);
+        background: oklch(var(--brown-lch) / 0.25);
+      }
+      & b {
+        color: oklch(var(--brown-lch) / 0.5);
+      }
+    }
+  }
+
+  .main-layout {
+    & > footer.feeds {
+      background: oklch(var(--brown-lch) / 0.75);
+      box-shadow: inset 0 0 0.5rem 0.5rem oklch(var(--black-lch) / 0.25);
+
+      & p,
+      & a {
+        color: oklch(var(--white-lch));
+      }
+    }
+  }
+}

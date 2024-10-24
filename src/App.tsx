@@ -1,12 +1,12 @@
 // --- vendor imports ---------------------------------------------------------
-import { onMount } from 'solid-js'
+import { lazy, onMount } from 'solid-js'
 import { MetaProvider } from '@solidjs/meta'
 import { Route, Router } from '@solidjs/router'
 
 // --- local imports ----------------------------------------------------------
 import MainLayout from '~/features/MainLayout'
 import CodeLayout from './features/code/CodeLayout'
-import EventsLayout from './features/events/EventsLayout'
+import FeedsLayout from './features/feeds/FeedsLayout'
 import LabsLayout from './features/labs/LabsLayout'
 import LinksLayout from './features/links/LinksLayout'
 import NotesLayout from './features/notes/NotesLayout'
@@ -31,6 +31,9 @@ import ValueRangeIndexRoute from './features/generic/value/ValueRangeIndexRoute'
 import ValueRangeRoute from './features/generic/value/ValueRangeRoute'
 
 import PageNotFound from './features/generic/PageNotFound'
+
+// --- lazy imports -----------------------------------------------------------
+const NewsfeedRoute = lazy(() => import('./features/feeds/NewsfeedRoute'))
 
 // --- end of imports ---------------------------------------------------------
 
@@ -152,21 +155,9 @@ const App = () => {
           <Route path="/" component={IndexRoute} />
         </Route>
 
-        <Route path="/events" component={EventsLayout}>
-          <Route path="/archive">
-            <Route path="/:year/:month/:day" component={DayRoute} />
-            <Route path="/:year/:month" component={MonthRoute} />
-            <Route path="/:year" component={YearRoute} />
-            <Route path="/" component={ArchiveIndexRoute} />
-          </Route>
-          <Route path="/search">
-            <Route path="/:query/:page" component={SearchRoute} />
-            <Route path="/:query" component={SearchRoute} />
-            <Route path="/" component={SearchRoute} />
-          </Route>
-          <Route path="/detail/:id" component={DetailRoute} />
-          <Route path="/:page" component={IndexRoute} />
-          <Route path="/" component={IndexRoute} />
+        <Route path="/feeds" component={FeedsLayout}>
+          <Route path="/feed/:feedId" component={NewsfeedRoute} />
+          <Route path="/" component={NewsfeedRoute} />
         </Route>
 
         <Route

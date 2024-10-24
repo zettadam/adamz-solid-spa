@@ -1,24 +1,38 @@
+import { RecordModel } from 'pocketbase'
 import { client } from './pocketbase'
 
 export type CollectionName =
   | 'code'
-  | 'events'
+  | 'feeds'
   | 'labs'
   | 'links'
   | 'notes'
   | 'posts'
 
-export type Post = {
-  id: string
-  title: string
-  slug: string
+export interface Post extends RecordModel {
   abstract?: string
-  significance: number
   body?: string
   published?: string
+  significance: number
+  slug: string
   tags?: string
-  created: string
-  updated: string
+  title: string
+}
+
+export interface Feed extends RecordModel {
+  abstract?: string
+  tags?: string
+  title: string
+  url: string
+  website: string
+}
+
+export interface FeedItem extends RecordModel {
+  description?: string
+  link: string
+  published?: string
+  seen: boolean
+  title: string
 }
 
 export async function getAllRecords({

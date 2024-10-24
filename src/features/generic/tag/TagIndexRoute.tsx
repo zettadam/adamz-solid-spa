@@ -15,10 +15,10 @@ const queryFn = async ({ name }: { name: CollectionName }) => {
   const data = await getAllRecords({
     name,
     options: {
-      fields: `tags`,
-      filter: `published != null`,
+      fields: 'tags',
+      filter: name === 'feeds' ? 'created != null' : 'published != null',
       perPage: 1000000,
-      sort: `-published`,
+      sort: name === 'feeds' ? '-created' : '-published',
     },
   })
 

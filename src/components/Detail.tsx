@@ -6,7 +6,7 @@ import PostDetail from '~/features/posts/PostDetail'
 import NoteDetail from '~/features/notes/NoteDetail'
 import CodeDetail from '~/features/code/CodeDetail'
 import LabDetail from '~/features/labs/LabDetail'
-import EventDetail from '~/features/events/EventDetail'
+import FeedDetail from '~/features/feeds/FeedDetail'
 import type { CollectionName } from '~/lib/api'
 
 import Error from './Error'
@@ -53,8 +53,8 @@ const Detail = (props: { identifier: string; name: CollectionName }) => {
             <Match when={'code' === props.name}>
               <CodeDetail data={data()} />
             </Match>
-            <Match when={'events' === props.name}>
-              <EventDetail data={data()} />
+            <Match when={'feeds' === props.name}>
+              <FeedDetail data={data()} />
             </Match>
           </Switch>
         </Match>

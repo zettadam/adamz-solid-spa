@@ -4,7 +4,7 @@ import sanitizeHtml from 'sanitize-html'
 
 import { formatDate } from '~/lib/helpers/datetime'
 import LinkItemList from '~/features/links/LinkItemList'
-import LabsItemList from '~/features/labs/LabsItemList'
+import LabItemList from '~/features/labs/LabItemList'
 
 import { CollectionName, getManyRecords } from '~/lib/api'
 import Error from './Error'
@@ -13,7 +13,7 @@ import CodeItemList from '~/features/code/CodeItemList'
 
 const pageSizeMap: Record<string, number> = {
   code: 10,
-  events: 100,
+  feeds: 100,
   labs: 10,
   links: 100,
   notes: 10,
@@ -22,7 +22,7 @@ const pageSizeMap: Record<string, number> = {
 
 const expand: Record<CollectionName, string> = {
   code: '',
-  events: '',
+  feeds: '',
   labs: 'labs_groups_id',
   links: '',
   notes: '',
@@ -43,7 +43,7 @@ const queryFn = async ({
 
   const page = params.page ? parseInt(params.page, 10) : 1
 
-  const sortColumn = name === 'events' ? 'created' : 'published'
+  const sortColumn = name === 'feeds' ? 'created' : 'published'
   let filter = `${sortColumn} != null`
 
   if (params.query) {
@@ -87,7 +87,7 @@ const queryFn = async ({
   return data
 }
 
-const PaginatedListBasic = (props: { name: string }) => {
+export default function PaginatedList(props: { name: string }) {
   const params = useParams()
 
   const [data] = createResource(
@@ -100,21 +100,21 @@ const PaginatedListBasic = (props: { name: string }) => {
   )
 
   return (
-    <>
-      {data.loading ? (
+    <Switch>
+      <Match when={data.loading}>
         <Loading name={props.name} />
-      ) : data.error ? (
+      </Match>
+      <Match when={data.error}>
         <Error message={data.error} name={props.name} />
-      ) : (
-        <ListBasic data={data} name={props.name} />
-      )}
-    </>
+      </Match>
+      <Match when={data.state === 'ready'}>
+        <List data={data} name={props.name} />
+      </Match>
+    </Switch>
   )
 }
 
-export default PaginatedListBasic
-
-function ListBasic(props: { data?: any; name: string }) {
+function List(props: { data?: any; name: string }) {
   if (!props.data || !props.data()) return null
 
   const name = props.name
@@ -133,19 +133,25 @@ function ListBasic(props: { data?: any; name: string }) {
             <CodeItemList items={items} />
           </Match>
           <Match when={'labs' === name}>
-            <LabsItemList items={items} />
+            <LabItemList items={items} />
           </Match>
           <Match when={['links', 'code', 'labs'].indexOf(name) < 0}>
             <For each={items}>
               {(d) => {
-                const abstract = sanitizeHtml(d.abstract)
+                const abstract = d.abstract ? sanitizeHtml(d.abstract) : null
                 return (
                   <li>
-                    <time>{formatDate(d.published, 'long')}</time>
+                    <time>{formatDate(d.published || d.created, 'long')}</time>
                     <h3>
                       <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
                     </h3>
-                    <div innerHTML={abstract} />
+                    {abstract ? (
+                      <div innerHTML={abstract} />
+                    ) : (
+                      <div>
+                        <p>No description</p>
+                      </div>
+                    )}
                   </li>
                 )
               }}

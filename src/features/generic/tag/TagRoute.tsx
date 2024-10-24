@@ -2,7 +2,7 @@ import { createMemo } from 'solid-js'
 import { Title } from '@solidjs/meta'
 import { type RouteSectionProps } from '@solidjs/router'
 
-import PaginatedListBasic from '~/components/PaginatedListBasic'
+import PaginatedList from '~/components/PaginatedList'
 import ArchiveAside from '~/components/ArchiveAside'
 import { type CollectionName } from '~/lib/api'
 
@@ -21,7 +21,7 @@ const TagRoute = (props: RouteSectionProps) => {
       <div class="page index">
         <h2>Tag</h2>
         <main id="content">
-          {section() && <PaginatedListBasic name={section()} />}
+          <PaginatedList name={section()} />
         </main>
         <aside>
           <ArchiveAside name={section() as CollectionName} />

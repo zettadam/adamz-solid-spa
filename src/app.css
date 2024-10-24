@@ -787,7 +787,7 @@
                 background-color: oklch(var(--red-lch));
               }
             }
-            &.events {
+            &.feeds {
               &.active {
                 background-color: oklch(var(--brown-lch));
               }

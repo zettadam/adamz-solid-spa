@@ -1,8 +1,8 @@
-import { createMemo } from 'solid-js'
+import { createMemo, Show } from 'solid-js'
 import { Meta, Title } from '@solidjs/meta'
 import { type RouteSectionProps } from '@solidjs/router'
 
-import PaginatedListBasic from '~/components/PaginatedListBasic'
+import PaginatedList from '~/components/PaginatedList'
 import ArchiveAside from '~/components/ArchiveAside'
 import { type CollectionName } from '~/lib/api'
 
@@ -34,10 +34,12 @@ const IndexRoute = (props: RouteSectionProps) => {
       <div class="page index">
         <h2>Latest</h2>
         <main id="content">
-          {section() && <PaginatedListBasic name={section()} />}
+          <PaginatedList name={section()} />
         </main>
         <aside>
-          <ArchiveAside name={section() as CollectionName} />
+          <Show when={section() !== 'feeds'}>
+            <ArchiveAside name={section() as CollectionName} />
+          </Show>
         </aside>
       </div>
     </>
