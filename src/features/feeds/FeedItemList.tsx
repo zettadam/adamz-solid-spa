@@ -1,7 +1,17 @@
 import { createResource, For, onCleanup, Show } from 'solid-js'
 
 import { getManyRecords, type FeedItem } from '~/lib/api'
-import { groupByPublishedDatetime } from '~/lib/helpers/array'
+import {
+  groupByPublishedDatetime,
+  groupByPublishedPeriod,
+} from '~/lib/helpers/array'
+
+const PERIOD_LABELS: Record<string, string> = {
+  week: 'Last 7 days',
+  month: 'Last 30 days',
+  quarter: 'Last 90 days',
+  year: 'last 12 months',
+}
 
 async function queryFn({
   expand,
@@ -77,7 +87,7 @@ function FeedItemList(props: { feedId?: string }) {
         </div>
       </Show>
       <Show when={'ready' === data.state}>
-        <ListBasic data={data} />
+        {!props.feedId ? <ListPeriod data={data} /> : <ListDate data={data} />}
       </Show>
     </div>
   )
@@ -85,7 +95,7 @@ function FeedItemList(props: { feedId?: string }) {
 
 export default FeedItemList
 
-function ListBasic(props: { data?: any }) {
+function ListDate(props: { data?: any }) {
   if (!props.data || !props.data() || !props.data().items.length)
     return <p>No newsfeed items found.</p>
 
@@ -94,11 +104,48 @@ function ListBasic(props: { data?: any }) {
   return (
     <ul>
       <For each={Object.entries(items)}>
-        {([pubDate, articles]) => (
+        {([key, values]) => (
           <li>
-            <time datetime={pubDate}>{pubDate}</time>
+            <time datetime={key}>{key}</time>
             <ul>
-              <For each={articles as FeedItem[]}>
+              <For each={values as FeedItem[]}>
+                {(item) => (
+                  <li>
+                    {item?.expand?.feed && (
+                      <a
+                        href={`/feeds/feed/${item.expand.feed.id}`}
+                        class="feed">
+                        {item.expand.feed.title}
+                      </a>
+                    )}
+                    <a href={item.link} target="_blank">
+                      {item.title}
+                    </a>
+                  </li>
+                )}
+              </For>
+            </ul>
+          </li>
+        )}
+      </For>
+    </ul>
+  )
+}
+
+function ListPeriod(props: { data?: any }) {
+  if (!props.data || !props.data() || !props.data().items.length)
+    return <p>No newsfeed items found.</p>
+
+  const items = groupByPublishedPeriod(props.data().items)
+
+  return (
+    <ul>
+      <For each={[...items.keys()]}>
+        {(key) => (
+          <li>
+            <h4>{PERIOD_LABELS[key] || key}</h4>
+            <ul>
+              <For each={items.get(key) as FeedItem[]}>
                 {(item) => (
                   <li>
                     {item?.expand?.feed && (

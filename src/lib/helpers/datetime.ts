@@ -127,3 +127,15 @@ export function getMonthDays(year: string | number, month: string | number) {
     return i.toString().padStart(2, '0')
   })
 }
+
+export function subtractDays(date: Date, days: number): Date {
+  const d = new Date(date)
+  d.setDate(d.getDate() - days)
+  return d
+}
+
+export function subtractMonths(date: Date, months: number): Date {
+  const d = new Date(date)
+  d.setMonth(d.getMonth() - months)
+  return d
+}

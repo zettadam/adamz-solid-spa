@@ -1,12 +1,11 @@
-import { RecordModel } from 'pocketbase'
-import { formatDate } from './datetime'
+import { formatDate, subtractDays, subtractMonths } from './datetime'
 
-export interface Item extends RecordModel {
-  published: string
+export interface Item {
+  [key: string]: any
 }
 
 type GroupedItems = {
-  [key: string]: Item[]
+  [key: string | number]: Item[]
 }
 
 type Format = 'short' | 'medium' | 'long'
@@ -26,4 +25,50 @@ export function groupByPublishedDatetime(
   )
 
   return output
+}
+
+export function groupByPublishedPeriod(
+  items: Item[],
+): Map<string | number, Item[]> {
+  const n = new Date()
+  const w = subtractDays(n, 7)
+  const m = subtractMonths(n, 1)
+  const q = subtractMonths(n, 3)
+  const y = subtractMonths(n, 12)
+
+  const o = new Map()
+
+  items.forEach((i: Item) => {
+    const p = new Date(i.published)
+
+    if (!o.has('week')) o.set('week', [])
+    if (!o.has('month')) o.set('month', [])
+    if (!o.has('quarter')) o.set('quarter', [])
+    if (!o.has('year')) o.set('year', [])
+
+    if (p > w) {
+      o.get('week').push(i)
+      return
+    }
+    if (p > m) {
+      o.get('month').push(i)
+      return
+    }
+
+    if (p > q) {
+      o.get('quarter').push(i)
+      return
+    }
+
+    if (p > y) {
+      o.get('year').push(i)
+      return
+    }
+
+    const Y = p.getFullYear()
+    if (!o.has(Y)) o.set(Y, [])
+    o.get(Y).push(i)
+  })
+
+  return o
 }
