@@ -28,7 +28,14 @@
       & > aside {
         margin-block: 0 3rem;
         & details {
-          margin-block: 0;
+          margin-block: 0 0.25rem;
+          & .tag {
+            background-color: oklch(var(--brown-lch) / 0.25);
+            border-radius: var(--radius-2);
+            color: oklch(var(--black-lch));
+            display: inline-block;
+            padding-inline: 0.25rem;
+          }
           & menu {
             margin-block: 0.5rem 0;
             padding-block: 0;
@@ -47,31 +54,55 @@
           list-style: none;
           margin: 0 0 1rem 0;
           padding: 0.25rem 0;
-          & time,
-          & h4 {
+          & time {
+            color: oklch(var(--brown-lch));
             font-weight: var(--font-weight-semibold);
             line-height: 1.6;
             margin-block: 0 0.5rem;
           }
-          & > ul {
-            border-top: 2px dotted oklch(var(--brown-lch));
+        }
+      }
+
+      & details {
+        font-family: var(--font-sans-serif);
+        margin: 0;
+        padding: 0.25rem 0;
+        & summary {
+          color: oklch(var(--brown-lch));
+          font-size: var(--text-size-2);
+          font-weight: var(--font-weight-semibold);
+          line-height: 1.6;
+          margin-block: 0 0.5rem;
+        }
+      }
+
+      & li ul,
+      & details ul {
+        border-top: 2px dotted oklch(var(--brown-lch));
+        margin-block: 0 1rem;
+        margin-inline: 0;
+        & li {
+          border-bottom: 1px dotted oklch(var(--brown-lch));
+          display: flex;
+          gap: 1rem;
+          margin: 0;
+          &:before {
+            content: '\2022';
           }
-          & li {
-            border-bottom: 1px dotted oklch(var(--brown-lch));
-            display: flex;
-            gap: 1rem;
-            margin: 0;
-            &:before {
-              content: '\2022';
+          & a {
+            text-decoration: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            &:visited {
+              color: oklch(var(--brown-lch));
             }
-            & a {
-              text-decoration: none;
-              &.feed {
-                flex: 0 0 25%;
+            &.feed {
+              flex: 0 0 25%;
+              &:link,
+              &:visited {
+                color: oklch(var(--black-lch));
               }
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
             }
           }
         }

@@ -1,17 +1,7 @@
 import { createResource, For, onCleanup, Show } from 'solid-js'
 
 import { getManyRecords, type FeedItem } from '~/lib/api'
-import {
-  groupByPublishedDatetime,
-  groupByPublishedPeriod,
-} from '~/lib/helpers/array'
-
-const PERIOD_LABELS: Record<string, string> = {
-  week: 'Last 7 days',
-  month: 'Last 30 days',
-  quarter: 'Last 90 days',
-  year: 'last 12 months',
-}
+import { groupByDatetime, groupByTimePeriod } from '~/lib/helpers/array'
 
 async function queryFn({
   expand,
@@ -87,7 +77,11 @@ function FeedItemList(props: { feedId?: string }) {
         </div>
       </Show>
       <Show when={'ready' === data.state}>
-        {!props.feedId ? <ListPeriod data={data} /> : <ListDate data={data} />}
+        {!props.feedId ? (
+          <GroupedListPeriod data={data} />
+        ) : (
+          <GroupedListDate data={data} />
+        )}
       </Show>
     </div>
   )
@@ -95,11 +89,11 @@ function FeedItemList(props: { feedId?: string }) {
 
 export default FeedItemList
 
-function ListDate(props: { data?: any }) {
+function GroupedListDate(props: { data?: any }) {
   if (!props.data || !props.data() || !props.data().items.length)
     return <p>No newsfeed items found.</p>
 
-  const items = groupByPublishedDatetime(props.data().items)
+  const items = groupByDatetime(props.data().items, 'published')
 
   return (
     <ul>
@@ -132,18 +126,25 @@ function ListDate(props: { data?: any }) {
   )
 }
 
-function ListPeriod(props: { data?: any }) {
+const PERIOD_LABELS: Record<string, string> = {
+  week: 'Previous week',
+  month: 'Previous month',
+  quarter: 'Previous quarter',
+  year: 'Previous year',
+}
+
+function GroupedListPeriod(props: { data?: any }) {
   if (!props.data || !props.data() || !props.data().items.length)
     return <p>No newsfeed items found.</p>
 
-  const items = groupByPublishedPeriod(props.data().items)
+  const items = groupByTimePeriod(props.data().items, 'published')
 
   return (
-    <ul>
+    <div>
       <For each={[...items.keys()]}>
         {(key) => (
-          <li>
-            <h4>{PERIOD_LABELS[key] || key}</h4>
+          <details open={key === 'week'}>
+            <summary>{PERIOD_LABELS[key] || key}</summary>
             <ul>
               <For each={items.get(key) as FeedItem[]}>
                 {(item) => (
@@ -162,9 +163,9 @@ function ListPeriod(props: { data?: any }) {
                 )}
               </For>
             </ul>
-          </li>
+          </details>
         )}
       </For>
-    </ul>
+    </div>
   )
 }

@@ -21,7 +21,7 @@ function FeedSelection(props: {
         return (
           <details open={open}>
             <summary>
-              {tag}: {feeds.length}
+              <span class="tag">{tag}</span> ({feeds.length})
             </summary>
             <menu>
               <For each={feeds}>

@@ -48,6 +48,7 @@ function NewsfeedRoute(props: RouteSectionProps) {
           <FeedItemList feedId={props.params.feedId} />
         </main>
         <aside>
+          <h3>Feed selection</h3>
           <Show when={feeds.loading}>
             <p>Loading feeds…</p>
           </Show>

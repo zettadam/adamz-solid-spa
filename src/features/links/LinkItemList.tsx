@@ -2,13 +2,13 @@ import { For } from 'solid-js'
 import { A, useParams } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 
-import { groupByPublishedDatetime, type Item } from '~/lib/helpers/array'
+import { groupByDatetime, type Item } from '~/lib/helpers/array'
 
 const LinkItemList = (props: { items: Item[] }) => {
   const params = useParams()
   if (!props.items || props.items.length < 1) return null
 
-  const items = groupByPublishedDatetime(props.items)
+  const items = groupByDatetime(props.items)
 
   return (
     <For each={Object.keys(items)}>
