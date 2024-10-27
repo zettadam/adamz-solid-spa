@@ -1,5 +1,6 @@
 import { For } from 'solid-js'
 import { A } from '@solidjs/router'
+import { Link } from '@solidjs/meta'
 import sanitize from 'sanitize-html'
 import { type RecordModel } from 'pocketbase'
 
@@ -17,21 +18,27 @@ const CodeDetail = (props: { data?: RecordModel }) => {
   const body = item.body ? sanitize(item.body) : null
 
   return (
-    <article>
-      <header>
-        <h1>{item.title}</h1>
-        {published && <time>{published}</time>}
-        {item.tags && (
-          <nav class="tags">
-            <For each={item.tags}>
-              {(t: string) => <A href={`/code/tags/${t}`}>{t}</A>}
-            </For>
-          </nav>
-        )}
-      </header>
-      {abstract && <section class="abstract" innerHTML={abstract} />}
-      {body && <section class="body" innerHTML={body} />}
-    </article>
+    <>
+      <Link
+        rel="stylesheet"
+        href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css"
+      />
+      <article>
+        <header>
+          <h1>{item.title}</h1>
+          {published && <time>{published}</time>}
+          {item.tags && (
+            <nav class="tags">
+              <For each={item.tags}>
+                {(t: string) => <A href={`/code/tags/${t}`}>{t}</A>}
+              </For>
+            </nav>
+          )}
+        </header>
+        {abstract && <section class="abstract" innerHTML={abstract} />}
+        {body && <section class="body" innerHTML={body} />}
+      </article>
+    </>
   )
 }
 

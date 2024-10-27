@@ -24,9 +24,10 @@
         }
 
         & pre {
-          background: hsl(0, 0%, 96%);
-          border: 2px solid hsl(0, 0%, 90%);
+          background: oklch(var(--orange-lch) / 0.25);
+          border: 2px solid oklch(var(--orange-lch));
           border-radius: var(--radius-3);
+          color: oklch(var(--black-lch));
           font-size: var(--text-size-1);
           margin-block: 2rem;
           margin-inline: -2rem;

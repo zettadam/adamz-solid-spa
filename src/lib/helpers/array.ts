@@ -16,7 +16,7 @@ export function groupByDatetime(
   format: Format = 'medium',
 ): GroupedItems {
   const output = items.reduce(
-    (acc: { [k: string]: Item[] }, item: Item): GroupedItems => {
+    (acc: { [k: string]: Item[] }, item): GroupedItems => {
       const date: string | null = formatDate(item[key], format)
       if (date && !(date in acc)) acc[date] = []
       if (date) acc[date].push(item)
@@ -32,21 +32,20 @@ export function groupByTimePeriod(
   items: Item[],
   key: string,
 ): Map<string | number, Item[]> {
-  const n = new Date()
-  const w = subtractDays(n, 7)
-  const m = subtractMonths(n, 1)
-  const q = subtractMonths(n, 3)
-  const y = subtractMonths(n, 12)
-
   const o = new Map()
+  o.set('week', [])
+  o.set('month', [])
+  o.set('quarter', [])
+  o.set('year', [])
 
-  items.forEach((i: Item) => {
+  const t = new Date()
+  const w = subtractDays(t, 7)
+  const m = subtractMonths(t, 1)
+  const q = subtractMonths(t, 3)
+  const y = subtractMonths(t, 12)
+
+  items.forEach((i) => {
     const p = new Date(i[key])
-
-    if (!o.has('week')) o.set('week', [])
-    if (!o.has('month')) o.set('month', [])
-    if (!o.has('quarter')) o.set('quarter', [])
-    if (!o.has('year')) o.set('year', [])
 
     if (p >= w) o.get('week').push(i)
     else if (p >= m) o.get('month').push(i)
