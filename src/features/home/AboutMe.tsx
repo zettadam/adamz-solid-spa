@@ -1,6 +1,7 @@
 import type { Component, JSX } from 'solid-js'
 
 import LatestPosts from '../posts/LatestPosts'
+import Elsewhere from '~/components/Elsewhere'
 
 const AboutMe: Component = (): JSX.Element => {
   return (
@@ -28,6 +29,7 @@ const AboutMe: Component = (): JSX.Element => {
         </p>
 
         <LatestPosts />
+        <Elsewhere />
       </span>
     </div>
   )

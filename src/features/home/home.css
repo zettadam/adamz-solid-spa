@@ -51,7 +51,7 @@
     font-family: var(--font-sans-serif);
     grid-column: 5/13;
     grid-row: 2/3;
-    margin-block: 5rem;
+    margin-block: 5rem 10rem;
     padding: 3rem;
 
     &::before {
@@ -107,6 +107,11 @@
           flex: auto;
         }
       }
+    }
+
+    & ul.elsewhere {
+      margin-inline: auto 0;
+      padding-block: 2rem 0;
     }
   }
 }
