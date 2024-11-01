@@ -1,4 +1,4 @@
-const GithubIcon = (props: { size?: number }) => {
+function GithubIcon(props: { size?: number }) {
   const size = props.size ?? 22
   return (
     <svg
