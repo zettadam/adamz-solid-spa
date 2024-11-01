@@ -30,6 +30,9 @@ const AboutMe: Component = (): JSX.Element => {
 
         <LatestPosts />
         <Elsewhere />
+        <p id="copyright">
+          &copy; 2024 <span>Adam Z.</span>
+        </p>
         <p>
           <small>
             Written entirely by hand with{' '}
