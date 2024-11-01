@@ -30,6 +30,30 @@ const AboutMe: Component = (): JSX.Element => {
 
         <LatestPosts />
         <Elsewhere />
+        <p>
+          <small>
+            Written entirely by hand with{' '}
+            <a href="https://www.solidjs.com/" target="_blank">
+              SolidJS
+            </a>
+            ,{' '}
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+              target="_blank">
+              HTML
+            </a>
+            ,{' '}
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+              target="_blank">
+              CSS
+            </a>{' '}
+            and{' '}
+            <a href="https://pocketbase.io/" target="blank">
+              PocketBase
+            </a>
+          </small>
+        </p>
       </span>
     </div>
   )
