@@ -24,13 +24,13 @@ export default function LabItemList(props: { items: Item[] }) {
                     : undefined
                   return (
                     <li>
-                      <h3>
+                      <h4>
                         <a href={x.url} target="_blank">
                           {x.title}
                         </a>
-                      </h3>
+                      </h4>
                       {x.expand?.labs_groups_id && (
-                        <h4
+                        <h5
                           class="group"
                           style={{
                             'background-color':
@@ -39,7 +39,7 @@ export default function LabItemList(props: { items: Item[] }) {
                             color: `oklch(var(--white-lch))`,
                           }}>
                           {x.expand.labs_groups_id.name}
-                        </h4>
+                        </h5>
                       )}
                       <div innerHTML={abstract} />
                       {x.tags && (

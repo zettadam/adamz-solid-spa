@@ -74,13 +74,6 @@
     }
 
     & article {
-      & header {
-        & h1 {
-          font-size: var(--text-size-12);
-          margin-block: 1rem;
-        }
-      }
-
       & section.abstract {
         border-bottom: 1px solid oklch(var(--blue-lch));
         font-weight: var(--font-weight-bold);

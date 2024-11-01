@@ -17,11 +17,6 @@
 
       & article {
         padding-inline: 1rem;
-        & header {
-          & h1 {
-            font-size: var(--text-size-3);
-          }
-        }
 
         & pre {
           background: oklch(var(--orange-lch) / 0.25);
