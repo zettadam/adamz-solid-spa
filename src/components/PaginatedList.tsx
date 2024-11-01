@@ -1,4 +1,4 @@
-import { createResource, For, Match, onCleanup, Switch } from 'solid-js'
+import { createResource, For, Match, onCleanup, Show, Switch } from 'solid-js'
 import { A, useParams, type Params } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 
@@ -9,7 +9,6 @@ import LabItemList from '~/features/labs/LabItemList'
 import { CollectionName, getManyRecords } from '~/lib/api'
 import Error from './Error'
 import Loading from './Loading'
-import CodeItemList from '~/features/code/CodeItemList'
 
 const pageSizeMap: Record<string, number> = {
   code: 10,
@@ -108,19 +107,20 @@ export default function PaginatedList(props: { name: string }) {
         <Error message={data.error} name={props.name} />
       </Match>
       <Match when={data.state === 'ready'}>
-        <List data={data} name={props.name} />
+        <List data={data} name={props.name} tag={params.tag} />
       </Match>
     </Switch>
   )
 }
 
-function List(props: { data?: any; name: string }) {
+function List(props: { data?: any; name: string; tag?: string }) {
   if (!props.data || !props.data()) return null
 
   const name = props.name
   const items = props.data()?.items ?? []
   const page = props.data()?.page ?? 1
   const totalPages = props.data()?.totalPages ?? 1
+  const tag = props.tag
 
   return (
     <>
@@ -129,22 +129,19 @@ function List(props: { data?: any; name: string }) {
           <Match when={'links' === name}>
             <LinkItemList items={items} />
           </Match>
-          <Match when={'code' === name}>
-            <CodeItemList items={items} />
-          </Match>
           <Match when={'labs' === name}>
             <LabItemList items={items} />
           </Match>
-          <Match when={['links', 'code', 'labs'].indexOf(name) < 0}>
+          <Match when={['links', 'labs'].indexOf(name) < 0}>
             <For each={items}>
               {(d) => {
                 const abstract = d.abstract ? sanitizeHtml(d.abstract) : null
                 return (
                   <li>
                     <time>{formatDate(d.published || d.created, 'long')}</time>
-                    <h3>
+                    <h4>
                       <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
-                    </h3>
+                    </h4>
                     {abstract ? (
                       <div innerHTML={abstract} />
                     ) : (
@@ -152,6 +149,19 @@ function List(props: { data?: any; name: string }) {
                         <p>No description</p>
                       </div>
                     )}
+                    <Show when={Array.isArray(d.tags) && d.tags.length}>
+                      <nav class="tags">
+                        <For each={d.tags}>
+                          {(t) =>
+                            t === tag ? (
+                              <b>{t}</b>
+                            ) : (
+                              <A href={`/${name}/tags/${t}`}>{t}</A>
+                            )
+                          }
+                        </For>
+                      </nav>
+                    </Show>
                   </li>
                 )
               }}
@@ -160,7 +170,7 @@ function List(props: { data?: any; name: string }) {
         </Switch>
       </ul>
 
-      {totalPages > 1 && (
+      <Show when={totalPages > 1}>
         <menu>
           {page > 1 && (
             <li>
@@ -173,7 +183,7 @@ function List(props: { data?: any; name: string }) {
             </li>
           )}
         </menu>
-      )}
+      </Show>
     </>
   )
 }

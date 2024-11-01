@@ -24,11 +24,11 @@ const LinkItemList = (props: { items: Item[] }) => {
                     : undefined
                   return (
                     <li>
-                      <h3>
+                      <h4>
                         <a href={x.url} target="_blank">
                           {x.title}
                         </a>
-                      </h3>
+                      </h4>
                       <div innerHTML={abstract} />
                       {x.tags && (
                         <nav class="tags">

@@ -12,6 +12,8 @@ const NotesLayout = (props: RouteSectionProps) => {
           Index
         </A>
         <span class="divider" />
+        <A href="/notes/tags">Tags</A>
+        <span class="divider" />
         <A href="/notes/archive">Archive</A>
         <span class="divider" />
         <SearchForm name="notes" />

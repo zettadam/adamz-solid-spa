@@ -84,9 +84,9 @@
   input,
   menu,
   nav,
-  select {
+  select,
+  time {
     font-family: var(--font-sans-serif);
-    line-height: 1.2;
   }
 
   h1,
@@ -100,13 +100,26 @@
     }
   }
 
-  p,
-  li {
-    font-size: 1rem;
-  }
-
   main {
+    --r: 1.5;
+    --text-size-1: 1rem;
+    --text-size-2: calc(var(--r) * var(--text-size-1));
+    --text-size-3: calc(var(--r) * var(--text-size-2));
+    --text-size-4: calc(var(--r) * var(--text-size-3));
+    --text-size-5: calc(var(--r) * var(--text-size-4));
+    --text-size-6: calc(var(--r) * var(--text-size-5));
+    --text-size-7: calc(var(--r) * var(--text-size-6));
+    --text-size-8: calc(var(--r) * var(--text-size-7));
+    --text-size-9: calc(var(--r) * var(--text-size-8));
+    --text-size-10: calc(var(--r) * var(--text-size-9));
+    --text-size-11: calc(var(--r) * var(--text-size-10));
+    --text-size-12: calc(var(--r) * var(--text-size-11));
+
     padding-block: 0 5rem;
+
+    & h1 {
+      font-size: var(--text-size-6);
+    }
     & h2 {
       font-size: var(--text-size-5);
     }
@@ -121,6 +134,31 @@
     }
     & h6 {
       font-size: var(--text-size-1);
+    }
+
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+      line-height: 1;
+      margin-block: 3rem 1.5rem;
+    }
+
+    & header {
+      & h1,
+      & h2 {
+        margin-block: 0 1.5rem;
+      }
+    }
+
+    & p,
+    & li,
+    & dt,
+    & dd {
+      font-size: var(--text-size-1);
+      line-height: 1.4;
     }
   }
 
