@@ -124,7 +124,7 @@ export function getMonthDays(year: string | number, month: string | number) {
 
   return Array.from({ length: n }, (_, i: number) => {
     i++
-    return i.toString().padStart(2, '0')
+    return i
   })
 }
 

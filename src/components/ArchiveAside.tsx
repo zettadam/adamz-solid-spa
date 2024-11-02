@@ -2,7 +2,9 @@ import { createResource, For, onCleanup } from 'solid-js'
 import { A, useParams } from '@solidjs/router'
 
 import { getAllRecords, type CollectionName } from '~/lib/api'
-import { formatDate, getTimezoneOffset } from '~/lib/helpers/datetime'
+import { getTimezoneOffset } from '~/lib/helpers/datetime'
+import { countByYearMonthDay } from '~/lib/helpers/array'
+
 import { monthNamesLong } from '~/features/generic/constants'
 
 import Error from '~/components/Error'
@@ -87,7 +89,7 @@ function ArchiveList(props: { data?: any; name: string }) {
 
   const p = useParams()
 
-  const items = groupFn(data)
+  const items = countByYearMonthDay(data, 'published', 'short')
 
   return (
     <>
@@ -95,20 +97,14 @@ function ArchiveList(props: { data?: any; name: string }) {
         {([y, months]) => (
           <>
             <h5>{!p.year && y}</h5>
-            <For
-              each={Object.entries(
-                months as { [k: string]: { total: number; days: {} } },
-              )}>
+            <For each={Object.entries(months).reverse()}>
               {([m, info], i) => (
                 <details open={i() < 1}>
                   <summary>
                     {monthNamesLong[m]} ({info.total})
                   </summary>
                   <menu>
-                    <For
-                      each={Object.entries(info.days as { [k: string]: number })
-                        .sort()
-                        .reverse()}>
+                    <For each={Object.entries(info.days).reverse()}>
                       {([d, c]) => (
                         <li>
                           {!p.day ||
@@ -139,32 +135,4 @@ function ArchiveList(props: { data?: any; name: string }) {
       </For>
     </>
   )
-}
-
-type DayCount = Record<string, number>
-type MonthCount = Record<string, { total: number; days: DayCount }>
-type YearCount = Record<string, MonthCount>
-
-function groupFn(data: []): YearCount {
-  return data.reduce((acc: any, i: { published: string }): any => {
-    const f = formatDate(i.published, 'short')
-    if (f) {
-      const d = f?.split('/')
-      const year = d[2].trim()
-      const day = d[1].trim()
-      const month = d[0].trim()
-      if (!acc[year]) {
-        acc[year] = {}
-      }
-      if (!acc[year][month]) {
-        acc[year][month] = { total: 0, days: {} }
-      }
-      if (!acc[year][month].days[day]) {
-        acc[year][month].days[day] = 0
-      }
-      acc[year][month].total++
-      acc[year][month].days[day]++
-    }
-    return acc
-  }, {})
 }
