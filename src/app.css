@@ -427,7 +427,8 @@
 
         & menu.matrix {
           font-family: var(--font-sans-serif);
-          &,
+          margin-inline: 1rem;
+          padding-inline: 0;
           & menu,
           & li {
             margin-block: 0;
@@ -465,12 +466,17 @@
             list-style: none;
           }
           & h3 {
-            font-size: var(--text-size-6) !important;
             margin-block: 0;
           }
           & h4 {
-            font-size: var(--text-size-2) !important;
             margin-block: 0 0.5rem;
+          }
+          & h3,
+          & h4 {
+            & i {
+              font-size: var(--text-size-1);
+              font-weight: var(--font-weight-semibold);
+            }
           }
           & a {
             text-decoration: none;
@@ -518,6 +524,9 @@
         & h5 {
           font-size: var(--text-size-3);
           margin-block: 1rem 0.5rem;
+          & i {
+            font-weight: normal;
+          }
         }
         & summary {
           font-size: var(--text-size-2);

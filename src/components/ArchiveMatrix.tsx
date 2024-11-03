@@ -20,28 +20,33 @@ const ArchiveMatrix: Component<{
 
   const items = countByYearMonthDay(data, 'published', 'short')
 
+  console.log('items', items)
+
   return (
     <menu class="matrix">
-      <For each={Object.entries(items)}>
-        {([y, months]) => (
+      <For each={Object.entries(items.years)}>
+        {([y, yearInfo]) => (
           <li>
-            <h3>{year ? y : <A href={`/${name}/archive/${y}`}>{y}</A>}</h3>
+            <h3>
+              {year ? y : <A href={`/${name}/archive/${y}`}>{y}</A>}{' '}
+              <i>({yearInfo.total} links)</i>
+            </h3>
             <menu class="months">
-              <For each={Object.entries(months).reverse()}>
-                {([m, info]) => (
+              <For each={Object.entries(yearInfo.months).reverse()}>
+                {([m, monthInfo]) => (
                   <li>
                     <h4>
                       <A href={`/${name}/archive/${y}/${m}`}>
                         {monthNamesLong[m]}
                       </A>{' '}
-                      ({info.total} links)
+                      <i>({monthInfo.total} links)</i>
                     </h4>
                     <div class="hbox-swipe">
                       <menu class="days">
                         <For each={getMonthDays(y, m)}>
                           {(i) => (
                             <li>
-                              {info.days[i] ? (
+                              {monthInfo.days[i] ? (
                                 <>
                                   <A href={`/${name}/archive/${y}/${m}/${i}`}>
                                     {i}
@@ -49,10 +54,10 @@ const ArchiveMatrix: Component<{
                                   <span
                                     class="bar"
                                     style={{
-                                      height: `${info.days[i] / 2}rem`,
+                                      height: `${monthInfo.days[i] / 2}rem`,
                                     }}
                                   />
-                                  <b>{info.days[i]}</b>
+                                  <b>{monthInfo.days[i]}</b>
                                 </>
                               ) : (
                                 i

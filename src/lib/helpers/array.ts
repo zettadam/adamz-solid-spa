@@ -30,30 +30,38 @@ export function groupByDatetime(
 
 type DayCount = Record<string, number>
 type MonthCount = Record<string, { total: number; days: DayCount }>
-type YearCount = Record<string, MonthCount>
+type YearCount = Record<string, { total: number; months: MonthCount }>
+type FullCount = { total: number; years: YearCount }
 
 export function countByYearMonthDay(
   items: Item[],
   key: string = 'published',
   format: Format = 'medium',
-): YearCount {
-  return items.reduce((acc: any, item: Item): any => {
-    const f = formatDate(item[key], format)
-    if (f) {
-      const d = f?.split('/')
-      const year = parseInt(d[2].trim(), 10)
-      const day = parseInt(d[1].trim(), 10)
-      const month = parseInt(d[0].trim(), 10)
+): FullCount {
+  return items.reduce(
+    (acc: any, item: Item): any => {
+      const f = formatDate(item[key], format)
+      if (f) {
+        const d = f?.split('/')
+        const year = parseInt(d[2].trim(), 10)
+        const day = parseInt(d[1].trim(), 10)
+        const month = parseInt(d[0].trim(), 10)
 
-      if (!acc[year]) acc[year] = {}
-      if (!acc[year][month]) acc[year][month] = { total: 0, days: {} }
-      if (!acc[year][month].days[day]) acc[year][month].days[day] = 0
+        if (!acc.years[year]) acc.years[year] = { total: 0, months: {} }
+        if (!acc.years[year].months[month])
+          acc.years[year].months[month] = { total: 0, days: {} }
+        if (!acc.years[year].months[month].days[day])
+          acc.years[year].months[month].days[day] = 0
 
-      acc[year][month].total++
-      acc[year][month].days[day]++
-    }
-    return acc
-  }, {})
+        acc.total++
+        acc.years[year].total++
+        acc.years[year].months[month].total++
+        acc.years[year].months[month].days[day]++
+      }
+      return acc
+    },
+    { total: 0, years: {} },
+  )
 }
 
 export function groupByTimePeriod(

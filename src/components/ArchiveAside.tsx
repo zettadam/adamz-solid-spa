@@ -93,18 +93,20 @@ function ArchiveList(props: { data?: any; name: string }) {
 
   return (
     <>
-      <For each={Object.entries(items)}>
-        {([y, months]) => (
+      <For each={Object.entries(items.years)}>
+        {([y, yearInfo]) => (
           <>
-            <h5>{!p.year && y}</h5>
-            <For each={Object.entries(months).reverse()}>
-              {([m, info], i) => (
+            <h5>
+              {!p.year && y} <i>({yearInfo.total})</i>
+            </h5>
+            <For each={Object.entries(yearInfo.months).reverse()}>
+              {([m, monthInfo], i) => (
                 <details open={i() < 1}>
                   <summary>
-                    {monthNamesLong[m]} ({info.total})
+                    {monthNamesLong[m]} <i>({monthInfo.total})</i>
                   </summary>
                   <menu>
-                    <For each={Object.entries(info.days).reverse()}>
+                    <For each={Object.entries(monthInfo.days).reverse()}>
                       {([d, c]) => (
                         <li>
                           {!p.day ||
@@ -113,14 +115,14 @@ function ArchiveList(props: { data?: any; name: string }) {
                               <A href={`/${name}/archive/${y}/${m}/${d}`}>
                                 {monthNamesLong[m]} {d}
                               </A>
-                              <span>({c})</span>
+                              <i>({c})</i>
                             </span>
                           ) : (
                             <span>
                               <b>
                                 {monthNamesLong[m]} {d}
                               </b>
-                              <span>({c})</span>
+                              <i>({c})</i>
                             </span>
                           )}
                         </li>
