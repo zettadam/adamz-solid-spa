@@ -1,5 +1,5 @@
 import { createResource, For, Match, onCleanup, Show, Switch } from 'solid-js'
-import { A, useParams, type Params } from '@solidjs/router'
+import { A, useParams } from '@solidjs/router'
 import sanitizeHtml from 'sanitize-html'
 
 import { formatDate } from '~/lib/helpers/datetime'
@@ -30,40 +30,47 @@ const expand: Record<CollectionName, string> = {
 
 const queryFn = async ({
   name,
-  params,
+  query,
+  page,
+  tag,
+  value,
   expand = '',
 }: {
   name: CollectionName
-  params: Params
+  query?: string
+  page?: string
+  tag?: string
+  value?: string
   expand?: string
 }) => {
+  console.log('tag', tag)
   const ac = new AbortController()
   onCleanup(() => ac.abort())
 
-  const page = params.page ? parseInt(params.page, 10) : 1
+  const pageNum = page ? parseInt(page, 10) : 1
 
   const sortColumn = name === 'feeds' ? 'created' : 'published'
   let filter = `${sortColumn} != null`
 
-  if (params.query) {
-    const d = decodeURI(params.query)
+  if (query) {
+    const d = decodeURI(query)
     const q = d ? d.replace(/\s+/g, ' ').replace(/[^a-zA-Z0-9 -]/g, '') : ''
     if (q) {
       filter += ` && (title ?~ "${q}" || abstract ?~ "${q}")`
     }
   }
 
-  if (params.tag) {
-    filter += ` && tags ?~ "${params.tag}"`
+  if (tag) {
+    filter += ` && tags ?~ "${tag}"`
   }
 
-  if (params.value) {
-    if (params.value !== '0' && params.value !== '100+') {
-      const v = params.value.split('-')
+  if (value) {
+    if (value !== '0' && value !== '100+') {
+      const v = value.split('-')
       if (v.length) {
         filter += ` && (significance >= ${parseInt(v[0], 10)} && significance <= ${parseInt(v[1], 10)})`
       }
-    } else if (params.value === '100+') {
+    } else if (value === '100+') {
       filter += ` && significance > 100`
     } else {
       filter += ` && significance < 1`
@@ -79,7 +86,7 @@ const queryFn = async ({
   const data = await getManyRecords({
     name,
     options,
-    page,
+    page: pageNum,
     size: pageSizeMap[name],
   })
 
@@ -92,7 +99,10 @@ export default function PaginatedList(props: { name: string }) {
   const [data] = createResource(
     () => ({
       name: props.name as CollectionName,
-      params,
+      query: params.query,
+      page: params.page,
+      tag: params.tag,
+      value: params.value,
       expand: expand[props.name as CollectionName],
     }),
     queryFn,
@@ -116,23 +126,21 @@ export default function PaginatedList(props: { name: string }) {
 function List(props: { data?: any; name: string; tag?: string }) {
   if (!props.data || !props.data()) return null
 
-  const name = props.name
   const items = props.data()?.items ?? []
   const page = props.data()?.page ?? 1
   const totalPages = props.data()?.totalPages ?? 1
-  const tag = props.tag
 
   return (
     <>
-      <ul class={`${name} paginated basic`}>
+      <ul class={`${props.name} paginated basic`}>
         <Switch>
-          <Match when={'links' === name}>
+          <Match when={'links' === props.name}>
             <LinkItemList items={items} />
           </Match>
-          <Match when={'labs' === name}>
+          <Match when={'labs' === props.name}>
             <LabItemList items={items} />
           </Match>
-          <Match when={['links', 'labs'].indexOf(name) < 0}>
+          <Match when={['links', 'labs'].indexOf(props.name) < 0}>
             <For each={items}>
               {(d) => {
                 const abstract = d.abstract ? sanitizeHtml(d.abstract) : null
@@ -140,7 +148,7 @@ function List(props: { data?: any; name: string; tag?: string }) {
                   <li>
                     <time>{formatDate(d.published || d.created, 'long')}</time>
                     <h4>
-                      <A href={`/${name}/detail/${d.id}`}>{d.title}</A>
+                      <A href={`/${props.name}/detail/${d.id}`}>{d.title}</A>
                     </h4>
                     {abstract ? (
                       <div innerHTML={abstract} />
@@ -153,10 +161,10 @@ function List(props: { data?: any; name: string; tag?: string }) {
                       <nav class="tags">
                         <For each={d.tags}>
                           {(t) =>
-                            t === tag ? (
+                            t === props.tag ? (
                               <b>{t}</b>
                             ) : (
-                              <A href={`/${name}/tags/${t}`}>{t}</A>
+                              <A href={`/${props.name}/tags/${t}`}>{t}</A>
                             )
                           }
                         </For>

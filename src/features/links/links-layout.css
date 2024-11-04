@@ -70,6 +70,10 @@
             & p {
               margin-block: 0 1rem;
             }
+            & ul,
+            & ol {
+              margin-block: 0 1rem;
+            }
             & li {
               & > a {
                 font-family: var(--font-serif);
